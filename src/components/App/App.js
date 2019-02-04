@@ -75,7 +75,7 @@ class App extends Component {
               path="/admin/users"
               component={AdminUsersPage}
             />
-
+{/* 
             <ProtectedRoute
               exact
               path="/admin/events"
@@ -104,8 +104,8 @@ class App extends Component {
             exact
             path="/captain/profile/edit"
             component={CaptainEditProfilePage}
-            />
-                      
+            /> */}
+
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>

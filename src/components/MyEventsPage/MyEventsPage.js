@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import MyEventList from './MyEventList/MyEventList';
 
 class MyEventsPage extends Component {
 
@@ -20,6 +21,7 @@ class MyEventsPage extends Component {
             <div>
                 {/* <p> {JSON.stringify({this.props.reduxStore.myEvents})} </p> */}
                 <h3>My Events</h3>
+                <MyEventList/>
 
             </div>
         )

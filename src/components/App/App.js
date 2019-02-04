@@ -19,6 +19,7 @@ import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 
 import './App.css';
+import MyEventsPage from '../MyEventsPage/MyEventsPage';
 
 class App extends Component {
   componentDidMount () {
@@ -52,6 +53,12 @@ class App extends Component {
               exact
               path="/home"
               component={UserPage}
+            />
+
+            <ProtectedRoute
+              exact
+              path="/myevents"
+              component={MyEventsPage}
             />
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}

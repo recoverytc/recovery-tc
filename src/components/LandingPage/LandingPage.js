@@ -5,10 +5,7 @@ import EventList from './EventList/EventList';
 
 const LandingPage = () => (
   <div>
-      <p>
-        This about page is for anyone to read!
-        
-      </p>
+      <h1>Landing Page of All Events</h1>
       <EventList />
   </div>
 );

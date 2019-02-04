@@ -1,23 +1,56 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import axios from 'axios';
 
 class RegisterPage extends Component {
   state = {
     username: '',
     password: '',
+    confirmPassword: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+
   };
 
   registerUser = (event) => {
     event.preventDefault();
-
-    if (this.state.username && this.state.password) {
-      this.props.dispatch({
-        type: 'REGISTER',
-        payload: {
-          username: this.state.username,
-          password: this.state.password,
-        },
-      });
+    if(this.state.phone) {
+      axios.get(`/api/user/num/${this.state.phone}`).then(response => {
+        if(response.data.valid) {
+          if(this.state.username && 
+             this.state.password &&
+             this.state.confirmPassword &&
+             this.state.firstName &&
+             this.state.lastName &&
+             this.state.email &&
+             this.state.phone) {
+              if(this.state.password === this.state.confirmPassword) {
+                this.props.dispatch({
+                  type: 'REGISTER',
+                  payload: {
+                    username: this.state.username,
+                    password: this.state.password,
+                    confirmPassword: this.state.confirmPassword,
+                    firstName: this.state.firstName,
+                    lastName: this.state.lastName,
+                    email: this.state.email,
+                    phone: this.state.phone,
+                  },
+                });
+              } else {
+                this.props.dispatch({type: 'REGISTRATION_PASSWORD_ERROR'});
+              }
+          } else {
+            this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
+          }
+        } else {
+          this.props.dispatch({type: 'REGISTRATION_PHONE_ERROR'});
+        }
+      })
     } else {
       this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
     }
@@ -43,45 +76,88 @@ class RegisterPage extends Component {
         <form onSubmit={this.registerUser}>
           <h1>Register User</h1>
           <div>
-            <label htmlFor="username">
-              Username:
-              <input
-                type="text"
-                name="username"
-                value={this.state.username}
-                onChange={this.handleInputChangeFor('username')}
-              />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="password">
-              Password:
-              <input
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleInputChangeFor('password')}
-              />
-            </label>
-          </div>
-          <div>
-            <input
-              className="register"
-              type="submit"
-              name="submit"
-              value="Register"
+            <TextField
+              label="First Name"
+              placeholder="First Name"
+              margin="normal"
+              value={this.state.firstName}
+              onChange={this.handleInputChangeFor('firstName')}
             />
           </div>
-        </form>
-        <center>
-          <button
-            type="button"
-            className="link-button"
-            onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
+          <div>
+            <TextField
+              label="Last Name"
+              placeholder="Last Name"
+              margin="normal"
+              value={this.state.lastName}
+              onChange={this.handleInputChangeFor('lastName')}
+            />
+          </div>
+          <div>
+            <TextField
+              label="Username"
+              placeholder="Username"
+              margin="normal"
+              value={this.state.username}
+              onChange={this.handleInputChangeFor('username')}
+            />
+          </div>
+          <div>
+            <TextField
+              label="Password"
+              placeholder="Password"
+              margin="normal"
+              value={this.state.password}
+              onChange={this.handleInputChangeFor('password')}
+            />
+          </div>
+          <div>
+            <TextField
+              label="Confirm Password"
+              placeholder="Confirm Password"
+              margin="normal"
+              value={this.state.confirmPassword}
+              onChange={this.handleInputChangeFor('confirmPassword')}
+            />
+          </div>
+          <div>
+            <TextField
+              label="Email Address"
+              placeholder="Email Address"
+              margin="normal"
+              value={this.state.email}
+              onChange={this.handleInputChangeFor('email')}
+            />
+          </div>
+          <div>
+            <TextField
+              label="Phone Number"
+              placeholder="Phone Number(For Admin use only)"
+              margin="normal"
+              value={this.state.phone}
+              onChange={this.handleInputChangeFor('phone')}
+            />
+          </div>
+          <center>
+          <Button
+            onClick={() => { this.props.dispatch({ type: 'SET_TO_LOGIN_MODE' }) }}
+            color="primary"
+            variant="contained"
           >
-            Login
-          </button>
+            Already have an account?
+          </Button>
+          <Button
+            onClick={this.registerUser}
+            color="secondary"
+            variant="contained"
+            type="submit"
+            name="submit"
+            value="Register"
+          >
+            Create Account
+          </Button>
         </center>
+        </form>
       </div>
     );
   }

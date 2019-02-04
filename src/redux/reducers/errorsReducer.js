@@ -27,7 +27,11 @@ const registrationMessage = (state = '', action) => {
       return 'Choose a username and password!';
     case 'REGISTRATION_FAILED':
       return 'Oops! That didn\'t work. The username might already be taken. Try again!';
-    default:
+    case 'REGISTRATION_PHONE_ERROR':
+      return 'Please enter a valid phone number.';
+    case 'REGISTRATION_PASSWORD_ERROR':
+      return 'The entered passwords do not match! Try again.';
+      default:
       return state;
   }
 };

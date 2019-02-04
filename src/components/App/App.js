@@ -36,7 +36,7 @@ class App extends Component {
             This is a route anyone can see, no login necessary */}
             <Route
               exact
-              path="/about"
+              path="/aboutpage"
               component={AboutPage}
             />
             {/* For protected routes, the view could show one of several things on the same route.

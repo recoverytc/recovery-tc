@@ -1,0 +1,13 @@
+.imagebox{
+    height: 200px;
+    width: 200px;
+    margin-top: 10%;
+    margin-left: 20%;
+}
+.attendButton{
+    height: 25px;
+    width: 100px;
+   margin: 10px;
+   margin-left: 20%;
+   display: block;
+}

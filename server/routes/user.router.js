@@ -3,6 +3,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 const encryptLib = require('../modules/encryption');
 const pool = require('../modules/pool');
 const userStrategy = require('../strategies/user.strategy');
+const axios = require('axios');
 
 const router = express.Router();
 
@@ -18,9 +19,13 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 router.post('/register', (req, res, next) => {  
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+  const email = req.body.email;
+  const phone = req.body.phone;
 
-  const queryText = 'INSERT INTO person (username, password) VALUES ($1, $2) RETURNING id';
-  pool.query(queryText, [username, password])
+  const queryText = 'INSERT INTO "user" (username, password, first_name, last_name, email, phone) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id';
+  pool.query(queryText, [username, password, firstName, lastName, email, phone])
     .then(() => { res.sendStatus(201); })
     .catch((err) => { next(err); });
 });
@@ -39,5 +44,18 @@ router.post('/logout', (req, res) => {
   req.logout();
   res.sendStatus(200);
 });
+
+router.get('/num/:id', (req, res) => {
+  let id = req.params.id;
+  axios.get(`http://apilayer.net/api/validate?access_key=${process.env.NUMVERIFY_API_KEY}&number=${id}&country_code=US&format=1`)
+  .then(response => {
+    res.send(response.data);
+    console.log(response.data);
+  })
+  .catch(error => {
+    console.log('Error with phone verification:', error);
+    res.sendStatus(500);
+  })
+})
 
 module.exports = router;

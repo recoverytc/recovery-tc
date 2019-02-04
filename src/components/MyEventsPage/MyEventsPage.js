@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import LogOutButton from '../LogOutButton/LogOutButton';
 
 class MyEventsPage extends Component {
 
@@ -19,7 +18,7 @@ class MyEventsPage extends Component {
     render() {
         return (
             <div>
-                {/* <p> {JSON.stringify({this.props.reduxStore.......})} </p> */}
+                {/* <p> {JSON.stringify({this.props.reduxStore.myEvents})} </p> */}
                 <h3>My Events</h3>
 
             </div>

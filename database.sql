@@ -10,7 +10,7 @@ CREATE TABLE "user" (
     "image" VARCHAR (2000),
     "admin" BOOLEAN DEFAULT false,
     "captain" BOOLEAN DEFAULT false,
-    "active" BOOLEAN DEFAULT false,
+    "active" BOOLEAN DEFAULT true,
     "passowrd_reset" VARCHAR (250),
     "password_reset_expiration" BOOLEAN DEFAULT false,
     "password_verification" BOOLEAN DEFAULT false

@@ -10,6 +10,7 @@ const passport = require('./strategies/user.strategy');
 
 // Route includes
 const userRouter = require('./routes/user.router');
+const myEventsRouter = require('./routes/myEvents.router')
 const eventListRouter = require('./routes/eventList.router');
 const adminRouter = require('./routes/admin.router');
 
@@ -26,6 +27,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 /* Routes */
 app.use('/api/user', userRouter);
+app.use('/api/myEvents', myEventsRouter);
 app.use('/api/eventList', eventListRouter);
 app.use('/api/admin', adminRouter);
 

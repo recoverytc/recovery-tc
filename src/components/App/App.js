@@ -19,6 +19,7 @@ import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 
 import './App.css';
+import AdminUsersPage from '../Admin/AdminUsersPage/AdminUsersPage';
 
 class App extends Component {
   componentDidMount () {
@@ -59,6 +60,12 @@ class App extends Component {
               exact
               path="/info"
               component={InfoPage}
+            />
+
+            <ProtectedRoute
+              exact
+              path="/admin/users"
+              component={AdminUsersPage}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

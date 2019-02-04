@@ -21,6 +21,19 @@ import InfoPage from '../InfoPage/InfoPage';
 import './App.css';
 import AdminUsersPage from '../Admin/AdminUsersPage/AdminUsersPage';
 
+// ------SPACE FOR IMPORTING COMPONENTS------ //
+
+
+
+
+
+
+
+
+
+
+
+// ------SPACE FOR IMPORTING COMPONENTS------ //
 class App extends Component {
   componentDidMount () {
     this.props.dispatch({type: 'FETCH_USER'})
@@ -35,7 +48,7 @@ class App extends Component {
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
             <Route
-              path="/landing"
+              path="/home"
               component={LandingPage}
             />
             {/* Visiting localhost:3000/about will show the about page.
@@ -49,11 +62,6 @@ class App extends Component {
             Visiting localhost:3000/home will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
             Even though it seems like they are different pages, the user is always on localhost:3000/home */}
-            <ProtectedRoute
-              exact
-              path="/home"
-              component={UserPage}
-            />
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
             <ProtectedRoute
@@ -67,6 +75,37 @@ class App extends Component {
               path="/admin/users"
               component={AdminUsersPage}
             />
+
+            <ProtectedRoute
+              exact
+              path="/admin/events"
+              component={AdminEventsPage}
+            />
+
+            <ProtectedRoute
+              exact
+              path="/admin/events/attendees"
+              component={AdminEventAttendeesPage}
+            />
+
+            <ProtectedRoute
+              exact
+              path="/captain/profile"
+              component={CaptainProfilePage}
+            />
+
+            <ProtectedRoute
+              exact
+              path="/captain/addevent"
+              component={EventForm}
+            />
+
+            <ProtectedRoute
+            exact
+            path="/captain/profile/edit"
+            component={CaptainEditProfilePage}
+            />
+                      
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>

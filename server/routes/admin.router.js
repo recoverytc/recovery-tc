@@ -4,17 +4,11 @@ const router = express.Router();
 
 
 router.get('/getUsers', (req, res) => {
-<<<<<<< HEAD
-  let queryText = `SELECT "first_name", "last_name", "username", "email", "phone", "captain", "active", "id" FROM "user";`;
-  pool.query(queryText)
-    .then(response => {
-      res.send(response.rows);
-=======
     let queryText = `SELECT "first_name", "last_name", "username", "email", "phone", "captain", "active", "id" FROM "user" ORDER BY "id" ASC;`;
     pool.query(queryText)
     .then( response => {
         res.send(response.rows);
->>>>>>> master
+
     })
     .catch(err => {
       console.log('Error getting Users List:', err);

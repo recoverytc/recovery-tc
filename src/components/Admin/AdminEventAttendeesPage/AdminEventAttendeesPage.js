@@ -10,7 +10,7 @@ import Paper from '@material-ui/core/Paper';
 
 class AdminEventAttendeesPage extends Component {
     componentDidMount() {
-        this.props.dispatch({type: 'FETCH_EVENT_ATTENDEES', payload: this.props.match.params.id});
+        this.props.dispatch({type: 'FETCH_ATTENDEES_LIST', payload: this.props.match.params.id});
     }
 
 
@@ -19,11 +19,10 @@ class AdminEventAttendeesPage extends Component {
           return (
               <TableRow key={i}>
                   <TableCell>
-                      {row.first_name} {row.last_name}
+                      {row.title}
                   </TableCell>
                   <TableCell>{row.username}</TableCell>
-                  <TableCell>{row.attended}</TableCell>
-                  <TableCell>{row.feedback}</TableCell>
+                  <TableCell>{row.comment}</TableCell>
                   <TableCell>{row.rating}</TableCell>
               </TableRow>
           )

@@ -101,7 +101,7 @@ router.get('/eventList', (req, res) => {
                   "event"."date",
                   "event"."attendee",
                   "event"."captain_id",
-                  "user"."id",
+                  "user"."id" as "user_id",
                   "user"."first_name",
                   "user"."last_name",
                   "event_user"."event_id",

@@ -4,10 +4,17 @@ const router = express.Router();
 
 
 router.get('/getUsers', (req, res) => {
+<<<<<<< HEAD
   let queryText = `SELECT "first_name", "last_name", "username", "email", "phone", "captain", "active", "id" FROM "user";`;
   pool.query(queryText)
     .then(response => {
       res.send(response.rows);
+=======
+    let queryText = `SELECT "first_name", "last_name", "username", "email", "phone", "captain", "active", "id" FROM "user" ORDER BY "id" ASC;`;
+    pool.query(queryText)
+    .then( response => {
+        res.send(response.rows);
+>>>>>>> master
     })
     .catch(err => {
       console.log('Error getting Users List:', err);
@@ -63,6 +70,30 @@ router.put('/changeActiveStatus', (req, res) => {
   }
 })
 
+<<<<<<< HEAD
+=======
+router.get('/attendees/:id', (req, res) => {
+    let id = req.params.id;
+    let queryText = `SELECT "event_user"."id",
+                            "event_user"."event_id", 
+                            "event"."title", 
+                            "event_user"."user_id",
+                            "event_user"."comment",
+                            "event_user"."rating", 
+                            "user"."username"
+                            FROM "event_user"
+                            JOIN "user" ON "event_user"."user_id" = "user"."id"
+                            JOIN "event" ON "event_user"."event_id" = "event"."id" WHERE "event"."id" = $1 ORDER BY "id" ASC;`;
+    pool.query(queryText, [id])
+    .then(response => {
+        res.send(response.rows);
+    })
+    .catch(err => {
+        console.log('Error in attendees GET:', err);
+        res.sendStatus(500);
+    })
+})
+>>>>>>> master
 
 router.post('/', (req, res) => {
 

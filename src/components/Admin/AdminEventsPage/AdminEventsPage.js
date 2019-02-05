@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+
 import { connect } from 'react-redux';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -22,21 +23,21 @@ class AdminEventsPage extends Component {
 
   render () {
 
-    let adminEventContent = this.props.adminEventsList.map( row, i => {
+    let adminEventContent = this.props.eventList.map( (row, i) => {
       return (
         <TableRow key={i}>
         <TableCell>{row.title}</TableCell>
         <TableCell>{row.date}</TableCell>
         <TableCell>{row.attendee}
         <Button
-                onClick={() => this.history.push(`/admin/events/attendees/${row.id}`)}
+                onClick={() => this.props.history.push(`/admin/events/attendees/${row.id}`)}
                 color="secondary"
                 variant="contained"
             >
             View Attendees
             </Button>
         </TableCell>
-        <TableCell>{row.captain}</TableCell>
+        <TableCell>{row.first_name} {row.last_name}</TableCell>
         <TableCell>{row.rating}</TableCell>
     </TableRow>
       )
@@ -67,7 +68,7 @@ class AdminEventsPage extends Component {
 }
 
 const mapStateToProps = state => ({
-  adminEventsList: state.event,
+  eventList: state.eventList,
   user: state.user
 });
 

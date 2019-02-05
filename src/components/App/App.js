@@ -23,6 +23,7 @@ import AdminUsersPage from '../Admin/AdminUsersPage/AdminUsersPage';
 
 // ------SPACE FOR IMPORTING COMPONENTS------ //
 import AdminEventAttendeesPage from '../Admin/AdminEventAttendeesPage/AdminEventAttendeesPage';
+import AdminEventsPage from '../Admin/AdminEventsPage/AdminEventsPage';
 import EventForm from '../EventForm/EventForm';
 import LoginPage from '../LoginPage/LoginPage';
 
@@ -82,11 +83,11 @@ class App extends Component {
               component={AdminUsersPage}
             />
  
-             {/* <ProtectedRoute
+             <ProtectedRoute
               exact
               path="/admin/events"
               component={AdminEventsPage}
-            />  */}
+            /> 
 
             <ProtectedRoute
               exact

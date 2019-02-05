@@ -9,7 +9,7 @@ const router = express.Router();
 router.get('/', (req, res) => {
   console.log(`in GETeventList route`);
 
-  let queryString = `SELECT "title", "date", "time", "description", "address", "image", "capacity", "attendee" FROM "event";`;
+  let queryString = `SELECT "id", title", "date", "time", "description", "address", "image", "capacity", "attendee" FROM "event";`;
   pool.query(queryString)
   .then ( (result) => {
     res.send(result.rows);

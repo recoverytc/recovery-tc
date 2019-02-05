@@ -22,7 +22,9 @@ import './App.css';
 import AdminUsersPage from '../Admin/AdminUsersPage/AdminUsersPage';
 
 // ------SPACE FOR IMPORTING COMPONENTS------ //
-
+import AdminEventAttendeesPage from '../Admin/AdminEventAttendeesPage/AdminEventAttendeesPage';
+import EventForm from '../EventForm/EventForm';
+import LoginPage from '../LoginPage/LoginPage';
 
 
 
@@ -46,7 +48,11 @@ class App extends Component {
           <Nav />
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-            <Redirect exact from="/" to="/home" />
+            <Redirect exact from="/" to="/login" />
+            <Route
+              path="/login"
+              component={LoginPage}
+            />
             <Route
               path="/home"
               component={LandingPage}
@@ -75,24 +81,24 @@ class App extends Component {
               path="/admin/users"
               component={AdminUsersPage}
             />
-{/* 
-            <ProtectedRoute
+ 
+             {/* <ProtectedRoute
               exact
               path="/admin/events"
               component={AdminEventsPage}
-            />
+            />  */}
 
             <ProtectedRoute
               exact
-              path="/admin/events/attendees"
+              path="/admin/events/attendees/:id"
               component={AdminEventAttendeesPage}
             />
 
-            <ProtectedRoute
+            {/* <ProtectedRoute
               exact
               path="/captain/profile"
               component={CaptainProfilePage}
-            />
+            /> */}
 
             <ProtectedRoute
               exact
@@ -100,10 +106,10 @@ class App extends Component {
               component={EventForm}
             />
 
-            <ProtectedRoute
-            exact
-            path="/captain/profile/edit"
-            component={CaptainEditProfilePage}
+            {/* <ProtectedRoute
+              exact
+              path="/captain/profile/edit"
+              component={CaptainEditProfilePage}
             /> */}
 
             {/* If none of the other routes matched, we will show a 404. */}

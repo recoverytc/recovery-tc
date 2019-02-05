@@ -27,6 +27,7 @@ import AdminEventAttendeesPage from '../Admin/AdminEventAttendeesPage/AdminEvent
 import AdminEventsPage from '../Admin/AdminEventsPage/AdminEventsPage';
 import EventForm from '../EventForm/EventForm';
 import LoginPage from '../LoginPage/LoginPage';
+import CaptainProfilePage from '../CaptainPage/CaptainProfilePage/CaptainProfilePage';
 
 
 
@@ -103,11 +104,11 @@ class App extends Component {
               component={AdminEventAttendeesPage}
             />
 
-            {/* <ProtectedRoute
+            <ProtectedRoute
               exact
-              path="/captain/profile"
+              path="/captain/profile/:id"
               component={CaptainProfilePage}
-            /> */}
+            />
 
             <ProtectedRoute
               exact

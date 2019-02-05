@@ -7,6 +7,7 @@ import eventListSaga from './eventListSaga';
 import userListSaga from './userListSaga';
 import attendeesListSaga from './attendeesListSaga';
 import eventFormSaga from './eventFormSaga'
+import captainProfileSaga from './captainProfileSaga';
 
 
 // rootSaga is the primary saga.
@@ -26,5 +27,6 @@ export default function* rootSaga() {
     userListSaga(),
     attendeesListSaga(),
     eventFormSaga(),
+    captainProfileSaga(),
   ]);
 }

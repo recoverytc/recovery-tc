@@ -70,8 +70,7 @@ router.put('/changeActiveStatus', (req, res) => {
   }
 })
 
-<<<<<<< HEAD
-=======
+
 router.get('/attendees/:id', (req, res) => {
     let id = req.params.id;
     let queryText = `SELECT "event_user"."id",
@@ -93,7 +92,7 @@ router.get('/attendees/:id', (req, res) => {
         res.sendStatus(500);
     })
 })
->>>>>>> master
+
 
 router.post('/', (req, res) => {
 

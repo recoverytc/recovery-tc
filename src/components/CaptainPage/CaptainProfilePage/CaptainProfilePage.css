@@ -1,0 +1,37 @@
+.edit-button {
+  background-color: pink;
+  margin-right: 0.5em;
+}
+.create-button {
+  background-color: yellow
+}
+
+.edit-button, .create-button {
+  padding: 0.5em 1em;
+  border-radius: 50px;
+}
+
+@media screen and (min-width: 375px){
+  .captain-container {
+    width: 100%;
+    /* display: grid;
+    grid-template-columns: repeat(12, 1fr); */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .captain-picture {
+    width: 100%;  
+  }
+  .picture-container {
+    padding: 1em;
+  }
+  .demo-info {
+    text-align: center;
+  }
+  .form-spacing {
+    margin: 1em;
+  }
+
+}

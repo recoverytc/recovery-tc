@@ -11,8 +11,22 @@ function* fetchCaptainProfile(action) {
   }
 }
 
+function* updateCaptainProfileInfo(action) {
+  try {
+    yield axios.put(`api/captain/profile/edit/${action.payload.user_id}`, action.payload);
+    yield put({ type: 'FETCH_CAPTAIN_PROFILE' });
+  } catch (error) {
+    console.log( 'get captain profile request failed', error);
+  }
+}
+
+
+
+
+
 function* captainProfileSaga() {
   yield takeLatest('FETCH_CAPTAIN_PROFILE', fetchCaptainProfile);
+  yield takeLatest('UPDATE_CAPTAIN_PROFILE_INFO', updateCaptainProfileInfo);
 }
 
 export default captainProfileSaga;

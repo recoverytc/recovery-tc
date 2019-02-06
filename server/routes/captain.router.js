@@ -7,10 +7,11 @@ router.get('/profile/:id', (req, res) => {
     console.log(req.params.id);
     
     let id = req.params.id;
-    let queryString = `SELECT
+    let queryString = `SELECT "user"."username",
                             "user"."first_name", 
                             "user"."last_name", 
-                            "user"."email", 
+                            "user"."email",
+                            "user"."phone", 
                             "user"."bio", 
                             "user"."image",
                             "event"."captain_id",
@@ -19,11 +20,11 @@ router.get('/profile/:id', (req, res) => {
                             "event"."time",
                             "event"."description",
                             "event"."address",
-                            "event"."image"
+                            "event"."image" AS "event_image"
                             FROM "user" 
                             JOIN "event" ON "event"."captain_id" = "user"."id"
                             WHERE "user"."id" = $1 ;`;
-
+                            
     pool.query(queryString, [id])
     .then( result => {
         res.send(result.rows);
@@ -45,5 +46,25 @@ router.post('/addevent' , (req, res)=>{
         res.sendStatus(500)
     })
 })
+
+router.put('/profile/edit/:id', (req,res) =>{
+
+    let queryString = `UPDATE "user" SET "first_name"=$1, "last_name"=$2, "email"=$3, "phone"=$4, "image"=$5,
+                        "bio"=$6 WHERE "id"=$7;`;
+
+    const queryValues = [req.body.first_name, req.body.last_name, req.body.email, req.body.phone, req.body.image, req.body.bio, req.params.id]
+    pool.query(queryString, queryValues)
+    .then ( () => {
+        res.sendStatus(200);
+    })
+    .catch ( err => {
+        console.log('Error in updating captain profile', err);
+        res.sendStatus(500);
+    })
+})
+
+
+
+
 
 module.exports = router

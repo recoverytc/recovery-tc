@@ -28,6 +28,7 @@ import AdminEventsPage from '../Admin/AdminEventsPage/AdminEventsPage';
 import EventForm from '../EventForm/EventForm';
 import LoginPage from '../LoginPage/LoginPage';
 import CaptainProfilePage from '../CaptainPage/CaptainProfilePage/CaptainProfilePage';
+import CaptainEditProfilePage from '../CaptainPage/CaptainEditProfilePage/CaptainEditProfilePage';
 
 
 
@@ -116,11 +117,11 @@ class App extends Component {
               component={EventForm}
             />
 
-            {/* <ProtectedRoute
+            <ProtectedRoute
               exact
-              path="/captain/profile/edit"
+              path="/captain/profile/edit/:id"
               component={CaptainEditProfilePage}
-            /> */}
+            /> 
 
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

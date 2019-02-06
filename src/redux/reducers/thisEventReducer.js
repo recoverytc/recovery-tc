@@ -6,6 +6,8 @@ const thisEventReducer = (state = [], action) => {
             return state;
     }
 };
+
+
 // loginMode will be on the redux state at:
 // state.thisEvent
 export default thisEventReducer;

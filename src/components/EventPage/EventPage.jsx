@@ -9,6 +9,9 @@ const styles = theme =>({
         [theme.breakpoints.up('xs')]: {
         backgroundColor: 'yellow',
         }
+    },
+    imageUrl : {
+        maxWidth: 400
     }
 })
 
@@ -49,18 +52,22 @@ class EventPage extends Component {
     };
 
     render(){
-
+        console.log("this.props.reduxStore.thisEvent", this.props.thisEvent[0]);
+        
         const {classes}=this.props
-        return(
-            <div>
-                <h1>{this.props.reduxStore.thisEvent.title}</h1>
-                <img src={this.props.reduxStore.thisEvent.image} alt="picture" className={classes.imageUrl} />
-                <h5>{this.props.reduxStore.thisEvent.venue}</h5>
-                <p>{this.props.reduxStore.thisEvent.address}</p>
-                <p>{this.props.reduxStore.thisEvent.date}</p>
-                <p>{this.props.reduxStore.thisEvent.time}</p>
-                <p>{this.props.reduxStore.thisEvent.description}</p>
-                <p>{this.props.reduxStore.thisEvent.attendees} of {this.props.reduxStore.thisEvent.capacity}</p>
+
+        let display = this.props.thisEvent.map(event => {
+            return (
+                <div>
+                <h1>{event.title}</h1>
+                    <img src={event.image} alt="picture" className={classes.imageUrl} />
+                    <h5>{event.venue}</h5>
+                    <p>{event.address}</p>
+                    <p>{event.date}</p>
+                    <p>{event.time}</p>
+                    <p>{event.description}</p>
+                    <p>{event.attendee} going </p>
+                    <p>of a possible {event.capacity}</p>
 
                 <Button onClick={this.addToMyEvents}>
                     Attend
@@ -68,17 +75,20 @@ class EventPage extends Component {
                 <Button onClick={this.deleteFromMyEvents}>
                     Cancel
                 </Button>
+                </div>
+            )
 
+        })
 
-
+        return(
+            <div>
+                {display}
             </div>
         )
     }
 }
-const mapStateToProps = (reduxStore) =>{
-    return{ 
-        reduxStore
-    }
-}
+const mapStateToProps = state =>({
+    thisEvent: state.thisEvent
+})
 
 export default connect(mapStateToProps)(withStyles(styles)(EventPage))

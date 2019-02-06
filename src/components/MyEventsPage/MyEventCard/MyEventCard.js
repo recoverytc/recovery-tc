@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
 import Button from '@material-ui/core/Button';
+import {Link} from 'react-router-dom';
 
 // import './EventCard.css';
 
@@ -59,7 +60,9 @@ class MyEventCard extends React.Component {
                                 <p>{event.time}</p>
                             </div>
                             <div>
-                                <img src={event.image} alt="picture" className={classes.imageUrl} />
+                                <Link to={`/events/${event.id}`}>
+                                <img src={event.image} alt="picture" className={classes.imageUrl}/>
+                                </Link>
                             </div>
                             <div>
                                 <Button onClick={this.deleteFromMyEvents}>

@@ -27,8 +27,12 @@ import AdminEventAttendeesPage from '../Admin/AdminEventAttendeesPage/AdminEvent
 import AdminEventsPage from '../Admin/AdminEventsPage/AdminEventsPage';
 import EventForm from '../EventForm/EventForm';
 import LoginPage from '../LoginPage/LoginPage';
+
 import CaptainProfilePage from '../CaptainPage/CaptainProfilePage/CaptainProfilePage';
 import CaptainEditProfilePage from '../CaptainPage/CaptainEditProfilePage/CaptainEditProfilePage';
+
+import EventPage from '../EventPage/EventPage';
+
 
 
 
@@ -77,6 +81,12 @@ class App extends Component {
               exact
               path="/myevents"
               component={MyEventsPage}
+            />
+
+            <ProtectedRoute
+              exact
+              path="/events/:id"
+              component={EventPage}
             />
 
             {/* This works the same as the other protected route, except that if the user is logged in,

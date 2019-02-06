@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 
 import './EventCard.css';
 
@@ -46,7 +47,9 @@ class EventCard extends React.Component {
               <p>{event.time}</p>
             </div>
             <div>
-              <img src={event.image} alt="picture" className={classes.imageUrl}/>
+                <Link to={`/events/${event.id}`}>
+                  <img src={event.image} alt="picture" className={classes.imageUrl} />
+                </Link>
             </div>
             </Paper>
           </Grid>

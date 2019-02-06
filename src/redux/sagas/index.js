@@ -6,6 +6,7 @@ import myEventsSaga from './myEventsSaga';
 import eventListSaga from './eventListSaga';
 import userListSaga from './userListSaga';
 import attendeesListSaga from './attendeesListSaga';
+import thisEventSaga from './thisEventSaga';
 import eventFormSaga from './eventFormSaga'
 
 
@@ -25,6 +26,7 @@ export default function* rootSaga() {
     eventListSaga(),
     userListSaga(),
     attendeesListSaga(),
+    thisEventSaga(),
     eventFormSaga(),
   ]);
 }

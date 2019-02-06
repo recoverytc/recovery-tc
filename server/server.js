@@ -14,6 +14,7 @@ const myEventsRouter = require('./routes/myEvents.router')
 const eventListRouter = require('./routes/eventList.router');
 const adminRouter = require('./routes/admin.router');
 const thisEventRouter = require('./routes/thisEvent.router')
+const captainRouter = require('./routes/captain.router')
 
 
 // Body parser middleware
@@ -32,6 +33,7 @@ app.use('/api/myEvents', myEventsRouter);
 app.use('/api/eventList', eventListRouter);
 app.use('/api/admin', adminRouter);
 app.use('/api/thisEvent', thisEventRouter)
+app.use('/api/captain' , captainRouter)
 
 // Serve static files
 app.use(express.static('build'));

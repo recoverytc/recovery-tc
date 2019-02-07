@@ -31,6 +31,12 @@ import SideDrawer from '../SideDrawer/SideDrawer';
 import Backdrop from '../Backdrop/Backdrop';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
+import CaptainProfilePage from '../CaptainPage/CaptainProfilePage/CaptainProfilePage';
+import CaptainEditProfilePage from '../CaptainPage/CaptainEditProfilePage/CaptainEditProfilePage';
+
+import EventPage from '../EventPage/EventPage';
+
+
 
 
 
@@ -109,6 +115,12 @@ class App extends Component {
               component={MyEventsPage}
             />
 
+            <ProtectedRoute
+              exact
+              path="/events/:id"
+              component={EventPage}
+            />
+
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
             <ProtectedRoute
@@ -135,11 +147,11 @@ class App extends Component {
               component={AdminEventAttendeesPage}
             />
 
-            {/* <ProtectedRoute
+            <ProtectedRoute
               exact
-              path="/captain/profile"
+              path="/captain/profile/:id"
               component={CaptainProfilePage}
-            /> */}
+            />
 
             <ProtectedRoute
               exact
@@ -147,11 +159,11 @@ class App extends Component {
               component={EventForm}
             />
 
-            {/* <ProtectedRoute
+            <ProtectedRoute
               exact
-              path="/captain/profile/edit"
+              path="/captain/profile/edit/:id"
               component={CaptainEditProfilePage}
-            /> */}
+            /> 
 
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

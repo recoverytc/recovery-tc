@@ -16,7 +16,6 @@ const sideDrawer = props => {
           {props.user.admin === false && (
             <>
               <li><Link onClick={props.click} to="/myevents">My Events</Link></li>
-              <li><LogOutButton/></li>
             </>
           )}
           {props.user.admin && (
@@ -30,8 +29,10 @@ const sideDrawer = props => {
               <li><Link onClick={props.click} to={`/captain/profile/${props.user.id}`}>Profile</Link></li>
               <li><Link onClick={props.click} to="/captain/addevent">Add Event</Link></li>
               <li><Link onClick={props.click} to={`/captain/profile/edit/${props.user.id}`}>Edit Profile</Link></li>
-              <li><LogOutButton/></li>
             </>
+          )}
+          {props.user.id && (
+              <li><LogOutButton/></li>
           )}
             </ul>
         </nav>

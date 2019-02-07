@@ -73,7 +73,7 @@ class RegisterPage extends Component {
             {this.props.errors.registrationMessage}
           </h2>
         )}
-        <form onSubmit={this.registerUser}>
+        <form onSubmit={this.registerUser} className="form-styles">
           <h1>Register User</h1>
           <div>
             <TextField
@@ -140,7 +140,7 @@ class RegisterPage extends Component {
           </div>
           <center>
           <Button
-            onClick={() => { this.props.dispatch({ type: 'SET_TO_LOGIN_MODE' }) }}
+            onClick={() => { this.props.history.push("/") }}
             color="primary"
             variant="contained"
           >

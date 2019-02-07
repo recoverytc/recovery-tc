@@ -27,6 +27,15 @@ import AdminEventAttendeesPage from '../Admin/AdminEventAttendeesPage/AdminEvent
 import AdminEventsPage from '../Admin/AdminEventsPage/AdminEventsPage';
 import EventForm from '../EventForm/EventForm';
 import LoginPage from '../LoginPage/LoginPage';
+import SideDrawer from '../SideDrawer/SideDrawer';
+import Backdrop from '../Backdrop/Backdrop';
+import RegisterPage from '../RegisterPage/RegisterPage';
+
+import CaptainProfilePage from '../CaptainPage/CaptainProfilePage/CaptainProfilePage';
+import CaptainEditProfilePage from '../CaptainPage/CaptainEditProfilePage/CaptainEditProfilePage';
+
+import EventPage from '../EventPage/EventPage';
+
 
 
 
@@ -39,21 +48,50 @@ import LoginPage from '../LoginPage/LoginPage';
 
 // ------SPACE FOR IMPORTING COMPONENTS------ //
 class App extends Component {
+  state = {
+    sideDrawerOpen: false,
+  };
+
   componentDidMount () {
     this.props.dispatch({type: 'FETCH_USER'})
   }
 
+  drawerToggleClickHandler = () => {
+    this.setState((prevState) => {
+      return {sideDrawerOpen: !prevState.sideDrawerOpen};
+    });
+  };
+
+  backdropClickHandler = () => {
+    this.setState({sideDrawerOpen: false})
+  };
+
   render() {
+    let backdrop;
+    
+    if(this.state.sideDrawerOpen) {
+      backdrop = <Backdrop click={this.backdropClickHandler}/>;
+    }
     return (
       <Router>
-        <div>
-          <Nav />
+        <div style={{height: "100%"}}>
+          <Nav drawerClickHandler={this.drawerToggleClickHandler}/>
+          <SideDrawer click={this.drawerToggleClickHandler} show={this.state.sideDrawerOpen}/>
+          {backdrop}
+          <div>
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/login" />
+            {this.props.user.id &&(
+              <Redirect exact from="/login" to="/home"/>
+            )}
             <Route
               path="/login"
               component={LoginPage}
+            />
+            <Route
+              path="/register"
+              component={RegisterPage}
             />
             <Route
               path="/home"
@@ -75,6 +113,12 @@ class App extends Component {
               exact
               path="/myevents"
               component={MyEventsPage}
+            />
+
+            <ProtectedRoute
+              exact
+              path="/events/:id"
+              component={EventPage}
             />
 
             {/* This works the same as the other protected route, except that if the user is logged in,
@@ -103,11 +147,11 @@ class App extends Component {
               component={AdminEventAttendeesPage}
             />
 
-            {/* <ProtectedRoute
+            <ProtectedRoute
               exact
-              path="/captain/profile"
+              path="/captain/profile/:id"
               component={CaptainProfilePage}
-            /> */}
+            />
 
             <ProtectedRoute
               exact
@@ -115,19 +159,24 @@ class App extends Component {
               component={EventForm}
             />
 
-            {/* <ProtectedRoute
+            <ProtectedRoute
               exact
-              path="/captain/profile/edit"
+              path="/captain/profile/edit/:id"
               component={CaptainEditProfilePage}
-            /> */}
+            /> 
 
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>
+          </div>
           <Footer />
         </div>
       </Router>
   )}
 }
 
-export default connect()(App);
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
+export default connect(mapStateToProps)(App);

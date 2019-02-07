@@ -5,8 +5,8 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 40%;
-    max-width: 150px;
+    width: 55%;
+    max-width: 250px;
     z-index: 200;
     transform: translateX(-100%);
     transition: transform 0.3s ease-out;
@@ -27,18 +27,33 @@
 }
 
 .side-drawer li {
-    margin: 0.5rem 0;
+    margin: 0.5rem -0.75rem;
+    border-bottom: 1px solid rgba(6, 73, 56, 0.219);
+    padding-bottom: 10px;
+    width: 100%;
 }
 
 .side-drawer a {
     color: #00363e;
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 1.0rem;
 }
 
 .side-drawer a:hover, 
 .side-drawer a:active {
     color: #09729e;
+}
+
+.drawer-header {
+    color: #00363e;
+    margin: 0.5rem 1.3rem;
+}
+
+.drawer-logo {
+    height: 100px;
+    width: 125px;
+    margin-top: 5%;
+    margin-left: -0.75rem;
 }
 
 @media (min-width: 801px) {

@@ -5,8 +5,8 @@
   left: 0;
   background-color: #00363e;
   /* background-color: #005e60; */
-  height: 56px;
-
+  height: 68px;
+  box-shadow: 1px 0px 7px rgba(0,0,0,0.5);
 }
 
 
@@ -67,3 +67,9 @@
   }
 }
 
+ .logo {
+  height: 75px;
+  width: 100px;
+  margin-top: -25%;
+  margin-left: -15%;
+}

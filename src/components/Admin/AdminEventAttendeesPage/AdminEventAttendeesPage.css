@@ -1,18 +1,9 @@
-.root {
-    flex-grow: 1;
-    padding: 0px 3px;
-}
-
 .paper {
+    padding: 0px;
     text-align: center;
     background-color: #d3fbe7!important;
     box-shadow: 1px 0px 7px rgba(0,0,0,0.5)!important;
     max-width: 400px;
-    margin: 10% auto;
-    padding:  2%;
+    margin: 0px auto;
+    padding:  2px;
 }
-
-.image-url {
-    width: 100%;
-}
-

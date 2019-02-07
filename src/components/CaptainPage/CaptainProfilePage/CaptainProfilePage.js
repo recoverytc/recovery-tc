@@ -19,29 +19,51 @@ class CaptainProfilePage extends Component {
 
     let profileContent = this.props.captainProfile.map((profile, i) => {
       return (
-        <div key={i}>
-          <div className="picture-container">
-            <img src={profile.image} alt="me" className="captain-picture" />
-          </div>
-          <div className="demo-info">
+        <div key={i} className="captain-container">
+
+          <div className="captain-wrapper">
+            <div className="picture-container">
+              <img src={profile.image} alt="me" className="captain-picture" />
+            </div>
+            <div className="icon-buttons">
               <button className="edit-button" onClick={() => this.props.history.push(`/captain/profile/edit/${profile.id}`)}>Edit profile</button>
               <button className="create-button" onClick={() => this.props.history.push('/captain/addevent')}>Create event</button>
-              {profile.username}
-              {profile.first_name}
-              {profile.last_name}
-              {profile.email}
-              {profile.phone}
-          </div>
-          <div className="bio">
-            {profile.bio}
-          </div>
-          
+            </div>
+            <div className="demo-info">
+              <p className="demo-p-tag">INFO</p>
+              <p className="demo-p-tag">Username: {profile.username}</p>
+              <p className="demo-p-tag">Name: {profile.first_name} {profile.last_name}</p>
+              <p className="demo-p-tag">Email: {profile.email}</p>
+              <p className="demo-p-tag">Phone: {profile.phone}</p>
+            </div>
+            <div className="bio">
+              <p className="demo-p-tag">BIO</p>
+              <p className="demo-p-tag">{profile.bio}</p>
+            </div>
+          </div> {/* .captain-wrapper */}
+
+
           <div className="events-page">
-            <h1>Events</h1>
-              {profile.title}
-              <img src={profile.event_image} alt="event" className="captain-picture" />
-              <button className="create-button">edit event</button>
-          </div>
+
+            <div className="event-header">
+              <h1 className="h1-event">My Current Events</h1>
+            </div>
+
+            <div className="event-contents">
+              <div className="event-date-time">
+                <p>{profile.date}</p>
+                <p>{profile.time}</p>
+              </div>
+              <p className="event-title">{profile.title}</p>
+
+              <div className="event-picture-box">
+                <img src={profile.event_image} alt="event" className="event-picture" />
+              </div>
+              <button className="edit-event-btn">edit event</button>
+            </div> {/* .event-content */}
+
+          </div>{/* .events-page */}
+
         </div>
       )
     })
@@ -51,7 +73,7 @@ class CaptainProfilePage extends Component {
 
 
     return (
-      <div className="captain-container">
+      <div>
         {profileContent}
       </div>
     )

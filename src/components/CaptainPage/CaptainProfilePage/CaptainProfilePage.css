@@ -11,6 +11,22 @@
   border-radius: 50px;
 }
 
+.captain-picture {
+  width: 100%;  
+}
+
+.demo-p-tag {
+  margin: 0;
+  text-align: left;
+}
+.event-picture {
+  width: 600px;
+  height: 200px;
+}
+/* .h1-event {
+  margin: 0;
+} */
+
 @media screen and (min-width: 375px){
   .captain-container {
     width: 100%;
@@ -20,9 +36,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
-  .captain-picture {
-    width: 100%;  
   }
   .picture-container {
     padding: 1em;
@@ -34,4 +47,66 @@
     margin: 1em;
   }
 
+}
+
+
+@media screen and (min-width: 900px) {
+  .captain-container {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .picture-container {
+    border: red solid 2px;
+  }
+  /* .captain-picture {
+    width: 80%;
+  } */
+  .captain-wrapper {
+    border: blueviolet solid 2px;
+  }
+  .icon-buttons, .bio, .demo-info, .event-header { 
+    padding: 0 1em;
+  }
+  .icon-buttons {
+    border: blue solid 2px;
+    text-align: center;
+  }
+  .demo-info {
+    border: yellow solid 2px;
+  }
+  .bio {
+    border: pink solid 2px;
+  }
+  .events-page {
+    /* align-self: stretch; */
+    border: purple solid 3px;
+    margin-right: 2em;
+  }
+  .event-contents {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .event-title {
+    position: relative;
+    left: 30%;
+    border: blue solid 2px;
+    font-size: 200%;
+  }
+  .edit-event-btn {
+    position: relative;
+    right: 10%;
+  }
+  .event-date-time {
+    margin-left: 2em;
+    padding-left: 1em;
+    border: 2px solid #fff;
+  }
+  .captain-wrapper {
+    margin-left: 2em;
+  }
 }

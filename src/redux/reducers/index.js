@@ -8,6 +8,7 @@ import userList from './userListReducer';
 import attendeesList from './attendeesListReducer';
 import captainProfile from './captainProfileReducer';
 import thisEvent from './thisEventReducer';
+import attendingThis from './attendingThisReducer'
 
 
 // rootReducer is the primary reducer for our entire project
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
   attendeesList,
   captainProfile,
   thisEvent,
+  attendingThis,
 
 });
 

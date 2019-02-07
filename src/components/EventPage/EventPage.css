@@ -11,3 +11,7 @@
    margin-left: 20%;
    display: block;
 }
+
+.image-url{
+    max-width: 400px;
+}

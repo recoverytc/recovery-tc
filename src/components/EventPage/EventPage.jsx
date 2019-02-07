@@ -1,24 +1,15 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {withStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import './EventPage.css';
+import attendingThisSaga from '../../redux/sagas/attendingThisSaga';
 
-const styles = theme =>({
-    root : {
-        [theme.breakpoints.up('xs')]: {
-        backgroundColor: 'yellow',
-        }
-    },
-    imageUrl : {
-        maxWidth: 400
-    }
-})
 
 class EventPage extends Component {
 
     componentDidMount() {
         this.getThisEvent();
+        this.getAttendingThis();
     }
 
     getThisEvent() {
@@ -28,6 +19,14 @@ class EventPage extends Component {
             refresh: this.props.match.params.id
         });
     }//end getThisEvent
+
+    getAttendingThis() {
+        // console.log('getAttendingThis');
+        this.props.dispatch({
+            type: 'FETCH_ATTENDING_THIS_EVENT',
+            refresh: this.props.match.params.id
+        });
+    }//end getAttendingThis
 
     addToMyEvents = () => {
         this.props.dispatch({
@@ -53,14 +52,17 @@ class EventPage extends Component {
 
     render(){
         console.log("this.props.reduxStore.thisEvent", this.props.thisEvent[0]);
+        console.log("this.props.attendingThis", this.props.attendingThis);
+
         
-        const {classes}=this.props
+        
 
         let display = this.props.thisEvent.map(event => {
+
             return (
                 <div>
                 <h1>{event.title}</h1>
-                    <img src={event.image} alt="picture" className={classes.imageUrl} />
+                    <img src={event.image} alt="picture" className="image-url" />
                     <h5>{event.venue}</h5>
                     <p>{event.address}</p>
                     <p>{event.date}</p>
@@ -69,26 +71,43 @@ class EventPage extends Component {
                     <p>{event.attendee} going </p>
                     <p>of a possible {event.capacity}</p>
 
-                <Button onClick={this.addToMyEvents}>
-                    Attend
-                </Button>
-                <Button onClick={this.deleteFromMyEvents}>
-                    Cancel
-                </Button>
                 </div>
             )
 
         })
 
+        let buttonDisplay = 'Attend';
+
+
+        let displayButton = this.props.attendingThis.map(attending => {
+
+
+            if (attending.attending === true && attending.feedback === false) {
+                buttonDisplay = 'Cancel';
+            } 
+
+
+            return (
+                <div>
+                    
+                </div>
+            )
+        })
+
         return(
             <div>
                 {display}
+                <Button onClick={this.addToMyEvents}>
+                    {buttonDisplay}
+                </Button>
             </div>
         )
     }
 }
 const mapStateToProps = state =>({
-    thisEvent: state.thisEvent
+    thisEvent: state.thisEvent,
+    user: state.user,
+    attendingThis: state.attendingThis,
 })
 
-export default connect(mapStateToProps)(withStyles(styles)(EventPage))
+export default connect(mapStateToProps)(EventPage)

@@ -27,9 +27,9 @@ const sideDrawer = props => {
           )}
           {props.user.captain && (
             <>
-              <li><Link onClick={props.click} to="/captain/profile">Profile</Link></li>
+              <li><Link onClick={props.click} to={`/captain/profile/${props.user.id}`}>Profile</Link></li>
               <li><Link onClick={props.click} to="/captain/addevent">Add Event</Link></li>
-              <li><Link onClick={props.click} to="/captain/profile/edit">Edit Profile</Link></li>
+              <li><Link onClick={props.click} to={`/captain/profile/edit/${props.user.id}`}>Edit Profile</Link></li>
               <li><LogOutButton/></li>
             </>
           )}

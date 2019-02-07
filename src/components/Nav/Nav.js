@@ -56,9 +56,9 @@ const Nav = (props) => (
           )}
           {props.user.captain && (
             <>
-              <li><Link to="/captain/profile">Profile</Link></li>
+              <li><Link to={`/captain/profile/${props.user.id}`}>Profile</Link></li>
               <li><Link to="/captain/addevent">Add Event</Link></li>
-              <li><Link to="/captain/profile/edit">Edit Profile</Link></li>
+              <li><Link to={`/captain/profile/edit/${props.user.id}`}>Edit Profile</Link></li>
               <li><LogOutButton/></li>
             </>
           )}

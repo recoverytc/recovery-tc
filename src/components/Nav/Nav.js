@@ -19,7 +19,6 @@ const Nav = (props) => (
           {props.user.admin === false && (
             <>
               <li><Link to="/myevents">My Events</Link></li>
-              <li><LogOutButton/></li>
             </>
           )}
           {props.user.admin && (
@@ -33,8 +32,10 @@ const Nav = (props) => (
               <li><Link to={`/captain/profile/${props.user.id}`}>Profile</Link></li>
               <li><Link to="/captain/addevent">Add Event</Link></li>
               <li><Link to={`/captain/profile/edit/${props.user.id}`}>Edit Profile</Link></li>
-              <li><LogOutButton/></li>
             </>
+          )}
+          {props.user.id && (
+              <li><LogOutButton/></li>
           )}
         </ul>
       </div>

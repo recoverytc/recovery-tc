@@ -140,7 +140,7 @@ class RegisterPage extends Component {
           </div>
           <center>
           <Button
-            onClick={() => { this.props.dispatch({ type: 'SET_TO_LOGIN_MODE' }) }}
+            onClick={() => { this.props.history.push("/") }}
             color="primary"
             variant="contained"
           >

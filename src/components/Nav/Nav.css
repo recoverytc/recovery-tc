@@ -1,4 +1,83 @@
-.nav-title {
+.navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: #00363e;
+  /* background-color: #005e60; */
+  height: 56px;
+
+}
+
+
+.navbar__logo a {
+  color: #d3fbe7;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+.navbar__logo {
+  margin-left: 1rem;
+}
+
+.navbar__navigation {
+  display: flex;
+  height: 100%;
+  /* align-items: center; */
+  padding: 1rem;
+}
+
+.navbar_navigation-items a {
+  color: #d3fbe7;
+  text-decoration: none;
+}
+
+.navbar_navigation-items ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.navbar_navigation-items li {
+  padding: 0 0.5rem;
+}
+
+.navbar_navigation-items a:hover,
+.navbar_navigation-items a:active {
+  color: #09729e;
+}
+
+.spacer {
+  flex: 1;
+}
+
+@media (max-width: 800px) {
+  .navbar_navigation-items {
+    display: none;
+  }
+}
+
+@media (min-width: 800px) {
+  .navbar__toggle-button {
+      display: none;
+  }
+  .navbar__logo {
+    margin: 0px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* .nav-title {
     font-size: 24px;
     font-weight: 700;
     display: inline-block;
@@ -18,19 +97,19 @@
   text-align: center;
   padding: 24px 10px;
   text-decoration: none;
-  font-size: 15px;
+  font-size: 15px; */
 
   /* these last two make the logout button in
   the nav bar look like another link */
-  border:none;
+  /* border:none;
   cursor: pointer;
   outline:0;
-}
+} */
 
-.nav-link:hover {
+/* .nav-link:hover {
   background-color: #008183;
 }
 
 .nav-right {
   float: right;
-}
+} */

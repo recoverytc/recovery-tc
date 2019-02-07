@@ -1,6 +1,10 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0px;
+    margin-top: 72px;
+    height: 100%;
+    background-color: #005e60;
+    /* background-color: #00363e; */
 }
 
 .alert {
@@ -8,7 +12,7 @@ body {
     margin: 50px;
 }
 
-form {
+.form-styles{
     background-color: #dbd5d5;
     width: 30%;
     height: 250px;
@@ -46,4 +50,8 @@ input {
     outline:0;
     border-bottom:1px solid #444; 
     cursor: pointer;
+}
+
+.container {
+    margin-top: 56px;
 }

@@ -7,7 +7,7 @@ const router = express.Router();
 
 // Handles Ajax request for user information if user is authenticated
 router.get('/', (req, res) => {
-  console.log(`in GETeventList route`);
+  console.log(`in GET eventList route`);
 
   let queryString = `SELECT "event"."id", "title", "venue", "date", "time", "description", "address", "image", "capacity", "attendee" FROM "event";`;
 

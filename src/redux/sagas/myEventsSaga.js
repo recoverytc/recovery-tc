@@ -1,6 +1,28 @@
 import axios from 'axios';
 import { put, takeLatest , call} from 'redux-saga/effects';
 
+// worker Saga: will be fired on "ADD_TO_MY_EVENTS" actions
+function* addToMyEvents(action) {
+    console.log('in deleteFromMyEvents, action', action);
+    try {
+        const config = {
+            headers: { 'Content-Type': 'application/json' },
+            withCredentials: true,
+        };
+
+        // the config includes credentials which
+        // allow the server session to recognize the user
+        // If a user is logged in, this will return their information
+        // from the server session (req.user)
+        yield axios.post( '/api/myEvents/addevent', action.payload)
+
+        yield put({ type: 'FETCH_THIS_EVENT', refresh: action.refresh.event_id });
+        yield put({ type: 'FETCH_ATTENDING_THIS_EVENT', refresh: action.refresh.event_id });    
+    } catch (error) {
+        console.log('Delete from my events request failed', error);
+    }
+}//end addToMyEvents
+
 // worker Saga: will be fired on "DELETE_FROM_MY_EVENTS" actions
 function* deleteFromMyEvents(action) {
     console.log('in deleteFromMyEvents, action', action);
@@ -19,7 +41,10 @@ function* deleteFromMyEvents(action) {
         // now that the session has given us a user object
         // with an id and username set the client-side user object to let
         // the client-side code know the user is logged in
-        yield put({ type: 'FETCH_MY_EVENTS', refresh: action.refresh });
+        yield put({ type: 'FETCH_MY_EVENTS', refresh: action.refresh.user_id });
+        yield put({ type: 'FETCH_THIS_EVENT', refresh: action.refresh.event_id });
+        yield put({ type: 'FETCH_ATTENDING_THIS_EVENT', refresh: action.refresh.event_id });    
+
     } catch (error) {
         console.log('Delete from my events request failed', error);
     }
@@ -61,6 +86,7 @@ function* editEvent(action){
 function* myEventsSaga() {
     yield takeLatest('FETCH_MY_EVENTS', fetchMyEvents)
     yield takeLatest('DELETE_FROM_MY_EVENTS', deleteFromMyEvents)
+    yield takeLatest('ADD_TO_MY_EVENTS', addToMyEvents)
     yield takeLatest('EDIT_EVENT' , editEvent)
 
 }

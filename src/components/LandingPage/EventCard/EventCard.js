@@ -5,6 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 import './EventCard.css';
 
@@ -40,8 +41,8 @@ class EventCard extends React.Component {
           <Paper className="paper">
             <div>
               <h2>{event.title}</h2>
-              <p>{event.date}</p>
-              <p>{event.time}</p>
+                <p>{moment(event.date).format("MMM Do YYYY")}</p>
+                <p>{moment(event.time, "HH:mm").format("hh:mm A")}</p>
             </div>
             <div>
                 <Link to={`/events/${event.id}`}>

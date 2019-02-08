@@ -59,6 +59,10 @@ class EventForm extends Component {
     handleClick = () =>{
         console.log(this.state);
         this.props.dispatch({type: 'ADD_EVENT', payload: this.state})
+        setTimeout(() =>{
+            this.props.history.push('/home') 
+        }, 1000)
+
     }
     render() {
         return (

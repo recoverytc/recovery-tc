@@ -47,7 +47,9 @@ class Feedback extends Component {
     return (
     
         <Modal open={this.state.open} style={getModalStyle()}>
-
+          <form>
+            
+          </form>
         </Modal>
   
     )

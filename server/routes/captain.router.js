@@ -7,7 +7,7 @@ router.get('/profile/:id', (req, res) => {
     console.log(req.params.id);
     
     let id = req.params.id;
-    let queryString = `SELECT "user"."id",
+    let queryString = `SELECT 
                             "user"."username",
                             "user"."first_name", 
                             "user"."last_name", 
@@ -16,7 +16,7 @@ router.get('/profile/:id', (req, res) => {
                             "user"."bio", 
                             "user"."image"
                             FROM "user" 
-                            WHERE "id" = $1 ;`;
+                            WHERE "id" = $1;`;
                             
     pool.query(queryString, [id])
     .then( result => {

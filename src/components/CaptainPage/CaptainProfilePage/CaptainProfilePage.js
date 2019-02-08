@@ -130,9 +130,9 @@ class CaptainProfilePage extends Component {
 
     let profileContent = this.props.captainProfile.map((profile, i) => {
       return (
-        <>
-        
-          <div key={i} className="captain-wrapper">
+        <div key={i}>
+      
+          <div className="captain-wrapper">
 
             <div className="picture-container">
               <img src={profile.image} alt="me" className="captain-picture" />
@@ -157,7 +157,7 @@ class CaptainProfilePage extends Component {
             </div> {/* .bio */}
 
           </div> {/* .captain-wrapper */}
-      </>
+      </div>
       )
     })
 

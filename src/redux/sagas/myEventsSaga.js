@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest , call} from 'redux-saga/effects';
 
 // worker Saga: will be fired on "ADD_TO_MY_EVENTS" actions
 function* addToMyEvents(action) {
@@ -73,11 +73,21 @@ function* fetchMyEvents(action) {
         console.log('My Events get request failed', error);
     }
 }
+function* editEvent(action){
+    try{
+        yield call (axios.put , '/api/captain/edit/event' , action.payload)
+        yield put({type: 'FETCH_CAPTAIN_PROFILE', payload: action.payload.captain_id})
+    }catch(error){
+        console.log('error in edit saga' , error);
+        
+    }
+}
 
 function* myEventsSaga() {
     yield takeLatest('FETCH_MY_EVENTS', fetchMyEvents)
     yield takeLatest('DELETE_FROM_MY_EVENTS', deleteFromMyEvents)
     yield takeLatest('ADD_TO_MY_EVENTS', addToMyEvents)
+    yield takeLatest('EDIT_EVENT' , editEvent)
 
 }
 

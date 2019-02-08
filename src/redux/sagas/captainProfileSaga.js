@@ -27,6 +27,7 @@ function* updateCaptainProfileInfo(action) {
 function* captainProfileSaga() {
   yield takeLatest('FETCH_CAPTAIN_PROFILE', fetchCaptainProfile);
   yield takeLatest('UPDATE_CAPTAIN_PROFILE_INFO', updateCaptainProfileInfo);
+ 
 }
 
 export default captainProfileSaga;

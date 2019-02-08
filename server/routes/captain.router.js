@@ -7,23 +7,16 @@ router.get('/profile/:id', (req, res) => {
     console.log(req.params.id);
     
     let id = req.params.id;
-    let queryString = `SELECT "user"."username",
+    let queryString = `SELECT "user"."id",
+                            "user"."username",
                             "user"."first_name", 
                             "user"."last_name", 
                             "user"."email",
                             "user"."phone", 
                             "user"."bio", 
-                            "user"."image",
-                            "event"."captain_id",
-                            "event"."title",
-                            "event"."date",
-                            "event"."time",
-                            "event"."description",
-                            "event"."address",
-                            "event"."image" AS "event_image"
+                            "user"."image"
                             FROM "user" 
-                            JOIN "event" ON "event"."captain_id" = "user"."id"
-                            WHERE "user"."id" = $1 ;`;
+                            WHERE "id" = $1 ;`;
                             
     pool.query(queryString, [id])
     .then( result => {
@@ -63,6 +56,16 @@ router.put('/profile/edit/:id', (req,res) =>{
     })
 })
 
+router.put('/edit/event' , (req , res) =>{
+    let queryString = `UPDATE "event" SET "title"=$1 , "date"=$2, "time"=$3, "address"=$4, "description"=$5, "image"=$6, "capacity"=$7, "venue"=$8 WHERE "id"=$9`
+    pool.query(queryString, [req.body.title, req.body.date, req.body.time, req.body.address, req.body.description, req.body.image, req.body.capacity, req.body.venue, req.body.id])
+    .then(results =>{
+        res.sendStatus(200)
+    }).catch(error =>{
+        console.log('error in put edit event' , error);
+        res.sendStatus(500)
+    })
+})
 
 
 

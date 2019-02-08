@@ -6,6 +6,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import './AdminEventAttendeesPage';
 
 
 class AdminEventAttendeesPage extends Component {
@@ -28,7 +29,7 @@ class AdminEventAttendeesPage extends Component {
           )
       })
         return (
-            <Paper>
+            <Paper className="paper">
         <h1 style={{ textAlign: 'center' }}>Event Attendees/Feedback</h1>
         <Table>
             <TableHead>

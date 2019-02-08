@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import Button from '@material-ui/core/Button';
 import {Link} from 'react-router-dom';
+import moment from 'moment';
 
 // import './EventCard.css';
 
@@ -56,8 +57,8 @@ class MyEventCard extends React.Component {
                             <div>
                                 <h2>{event.title}</h2>
                                 <h3>{event.venue}</h3>
-                                <p>{event.date}</p>
-                                <p>{event.time}</p>
+                                <p>{moment(event.date).format("MMM Do YYYY")}</p>
+                                <p>{moment(event.time, "HH:mm").format("hh:mm A")}</p>
                             </div>
                             <div>
                                 <Link to={`/events/${event.id}`}>

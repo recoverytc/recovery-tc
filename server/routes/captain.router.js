@@ -7,25 +7,16 @@ router.get('/profile/:id', (req, res) => {
     console.log(req.params.id);
     
     let id = req.params.id;
-    let queryString = `SELECT "user"."username",
+    let queryString = `SELECT "user"."id",
+                            "user"."username",
                             "user"."first_name", 
                             "user"."last_name", 
                             "user"."email",
                             "user"."phone", 
                             "user"."bio", 
-                            "user"."image",
-                            "event"."captain_id",
-                            "event"."title",
-                            "event"."date",
-                            "event"."time",
-                            "event"."venue",
-                            "event"."description",
-                            "event"."address",
-                            "event"."image" AS "event_image",
-                            "event"."id" AS "event_id"
+                            "user"."image"
                             FROM "user" 
-                            JOIN "event" ON "event"."captain_id" = "user"."id"
-                            WHERE "user"."id" = $1 ;`;
+                            WHERE "id" = $1 ;`;
                             
     pool.query(queryString, [id])
     .then( result => {

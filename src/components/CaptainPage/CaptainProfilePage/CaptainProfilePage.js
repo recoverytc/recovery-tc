@@ -124,7 +124,7 @@ class CaptainProfilePage extends Component {
     this.props.dispatch({ type: 'FETCH_THIS_EVENT', refresh: id })
 
     // console.log(this.state)
-    setTimeout(this.handleOpen, 200)
+    setTimeout(this.handleOpen, 3000)
   }
   render() {
 

@@ -51,7 +51,10 @@ class EventPage extends Component {
         } else if (type === 'Feedback'){
 
                 //FEEDBACK HANDLER HERE
-
+            // this.props.dispatch({
+            //     type: 'ADD_RATING',
+            //     payload:
+            // })
 
         }
 

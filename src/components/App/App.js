@@ -167,7 +167,7 @@ class App extends Component {
             /> 
             <ProtectedRoute
               exact
-              path="/search/results"
+              path="/search/results/:id"
               component={SearchList}
             /> 
 

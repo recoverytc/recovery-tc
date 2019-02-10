@@ -101,7 +101,7 @@ class EventPage extends Component {
 
 
         return (
-            <div>
+            <div className="eventpage-container">
             <h1>{this.props.reduxStore.thisEvent.title}</h1>
                 <img src={this.props.reduxStore.thisEvent.image} alt="picture" className="image-url" />
                 <h5>{this.props.reduxStore.thisEvent.venue}</h5>

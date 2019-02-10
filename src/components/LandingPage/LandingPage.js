@@ -7,7 +7,7 @@ import SearchBar from '../SearchBar/SearchBar'
 
 const LandingPage = () => (
   <div>
-      <h1 className="landing-title">Check out these Events!</h1>
+      <h1 className="landing-title">RecoveryTC Events!</h1>
       <SearchBar />
       <div className="event-container">
       <EventList />

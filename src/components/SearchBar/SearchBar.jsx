@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {withRouter} from 'react-router-dom'
+import {withRouter} from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import './SearchBar.css';
 
 class SearchBar extends Component {
     state = {
@@ -16,16 +18,21 @@ class SearchBar extends Component {
         event.preventDefault()
         console.log(this.state);
         this.props.dispatch({type: 'SEARCH_EVENT' , payload: this.state.title})
-        this.props.history.push('/search/results')
+        console.log(this.state.title)
+        this.props.history.push(`/search/results/${this.state.title}`)
     }
 
 
     render(){
        return(
-           <div>
-               <form>
-                   <input onChange={this.handleChange} type="text" placeholder="Search Events"/>
-                   <input onClick={this.handleClick} type="submit"/>
+           <div className="search-container">
+           <h3>Search Events</h3>
+               <form className="search-bar">
+               {/* <label for="search">Search Events:</label> */}
+                   <input className="search" name="search" onChange={this.handleChange} type="text" placeholder="Search Events"/>
+                   <Button className="submit" onClick={this.handleClick} type="submit">
+                    Search
+                   </Button>
                </form>
            </div>
        )

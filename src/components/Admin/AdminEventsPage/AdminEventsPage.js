@@ -26,8 +26,6 @@ class AdminEventsPage extends Component {
     return { backgroundColor: i % 2 ? '#d3fbe7' : '#f3f6fc' };
   }
 
-
-
   render() {
 
     let adminEventContent = this.props.eventList.map((row, i) => {

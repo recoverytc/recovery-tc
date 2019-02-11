@@ -7,7 +7,7 @@ router.get('/profile/:id', (req, res) => {
     console.log(req.params.id);
     
     let id = req.params.id;
-    let queryString = `SELECT "user"."id",
+    let queryString = `SELECT 
                             "user"."username",
                             "user"."first_name", 
                             "user"."last_name", 
@@ -16,7 +16,7 @@ router.get('/profile/:id', (req, res) => {
                             "user"."bio", 
                             "user"."image"
                             FROM "user" 
-                            WHERE "id" = $1 ;`;
+                            WHERE "id" = $1;`;
                             
     pool.query(queryString, [id])
     .then( result => {
@@ -29,9 +29,24 @@ router.get('/profile/:id', (req, res) => {
 })
 
 router.post('/addevent' , (req, res)=>{
-    let queryString = `INSERT INTO "event" ("title" , "date", "time", "address", "description", "image", "captain_id", "capacity", "venue")
-     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`
-    pool.query(queryString , [req.body.title , req.body.date, req.body.time, req.body.address, req.body.description, req.body.image, req.user.id, req.body.capacity, req.body.venue ])
+    let queryString = `WITH addEvent AS(
+        INSERT INTO "event" ("title" , "date", "time", "address", "description", 
+        "image", "captain_id", "capacity", "venue")
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+        RETURNING "event"."id")
+        INSERT INTO "event_user" ("event_id", "user_id") 
+        VALUES((SELECT "id" FROM addEvent), $10);`
+    pool.query(queryString , [req.body.title , 
+        req.body.date, 
+        req.body.time, 
+        req.body.address, 
+        req.body.description, 
+        req.body.image, 
+        req.user.id, 
+        req.body.capacity, 
+        req.body.venue,
+        req.user.id, 
+ ])
     .then(result =>{
         res.sendStatus(200)
     }).catch(error =>{

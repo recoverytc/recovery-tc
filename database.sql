@@ -22,6 +22,7 @@ CREATE TABLE "event" (
 	"title" VARCHAR (200),
 	"date" DATE,
 	"time" TIME,
+	"venue" varchar (200),
 	"address" VARCHAR (300),
 	"description" VARCHAR (2000),
 	"feature" BOOLEAN DEFAULT false, 
@@ -29,7 +30,7 @@ CREATE TABLE "event" (
 	"image" VARCHAR (300),
 	"captain_id" INT REFERENCES "user",
 	"capacity" INT, 
-	"attendee" INT
+	"attendee" INT DEFAULT 1
 );
 
 CREATE TABLE "event_user" (
@@ -38,5 +39,6 @@ CREATE TABLE "event_user" (
 	"user_id" INT REFERENCES "user",
 	"feedback" BOOLEAN DEFAULT false,
 	"comment" VARCHAR (2000),
-	"rating" INT DEFAULT 0
+	"rating" INT DEFAULT NULL
+	"attending" boolean default true
 );

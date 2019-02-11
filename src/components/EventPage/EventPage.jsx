@@ -74,13 +74,13 @@ class EventPage extends Component {
         let buttonDisplay; 
 
         // Not attending, button to 'Attend' displays
-        if (attending === false && eventDate > now) {
+        if (attending === false && eventDate >= now) {
             buttonDisplay =
             <Button onClick={() => this.HandleEvents('Attend')}>
                 Attend
             </Button>
         // Attending a future event
-        } else if (attending === true && eventDate > now ) {
+        } else if (attending === true && eventDate >= now ) {
             buttonDisplay =
             <Button onClick={() => this.HandleEvents('Cancel')}>
                 Cancel
@@ -101,7 +101,7 @@ class EventPage extends Component {
 
 
         return (
-            <div>
+            <div className="eventpage-container">
             <h1>{this.props.reduxStore.thisEvent.title}</h1>
                 <img src={this.props.reduxStore.thisEvent.image} alt="picture" className="image-url" />
                 <h5>{this.props.reduxStore.thisEvent.venue}</h5>

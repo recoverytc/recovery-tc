@@ -14,11 +14,15 @@ class AdminEventAttendeesPage extends Component {
         this.props.dispatch({type: 'FETCH_ATTENDEES_LIST', payload: this.props.match.params.id});
     }
 
+    getStripedStyle(i) {
+        return { backgroundColor: i % 2 ? '#d3fbe7' : '#f3f6fc' };
+    }
+        
 
     render() {
         let tableContentOne = this.props.attendeesList.map((row, i) => {
           return (
-              <TableRow key={i}>
+              <TableRow key={i} style={this.getStripedStyle(i)}>
                   <TableCell>
                       {row.title}
                   </TableCell>
@@ -29,7 +33,7 @@ class AdminEventAttendeesPage extends Component {
           )
       })
         return (
-            <Paper className="paper">
+            <Paper className="paper-table">
         <h1 style={{ textAlign: 'center' }}>Event Attendees/Feedback</h1>
         <Table>
             <TableHead>

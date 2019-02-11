@@ -7,14 +7,20 @@
     left: 0;
     width: 55%;
     max-width: 250px;
-    z-index: 200;
+    z-index: 400;
     transform: translateX(-100%);
     transition: transform 0.3s ease-out;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
 
 .side-drawer.open {
     transform: translateX(0);
     box-shadow: 1px 0px 7px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
 
 
@@ -50,10 +56,8 @@
 }
 
 .drawer-logo {
-    height: 100px;
-    width: 125px;
-    margin-top: 5%;
-    margin-left: -0.75rem;
+    height: 125px;
+    width: 150px;
 }
 
 @media (min-width: 801px) {

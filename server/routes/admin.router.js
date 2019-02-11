@@ -96,20 +96,13 @@ router.post('/', (req, res) => {
 //  GET ALL EVENTS for admin
 // Join tables
 router.get('/eventList', (req, res) => {
-  let queryText = `SELECT "event"."id", 
-                  "event"."title",
-                  "event"."date",
-                  "event"."attendee",
-                  "event"."captain_id",
-                  "user"."id" as "user_id",
-                  "user"."first_name",
-                  "user"."last_name",
-                  "event_user"."event_id",
-                  "event_user"."rating"
-                  FROM "event"
-                  LEFT OUTER JOIN "user" ON "user"."id" = "event"."captain_id"
-                  LEFT OUTER JOIN "event_user" ON "event_user"."event_id" = "event"."id";`;
-
+  let queryText = `SELECT "event".*, "user"."first_name", 
+    "user"."last_name", avg("event_user"."rating") 
+    FROM "event" 
+    JOIN "event_user" ON "event_user"."event_id" = "event"."id" 
+    JOIN "user" ON "event"."captain_id" = "user"."id"
+    GROUP BY "event"."id", "user"."first_name", "user"."last_name"
+    ORDER BY "date" DESC;`;
   pool.query(queryText)
     .then(response => {
       res.send(response.rows);
@@ -118,7 +111,6 @@ router.get('/eventList', (req, res) => {
       console.log('Error getting admin events list:', err);
       res.sendStatus(500);
     })
-
 })
 
 

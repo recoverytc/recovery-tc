@@ -1,7 +1,7 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
-const { rejectUnauthenticated } = require('../modules/authentication-middleware');
+const { rejectUnauthenticated , rejectNonCaptain , rejectNonAdmin } = require('../modules/authentication-middleware');
 
 //add to a user's calendar and add 1 to attendee count on the event
 router.post('/addevent', rejectUnauthenticated, (req, res) => {

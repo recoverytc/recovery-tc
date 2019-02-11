@@ -70,61 +70,59 @@ class EventForm extends Component {
         return (
             <form className="form-container">
                 <h1 className="form-title">Add an Event</h1>
-                {/* <div> */}
                     <TextField
                         variant="outlined"
                         label="Title"
                         placeholder="Title"
                         margin="normal"
                         className="input"
+                        inputProps={{ maxLength: 60 }}
                         onChange={this.handleTitleChange}
                     />
-                {/* </div> */}
-                {/* <div> */}
                     <TextField 
                     variant="outlined"
                     type="date"
                     margin="normal"
                     onChange={this.handleDateChange}
                     />
-                {/* </div> */}
-                {/* <div> */}
                     <TextField 
                     variant="outlined"
                     type="time"
                     margin="normal"
                     onChange={this.handleTimeChange}
                     />
-                {/* </div> */}
-                {/* // <div> */}
                     <TextField
                         variant="outlined"
+                        label="Venue"
+                        placeholder="Venue"
+                        margin="normal"
+                        inputProps={{ maxLength: 200 }}
+                        onChange={this.handleVenueChange}
+                    />
+                    <TextField
                         label="Address"
+                        variant="outlined"
                         placeholder="Address"
                         margin="normal"
+                        inputProps={{ maxLength: 300 }}
                         onChange={this.handleAddressChange}
-                    
                     />
-                {/* </div> */}
-                {/* <div> */}
                     <TextField
                         variant="outlined"
                         label="Description"
                         placeholder="Description"
                         margin="normal"
+                        inputProps={{ maxLength: 2000 }}
                         onChange={this.handleDescriptionChange}
                     />
-                {/* </div> */}
-                {/* <div> */}
                     <TextField
                         variant="outlined"
                         label="Image Url"
                         placeholder="Image Url"
                         margin="normal"
+                        inputProps={{ maxLength: 300 }}
                         onChange={this.handleImageChange}
                     />
-                {/* </div> */}
-                {/* <div> */}
                     <TextField
                         variant="outlined"
                         label="Capacity"
@@ -132,8 +130,6 @@ class EventForm extends Component {
                         margin="normal"
                         onChange={this.handleCapacityChange}
                     />
-                {/* </div> */}
-                {/* <div> */}
                     <TextField
                         variant="outlined"
                         label="Venue"
@@ -141,8 +137,6 @@ class EventForm extends Component {
                         margin="normal"
                         onChange={this.handleVenueChange}    
                     />
-                {/* </div> */}
-                {/* <div> */}
                     <Button 
                         className="add-event-submit" 
                         onClick={this.handleClick}
@@ -150,7 +144,6 @@ class EventForm extends Component {
                         color="primary">
                         Submit
                     </Button>
-                {/* </div> */}
             </form>
         )
     }

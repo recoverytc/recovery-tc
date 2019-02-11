@@ -130,9 +130,9 @@ class CaptainProfilePage extends Component {
 
     let profileContent = this.props.captainProfile.map((profile, i) => {
       return (
-        <>
-        
-          <div key={i} className="captain-wrapper">
+        <div key={i}>
+      
+          <div className="captain-wrapper">
 
             <div className="picture-container">
               <img src={profile.image} alt="me" className="captain-picture" />
@@ -157,7 +157,7 @@ class CaptainProfilePage extends Component {
             </div> {/* .bio */}
 
           </div> {/* .captain-wrapper */}
-      </>
+      </div>
       )
     })
 
@@ -167,20 +167,19 @@ class CaptainProfilePage extends Component {
         {profileContent}
 
       {/* Beginning of the EVents page */}
-        
+      <div className="event-header">
+          <h1 className="h1-event">My Current Events</h1>
+        </div> {/* .bio */}
 
           {this.props.eventList.map((event, i) => {
             if (event.captain_id === this.props.user.id) {
               return (
                 <div key={i} className="events-page">
-                <div className="event-header">
-                <h1 className="h1-event">My Current Events</h1>
-              </div> {/* .bio */}
     
               <div className="event-contents">
                 <div className="event-date-time">
-                  <p>{event.date}</p>
-                  <p>{event.time}</p>
+                  <p>{moment(event.date).format("MMM Do YYYY")}</p>
+                  <p>{moment(event.time, "HH:mm").format("hh:mm A")}</p>
                 </div> {/* .event-contents */}
     
                 <p className="event-title">{event.title}</p>
@@ -227,7 +226,7 @@ class CaptainProfilePage extends Component {
                   <TextField
                     type="time"
                     margin="normal"
-                    value={this.state.time}
+                    value={this.state.time} //no moment.js here!!!
                     onChange={this.handleTimeChange}
                   />
                 </div>

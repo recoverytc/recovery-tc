@@ -1,3 +1,5 @@
+//look into this...  do we need a second reducer?
+
 const eList = (state = [], action) => {
   switch (action.type) {
     case 'SET_EVENT_LIST':

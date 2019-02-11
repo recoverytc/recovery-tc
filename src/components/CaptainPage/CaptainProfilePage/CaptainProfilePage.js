@@ -131,9 +131,7 @@ class CaptainProfilePage extends Component {
 
     let profileContent = this.props.captainProfile.map((profile, i) => {
       return (
-        <div key={i}>
-
-          <div className="captain-wrapper">
+        <div key={i} className="captain-wrapper">
 
             <div className="picture-container">
               <img src={profile.image} alt="me" className="captain-picture" />
@@ -172,8 +170,6 @@ class CaptainProfilePage extends Component {
               <hr />
               <p className="demo-p-tag">{profile.bio}</p>
             </div> 
-
-          </div> {/* .captain-wrapper */}
         </div>
       )
     })
@@ -182,8 +178,6 @@ class CaptainProfilePage extends Component {
     return (
       <div className="captain-container">
         {profileContent}
-
-        <div className="blank-div"></div>
 
         {/* Beginning of the EVents page */}
         <div className="event-root">
@@ -195,21 +189,20 @@ class CaptainProfilePage extends Component {
             if (event.captain_id === this.props.user.id) {
               return (
                 <div key={i} className="root">
-                  <Paper className="paper">
 
                     <div className="event-data">
                       <p>{moment(event.date).format("MMM Do YYYY")}</p>
                       <p>{moment(event.time, "HH:mm").format("hh:mm A")}</p>
-
                       <p className="event-title">{event.title}</p>
                     </div>
 
-                    <img src={event.image} alt="event" className="image-url" />
+                    <div className="image-container">
+                      <img src={event.image} alt="event" className="image-url" />
+                    </div>
 
                     {/* <button onClick={() => this.handleEdit(event.id)} className="edit-event-btn">edit event</button> */}
                     <img src="/editEventIcon.svg" alt="edit Event" className="edit-event-btn" onClick={() => this.handleEdit(event.id)} />
-                  </Paper>
-                </div>
+                  </div>
               )
             }
           })}

@@ -1,10 +1,18 @@
+
+.myevents-delete {
+    background-color:#a71d14!important;
+    color: rgb(255, 255, 255)!important;
+    margin: 15%!important;
+    position: absolute;
+}
 .root {
     flex-grow: 1;
     position: relative;
     text-align: center;
     max-width: 80%;
-    height: 300px;
-    margin: 2% auto;
+    height: 350px;
+    max-width: 300px;
+    margin: 5% auto;
     background-color: #3c3c3c;
     border-radius: 15px;
     box-shadow: 0px 10px 36px -4px rgba(0,0,0,0.79);
@@ -12,12 +20,6 @@
     flex-direction: column;
     /* justify-content: space-between; */
 
-}
-
-.myevents-delete {
-    background-color:#a71d14!important;
-    color: rgb(255, 255, 255)!important;
-    margin: 10%!important;
 }
 
 /* .paper {
@@ -89,7 +91,7 @@
     background-color: rgba(255,0,0,0.7);
     box-shadow: 1px 0px 7px rgba(0,0,0,0.5);   
     position: absolute;
-    bottom: 14%;
+    bottom: 26%;
     right: 1%;
     border-radius: 3px;
     height: 20px;
@@ -106,27 +108,4 @@
 
 a {
     text-decoration: none;
-}
-
-@media(min-width: 801px) {
-    .event-data {
-        font-size: 1.3vmin;
-        width: 400px;
-    }
-    .root {
-        height: 500px;
-        width: 400px;
-    }
-    .image-container {
-        width: 400px;
-        height: 400px;
-    }
-    .image-url {
-        width: 500px;
-        height: 400px;
-    }
-    .attendees {
-        bottom: 18%;
-        right: 1%;
-    }
 }

@@ -84,9 +84,10 @@ function* editEvent(action){
 }
 
 
-function* postRating(action){
+function* updateRating(action){
     try {
-        yield call(axios.post, `/api/myEvents/feedback`, action.payload)
+        console.log('action.paylod in saga', action.payload);
+        yield call(axios.put, `/api/myEvents/feedback`, action.payload)
     }
     catch (error){
         console.log('error in adding rating saga' , error);
@@ -99,7 +100,7 @@ function* myEventsSaga() {
     yield takeLatest('DELETE_FROM_MY_EVENTS', deleteFromMyEvents)
     yield takeLatest('ADD_TO_MY_EVENTS', addToMyEvents)
     yield takeLatest('EDIT_EVENT' , editEvent)
-    yield takeLatest('ADD_RATING', postRating)
+    yield takeLatest('UPDATE_FEEDBACK', updateRating)
 
 }
 

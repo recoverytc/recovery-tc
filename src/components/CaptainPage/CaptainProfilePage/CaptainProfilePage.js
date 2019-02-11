@@ -167,15 +167,14 @@ class CaptainProfilePage extends Component {
         {profileContent}
 
       {/* Beginning of the EVents page */}
-        
+      <div className="event-header">
+          <h1 className="h1-event">My Current Events</h1>
+        </div> {/* .bio */}
 
           {this.props.eventList.map((event, i) => {
             if (event.captain_id === this.props.user.id) {
               return (
                 <div key={i} className="events-page">
-                <div className="event-header">
-                <h1 className="h1-event">My Current Events</h1>
-              </div> {/* .bio */}
     
               <div className="event-contents">
                 <div className="event-date-time">

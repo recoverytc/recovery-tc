@@ -107,9 +107,16 @@ class EventPage extends Component {
         let attending = this.props.reduxStore.attendingThis.attending;
         let feedback = this.props.reduxStore.attendingThis.feedback;
         let buttonDisplay;
+        let attendees = this.props.reduxStore.thisEvent.attendee
+        let capacity = this.props.reduxStore.thisEvent.capacity
 
+
+
+        // Event is full
+        if (attendees >= capacity && attending === false){
+            buttonDisplay = 'THIS EVENT IS FULL'
         // Not attending, button to 'Attend' displays
-        if (attending === false && eventDate >= now) {
+        } else if (attending === false && eventDate >= now) {
             buttonDisplay =
                 <Button onClick={() => this.HandleEvents('Attend')}>
                     Attend
@@ -132,7 +139,7 @@ class EventPage extends Component {
 
             // Event is in the past, and feedback is done
         } else {
-            buttonDisplay = 'Monkeys'
+            buttonDisplay = 'Feedback is closed for this event.'
         }
 
 

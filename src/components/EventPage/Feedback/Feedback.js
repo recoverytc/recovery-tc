@@ -51,6 +51,8 @@ class Feedback extends Component {
 
   render() {
 
+    
+
 
     return (
 
@@ -59,6 +61,7 @@ class Feedback extends Component {
   
         <form>
       
+        {/* Star rating */}
 
           <TextField
             label="comments"

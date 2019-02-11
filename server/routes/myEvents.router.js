@@ -58,4 +58,56 @@ router.get('/myevents', rejectUnauthenticated, (req, res) => {
     });
 });
 
+
+router.put('/feedback', rejectUnauthenticated, (req, res) => {
+    console.log('in PUT feeback');
+    console.log('req.body', req.body);
+
+    let queryText = `UPDATE "event_user" SET "feedback"=$1, "comment"=$2, "rating"=$3  WHERE "event_id"=$4 AND "user_id"=$5;`;
+    
+    let queryValues = [req.body.feedback,
+                        req.body.comment,
+                        req.body.rating,
+                        req.body.id, req.user.id]
+
+    console.log(queryValues);
+    pool.query(queryText, queryValues)
+    .then( () => {
+        res.sendStatus(200);
+    })
+    .catch( err => {
+        console.log('Error in posting feedback', err);
+        res.sendStatus(500);
+    })
+})
+
+
+
+// router.post('/feedback', rejectUnauthenticated, (res, req) => {
+//     console.log('in POST feeback');
+
+//     let queryText = `INSERT INTO "event_user" (
+//                                 "feedback",
+//                                 "comment",
+//                                 "rating")
+//                                 VALUES ($1, $2, $3)
+//                                 WHERE "event_id"=$4 AND "user_id"=$5;`;
+    
+//     let queryValues = [req.body.feedback,
+//                         req.body.comment,
+//                         req.body.rating,
+//                         req.body.event_id, req.user.id]
+
+//     pool.query(queryText, queryValues)
+//     .then( () => {
+//         res.sendStatus(200);
+//     })
+//     .catch( err => {
+//         console.log('Error in posting feedback', err);
+//         res.sendStatus(500);
+//     })
+// })
+
+
+
 module.exports = router;

@@ -14,7 +14,7 @@ const sideDrawer = props => {
         <div className="navbar__logo"><Link to="/home"><img className="drawer-logo" src="/image.png" /></Link></div>
             <ul>
             <li><Link onClick={props.click} to="/login">{props.user.id ? 'All Events' : 'Login / Register'}</Link></li>
-          {props.user.admin === false && (
+          {props.user.id && (
             <>
               <li><Link onClick={props.click} to="/myevents">My Events</Link></li>
             </>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import './LogOutButton.css';
 
 class LogOutButton extends Component {
   handleClick = () => {
@@ -15,7 +16,7 @@ class LogOutButton extends Component {
           // This button shows up in multiple locations and is styled differently
           // because it's styled differently depending on where it is used, the className
           // is passed to it from it's parents through React props
-          className={this.props.className}
+          className="button"
           onClick={() => this.handleClick()}
         >
           Log Out

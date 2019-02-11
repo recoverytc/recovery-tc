@@ -1,5 +1,5 @@
 .landing-title {
-    color: white;
+    color: #d3fbe7;
     font-size: 1.75em;
     display: flex;
     justify-content: center;
@@ -7,7 +7,5 @@
 
 .event-container {
     display: flex;
-    padding-bottom: 10%;
     align-items: center;
-    flex-direction: column;
 }

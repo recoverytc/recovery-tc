@@ -4,30 +4,16 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-
 import {Link} from 'react-router-dom';
 import moment from 'moment';
 import { Dialog, DialogTitle, TextField, Button } from '@material-ui/core';
 import StarRatingComponent from 'react-star-rating-component';
+import './MyEventCard.css';
 
-// import './EventCard.css';
+
 
 const styles = theme => ({
-    root: {
-        flexGrow: 1,
-        padding: `0 ${theme.spacing.unit * 3}px`,
-    },
-    paper: {
-        // padding: theme.spacing.unit,
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-        maxWidth: 400,
-        margin: `${theme.spacing.unit}px auto`,
-        padding: theme.spacing.unit * 2
-    },
-    imageUrl: {
-        width: "100%",
-    }
+
 });
 
 
@@ -100,12 +86,12 @@ class MyEventCard extends React.Component {
 
         if (eventDate >= now){
             buttonDisplay = 
-                <Button onClick={() => this.HandleEvents('Cancel')}>
+                <Button className="myevents-delete" onClick={() => this.HandleEvents('Cancel')}>
                     Cancel
                 </Button>
         } else if (eventDate >= nowMinus7){
             buttonDisplay =
-                <Button onClick={() => this.HandleEvents('Feedback')}>
+                <Button className="myevents-delete" onClick={() => this.HandleEvents('Feedback')}>
                     Feedback
                 </Button>
         } else {
@@ -116,30 +102,28 @@ class MyEventCard extends React.Component {
 
 
         return (
-            <div className={classes.root}>
-                <Grid container spacing={24} direction="column">
-                    <Grid item xs={8}>
-                        <Paper className={classes.paper}>
-                            <div>
-                                <h2>{event.title}</h2>
-                                <h3>{event.venue}</h3>
-                                <p>{moment(event.date).format("MMM Do YYYY")}</p>
-                                <p>{moment(event.time, "HH:mm").format("hh:mm A")}</p>
-                            </div>
-                            <div>
-                                <Link to={`/events/${event.id}`}>
-                                <img src={event.image} alt="picture" className={classes.imageUrl}/>
-                                </Link>
-                            </div>
-                            <div>
-                                {buttonDisplay}
-                            </div>
-
-                        </Paper>
-                    </Grid>
-                </Grid>
+            <div className="root">
+                <Link to={`/events/${event.id}`}>
+                    <div className="event-data">
+                        <h2>{event.title}</h2>
+                        <p>{moment(event.date).format("MMM Do YYYY")}</p>
+                        <p>{moment(event.time, "HH:mm").format("hh:mm A")}</p>
+                    </div>
+                    <div>
+                        <p className="attendees">{event.attendee}</p>
+                    </div>
+                    <div className="image-container">
+                        <img src={event.image} alt="picture" className="image-url" />
+                        <p className="description">{event.description.substring(0, 50)}</p>
+                    </div>
+                </Link>
                 <div>
-                    <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="simple-dialog-title" >
+                    <Button className="myevents-delete" onClick={this.deleteFromMyEvents}>
+                        Cancel
+                    </Button>
+                </div>
+                <div>
+                <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="simple-dialog-title" >
                         <DialogTitle id="simple-dialog-title">Feedback</DialogTitle>
 
                         <form>
@@ -168,6 +152,8 @@ class MyEventCard extends React.Component {
                             color="primary"
                             onClick={this.handleSubmit}>submit</Button>
                     </Dialog>
+
+
                 </div>
             </div>
             

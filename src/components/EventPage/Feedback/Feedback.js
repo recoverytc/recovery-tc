@@ -1,22 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import Button from '@material-ui/core/Button';
+
+import { Dialog, DialogTitle, TextField } from '@material-ui/core';
+
 
 import './Feedback.css';
-
-const getModalStyle = () => {
-  const top = 50;
-  const left = 50;
-
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
-  };
-}
 
 
 
@@ -24,8 +12,7 @@ const getModalStyle = () => {
 class Feedback extends Component {
 
   state = {
-    open: false,
-    feedback: false,
+    feedback: '',
     comment: '',
     rating: '',
     event_id: this.props.thisEvent.id
@@ -36,18 +23,10 @@ class Feedback extends Component {
     this.props.dispatch({ type: 'FETCH_THIS_EVENT' });
 
   }
-  // opens modal
-  handleOpen = () => {
-    this.setState({
-      open: true
-    })
-  }
 
   // close modal
   handleClose = () => {
-    this.setState({
-      open: false
-    })
+    this.props.onClose();
   }
 
   handleClick = () => {
@@ -75,7 +54,9 @@ class Feedback extends Component {
 
     return (
 
-      <Modal open={this.state.open} style={getModalStyle()}>
+      <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" >
+      <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
+  
         <form>
       
 
@@ -90,16 +71,30 @@ class Feedback extends Component {
             onChange={this.handleChange('comment')}
           />
         </form>
-      </Modal>
+      </Dialog>
 
     )
   }
 }
 
 
-Feedback.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+// state = {
+//   open: false,
+// }
+
+// handleClickOpen = () => {
+//   this.setState({
+//       open: true,
+//   })
+// }
+
+// handleClose = () => {
+//   this.setState({
+//       open: false,
+//   })
+// }
+
+ {/* <Feedback open={this.state.open} onclose={this.handleClose}/> */}
 
 const mapStateToProps = state => ({
   thisEvent: state.thisEvent,
@@ -107,4 +102,4 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps)(withStyles(styles)(Feedback));
+export default connect(mapStateToProps)(Feedback);

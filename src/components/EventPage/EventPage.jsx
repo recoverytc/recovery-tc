@@ -5,6 +5,7 @@ import './EventPage.css';
 import moment from 'moment';
 
 
+
 class EventPage extends Component {
 
     componentDidMount() {
@@ -55,12 +56,8 @@ class EventPage extends Component {
             })
         } else if (type === 'Feedback'){
 
-                //FEEDBACK HANDLER HERE
-            // this.props.dispatch({
-            //     type: 'ADD_RATING',
-            //     payload:
-            // })
-
+             //FEEDBACK HANDLER HERE
+         
         }
     };
 
@@ -96,7 +93,8 @@ class EventPage extends Component {
             </Button>
         // Attended a past event, but haven't left feedback
         } else if (attending === true && eventDate < now && feedback === false) {
-            buttonDisplay = ''
+            buttonDisplay = ''   
+      
         // Event is in the past, and feedback is done
         } else {
             buttonDisplay = 'Monkeys'

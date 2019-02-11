@@ -92,11 +92,19 @@ class EventForm extends Component {
                 </div>
                 <div>
                     <TextField
+                        label="Venue"
+                        placeholder="Venue"
+                        margin="normal"
+                        inputProps={{ maxLength: 200 }}
+                        onChange={this.handleVenueChange}
+                    />
+                </div>
+                <div>
+                    <TextField
                         label="Address"
                         placeholder="Address"
                         margin="normal"
                         inputProps={{ maxLength: 300 }}
-
                         onChange={this.handleAddressChange}
                     
                     />
@@ -116,7 +124,6 @@ class EventForm extends Component {
                         placeholder="Image Url"
                         margin="normal"
                         inputProps={{ maxLength: 300 }}
-
                         onChange={this.handleImageChange}
                     />
                 </div>
@@ -128,14 +135,7 @@ class EventForm extends Component {
                         onChange={this.handleCapacityChange}
                     />
                 </div>
-                <div>
-                    <TextField
-                        label="Venue"
-                        placeholder="Venue"
-                        margin="normal"
-                        onChange={this.handleVenueChange}    
-                    />
-                </div>
+
                 <div>
                     <Button onClick={this.handleClick}>Submit</Button>
                 </div>

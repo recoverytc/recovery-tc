@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withStyles, TextField, Button } from '@material-ui/core';
+import './CaptainEditProfilePage.css';
 
 import '../CaptainProfilePage/CaptainProfilePage';
 
@@ -47,14 +48,10 @@ class CaptainEditProfilePage extends Component {
 
 
   render() {
-
-    const { classes } = this.props;
-
-
     return (
       <div>
-        <h1>Profile Create</h1>
-        <form className="form-spacing">
+        <form className="form-container">
+        <h1 className="form-title">Profile Create</h1>
           <TextField
             id="outlined-with-placeholder"
             label="First Name"
@@ -112,11 +109,12 @@ class CaptainEditProfilePage extends Component {
             value={this.state.bio}
             onChange={this.handleChange('bio')}
           />
+          <Button 
+            variant="contained"
+            color="primary" 
+            className="add-event-submit"
+            onClick={this.handleClick}> Update </Button>
         </form>
-        <Button 
-        variant="contained"
-        color="primary" 
-        onClick={this.handleClick}> Update </Button>
       </div> 
     )
   }

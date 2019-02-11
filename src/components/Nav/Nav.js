@@ -16,7 +16,7 @@ const Nav = (props) => (
       <div className="navbar_navigation-items">
         <ul>
           <li><Link to="/login">{props.user.id ? 'All Events' : 'Login / Register'}</Link></li>
-          {props.user.admin === false && (
+          {props.user.id && (
             <>
               <li><Link to="/myevents">My Events</Link></li>
             </>

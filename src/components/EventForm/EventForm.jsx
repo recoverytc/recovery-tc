@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import {connect} from 'react-redux'
+import {Button} from '@material-ui/core';
+import {connect} from 'react-redux';
+import './EventForm.css';
+import moment from 'moment';
 
 
 class EventForm extends Component {
@@ -66,75 +68,90 @@ class EventForm extends Component {
     }
     render() {
         return (
-            <div>
-                <div>
+            <form className="form-container">
+                <h1 className="form-title">Add an Event</h1>
+                {/* <div> */}
                     <TextField
+                        variant="outlined"
                         label="Title"
                         placeholder="Title"
                         margin="normal"
+                        className="input"
                         onChange={this.handleTitleChange}
                     />
-                </div>
-                <div>
+                {/* </div> */}
+                {/* <div> */}
                     <TextField 
+                    variant="outlined"
                     type="date"
                     margin="normal"
                     onChange={this.handleDateChange}
                     />
-                </div>
-                <div>
+                {/* </div> */}
+                {/* <div> */}
                     <TextField 
+                    variant="outlined"
                     type="time"
                     margin="normal"
                     onChange={this.handleTimeChange}
                     />
-                </div>
-                <div>
+                {/* </div> */}
+                {/* // <div> */}
                     <TextField
+                        variant="outlined"
                         label="Address"
                         placeholder="Address"
                         margin="normal"
                         onChange={this.handleAddressChange}
                     
                     />
-                </div>
-                <div>
+                {/* </div> */}
+                {/* <div> */}
                     <TextField
+                        variant="outlined"
                         label="Description"
                         placeholder="Description"
                         margin="normal"
                         onChange={this.handleDescriptionChange}
                     />
-                </div>
-                <div>
+                {/* </div> */}
+                {/* <div> */}
                     <TextField
+                        variant="outlined"
                         label="Image Url"
                         placeholder="Image Url"
                         margin="normal"
                         onChange={this.handleImageChange}
                     />
-                </div>
-                <div>
+                {/* </div> */}
+                {/* <div> */}
                     <TextField
+                        variant="outlined"
                         label="Capacity"
                         placeholder="Capacity"
                         margin="normal"
                         onChange={this.handleCapacityChange}
                     />
-                </div>
-                <div>
+                {/* </div> */}
+                {/* <div> */}
                     <TextField
+                        variant="outlined"
                         label="Venue"
                         placeholder="Venue"
                         margin="normal"
                         onChange={this.handleVenueChange}    
                     />
-                </div>
-                <div>
-                    <Button onClick={this.handleClick}>Submit</Button>
-                </div>
-
-            </div>
+                {/* </div> */}
+                {/* <div> */}
+                    <Button 
+                        className="add-event-submit" 
+                        onClick={this.handleClick}
+                        variant="contained"
+                        color="primary">
+                        Submit
+                    </Button>
+                {/* </div> */}
+            </form>
         )
     }
 }

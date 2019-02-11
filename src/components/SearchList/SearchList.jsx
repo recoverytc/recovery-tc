@@ -17,7 +17,7 @@ handleClick = () =>{
 
         return(
             <div>
-                <Button onClick={this.handleClick} >Back</Button>
+                <Button className="back-button" onClick={this.handleClick} >Back</Button>
                 <SearchBar />
                 <div className="event-container">
                     <h3 className="query-display">Search results for: {this.props.match.params.id}</h3>

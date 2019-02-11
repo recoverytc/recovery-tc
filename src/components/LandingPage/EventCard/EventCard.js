@@ -36,25 +36,22 @@ class EventCard extends React.Component {
     const { event } = this.props;
     return (
       <div className="root">
-        {/* <Grid container spacing={24} direction="column">
-          <Grid item xs={8}> */}
-        <Paper className="paper">
         <Link to={`/events/${event.id}`}>
           <div className="event-data">
               <h2>{event.title}</h2>
                 <p>{moment(event.date).format("MMM Do YYYY")}</p>
                 <p>{moment(event.time, "HH:mm").format("hh:mm A")}</p>
-            </div>
+          </div>
           <div>
-            {/* <Link to={`/events/${event.id}`}> */}
+            <p className="attendees">{event.attendee}</p>
+          </div>
+          <div className="image-container">
               <img src={event.image} alt="picture" className="image-url" />
-            {/* </Link> */}
+              <p className="description">{event.description.substring(0, 50)}</p>
+
           </div>
           </Link>
-        </Paper>
-        {/* </Grid>
-        </Grid> */}
-      </div>
+        </div>
     )
   }
 }

@@ -48,7 +48,9 @@ router.get('/myevents', rejectUnauthenticated, (req, res) => {
         "description", "address", "image", "capacity", "attendee" 
         FROM "event" 
         JOIN "event_user" ON "event_user"."event_id" = "event"."id" 
-        WHERE "event_user"."user_id" = $1;`);
+        WHERE "event_user"."user_id" = $1 
+        AND "date" >= (now() - INTERVAL '7 day')
+        ORDER BY "date" ASC;`);
     pool.query(queryText, [req.query.id]).then((result) => {
         console.log('result.rows', result.rows);
         res.send(result.rows);

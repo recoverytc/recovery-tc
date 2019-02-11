@@ -74,13 +74,13 @@ class EventPage extends Component {
         let buttonDisplay; 
 
         // Not attending, button to 'Attend' displays
-        if (attending === false && eventDate > now) {
+        if (attending === false && eventDate >= now) {
             buttonDisplay =
             <Button onClick={() => this.HandleEvents('Attend')}>
                 Attend
             </Button>
         // Attending a future event
-        } else if (attending === true && eventDate > now ) {
+        } else if (attending === true && eventDate >= now ) {
             buttonDisplay =
             <Button onClick={() => this.HandleEvents('Cancel')}>
                 Cancel

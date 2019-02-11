@@ -60,4 +60,4 @@ Feedback.propTypes = {
 };
 
 
-export default withStyles(styles)(Feedback);
+export default (Feedback);

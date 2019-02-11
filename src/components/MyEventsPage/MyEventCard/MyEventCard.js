@@ -41,7 +41,10 @@ class MyEventCard extends React.Component {
                 event_id: this.props.event.id,
                 user_id: this.props.reduxStore.user.id,
             },
-            refresh: this.props.reduxStore.user.id
+            refresh: {
+                user_id: this.props.reduxStore.user.id,
+                event_id: this.props.reduxStore.thisEvent.id,
+            }
         })
     };
 

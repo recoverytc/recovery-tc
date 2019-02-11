@@ -77,7 +77,7 @@ class EventPage extends Component {
             })
         } else if (type === 'Cancel') { //remove this user from this event
             this.props.dispatch({
-                type: 'DELETE_FROM_MY_EVENTS',
+                type: 'DELETE_FROM_THIS_EVENT',
                 payload: {
                     event_id: this.props.reduxStore.thisEvent.id,
                     user_id: this.props.reduxStore.user.id,

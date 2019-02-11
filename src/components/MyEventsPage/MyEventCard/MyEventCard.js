@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { Dialog, DialogTitle, TextField, Button } from '@material-ui/core';
 import StarRatingComponent from 'react-star-rating-component';
@@ -84,12 +84,12 @@ class MyEventCard extends React.Component {
         let eventDate = moment(event.date).format('YYYYDDD');
         let buttonDisplay;
 
-        if (eventDate >= now){
-            buttonDisplay = 
+        if (eventDate >= now) {
+            buttonDisplay =
                 <Button className="myevents-delete" onClick={() => this.HandleEvents('Cancel')}>
                     Cancel
                 </Button>
-        } else if (eventDate >= nowMinus7){
+        } else if (eventDate >= nowMinus7) {
             buttonDisplay =
                 <Button className="myevents-delete" onClick={() => this.HandleEvents('Feedback')}>
                     Feedback
@@ -102,61 +102,61 @@ class MyEventCard extends React.Component {
 
 
         return (
-            <div className="root">
-                <Link to={`/events/${event.id}`}>
-                    <div className="event-data">
-                        <h2>{event.title}</h2>
-                        <p>{moment(event.date).format("MMM Do YYYY")}</p>
-                        <p>{moment(event.time, "HH:mm").format("hh:mm A")}</p>
+            <div>
+                <div className="root">
+                    <Link to={`/events/${event.id}`}>
+                        <div className="event-data">
+                            <h2>{event.title}</h2>
+                            <p>{moment(event.date).format("MMM Do YYYY")}</p>
+                            <p>{moment(event.time, "HH:mm").format("hh:mm A")}</p>
+                        </div>
+                        <div>
+                            <p className="attendees">{event.attendee}</p>
+                        </div>
+                        <div className="image-container">
+                            <img src={event.image} alt="picture" className="image-url" />
+                            <p className="description">{event.description.substring(0, 50)}</p>
+                        </div>
+                    </Link>
+                    <div>
+                        {buttonDisplay}
                     </div>
                     <div>
-                        <p className="attendees">{event.attendee}</p>
+                        <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="simple-dialog-title" >
+                            <DialogTitle id="simple-dialog-title">Feedback</DialogTitle>
+
+                            <form>
+
+                                {/* Star rating */}
+                                <StarRatingComponent
+                                    name="rating"
+                                    starCount={5}
+                                    value={this.state.rating}
+                                    onStarClick={this.onStarClick.bind(this)} />
+                                {/* comments */}
+                                <TextField
+                                    label="comments"
+                                    multiline
+                                    rows="5"
+                                    fullWidth
+                                    margin="normal"
+                                    variant="outlined"
+                                    value={this.state.comment}
+                                    name="comment"
+                                    onChange={this.handleChange('comment')}
+                                />
+                            </form>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                onClick={this.handleSubmit}>submit</Button>
+                        </Dialog>
+
+
                     </div>
-                    <div className="image-container">
-                        <img src={event.image} alt="picture" className="image-url" />
-                        <p className="description">{event.description.substring(0, 50)}</p>
-                    </div>
-                </Link>
-                <div>
-                    <Button className="myevents-delete" onClick={this.deleteFromMyEvents}>
-                        Cancel
-                    </Button>
-                </div>
-                <div>
-                <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="simple-dialog-title" >
-                        <DialogTitle id="simple-dialog-title">Feedback</DialogTitle>
-
-                        <form>
-
-                            {/* Star rating */}
-                            <StarRatingComponent
-                                name="rating"
-                                starCount={5}
-                                value={this.state.rating}
-                                onStarClick={this.onStarClick.bind(this)} />
-                            {/* comments */}
-                            <TextField
-                                label="comments"
-                                multiline
-                                rows="5"
-                                fullWidth
-                                margin="normal"
-                                variant="outlined"
-                                value={this.state.comment}
-                                name="comment"
-                                onChange={this.handleChange('comment')}
-                            />
-                        </form>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            onClick={this.handleSubmit}>submit</Button>
-                    </Dialog>
-
-
                 </div>
             </div>
-            
+
         )
     }
 }

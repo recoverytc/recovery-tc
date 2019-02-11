@@ -29,9 +29,24 @@ router.get('/profile/:id', (req, res) => {
 })
 
 router.post('/addevent' , (req, res)=>{
-    let queryString = `INSERT INTO "event" ("title" , "date", "time", "address", "description", "image", "captain_id", "capacity", "venue")
-     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`
-    pool.query(queryString , [req.body.title , req.body.date, req.body.time, req.body.address, req.body.description, req.body.image, req.user.id, req.body.capacity, req.body.venue ])
+    let queryString = `WITH addEvent AS(
+        INSERT INTO "event" ("title" , "date", "time", "address", "description", 
+        "image", "captain_id", "capacity", "venue")
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+        RETURNING "event"."id")
+        INSERT INTO "event_user" ("event_id", "user_id") 
+        VALUES((SELECT "id" FROM addEvent), $10);`
+    pool.query(queryString , [req.body.title , 
+        req.body.date, 
+        req.body.time, 
+        req.body.address, 
+        req.body.description, 
+        req.body.image, 
+        req.user.id, 
+        req.body.capacity, 
+        req.body.venue,
+        req.user.id, 
+ ])
     .then(result =>{
         res.sendStatus(200)
     }).catch(error =>{

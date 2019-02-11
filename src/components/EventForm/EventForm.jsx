@@ -95,6 +95,8 @@ class EventForm extends Component {
                         label="Address"
                         placeholder="Address"
                         margin="normal"
+                        inputProps={{ maxLength: 300 }}
+
                         onChange={this.handleAddressChange}
                     
                     />
@@ -104,6 +106,7 @@ class EventForm extends Component {
                         label="Description"
                         placeholder="Description"
                         margin="normal"
+                        inputProps={{ maxLength: 2000 }}
                         onChange={this.handleDescriptionChange}
                     />
                 </div>
@@ -112,6 +115,8 @@ class EventForm extends Component {
                         label="Image Url"
                         placeholder="Image Url"
                         margin="normal"
+                        inputProps={{ maxLength: 300 }}
+
                         onChange={this.handleImageChange}
                     />
                 </div>

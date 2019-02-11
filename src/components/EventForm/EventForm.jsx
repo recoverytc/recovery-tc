@@ -72,6 +72,7 @@ class EventForm extends Component {
                         label="Title"
                         placeholder="Title"
                         margin="normal"
+                        inputProps={{ maxLength: 60 }}
                         onChange={this.handleTitleChange}
                     />
                 </div>

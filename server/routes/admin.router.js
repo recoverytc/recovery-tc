@@ -1,9 +1,9 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const { rejectUnauthenticated , rejectNonCaptain , rejectNonAdmin } = require('../modules/authentication-middleware');
 
-
-router.get('/getUsers', (req, res) => {
+router.get('/getUsers', rejectNonAdmin , (req, res) => {
     let queryText = `SELECT "first_name", "last_name", "username", "email", "phone", "captain", "active", "id" FROM "user" ORDER BY "id" ASC;`;
     pool.query(queryText)
     .then( response => {
@@ -16,7 +16,7 @@ router.get('/getUsers', (req, res) => {
     })
 });
 
-router.put('/changeCaptainStatus', (req, res) => {
+router.put('/changeCaptainStatus', rejectNonAdmin , (req, res) => {
   let id = req.body.id;
   if (req.body.captain) {
     pool.query('UPDATE "user" SET "captain" = $1 WHERE "id" = $2;', [false, id])
@@ -40,7 +40,7 @@ router.put('/changeCaptainStatus', (req, res) => {
   }
 })
 
-router.put('/changeActiveStatus', (req, res) => {
+router.put('/changeActiveStatus',rejectNonAdmin , (req, res) => {
   let id = req.body.id;
   if (req.body.active) {
     pool.query('UPDATE "user" SET "active" = $1 WHERE "id" = $2;', [false, id])
@@ -65,7 +65,7 @@ router.put('/changeActiveStatus', (req, res) => {
 })
 
 
-router.get('/attendees/:id', (req, res) => {
+router.get('/attendees/:id', rejectNonAdmin , (req, res) => {
     let id = req.params.id;
     let queryText = `SELECT "event_user"."id",
                             "event_user"."event_id", 
@@ -95,7 +95,7 @@ router.post('/', (req, res) => {
 
 //  GET ALL EVENTS for admin
 // Join tables
-router.get('/eventList', (req, res) => {
+router.get('/eventList',rejectNonAdmin , (req, res) => {
   let queryText = `SELECT "event".*, "user"."first_name", 
     "user"."last_name", avg("event_user"."rating") 
     FROM "event" 

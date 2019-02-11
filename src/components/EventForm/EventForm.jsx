@@ -72,6 +72,7 @@ class EventForm extends Component {
                         label="Title"
                         placeholder="Title"
                         margin="normal"
+                        inputProps={{ maxLength: 60 }}
                         onChange={this.handleTitleChange}
                     />
                 </div>
@@ -91,9 +92,19 @@ class EventForm extends Component {
                 </div>
                 <div>
                     <TextField
+                        label="Venue"
+                        placeholder="Venue"
+                        margin="normal"
+                        inputProps={{ maxLength: 200 }}
+                        onChange={this.handleVenueChange}
+                    />
+                </div>
+                <div>
+                    <TextField
                         label="Address"
                         placeholder="Address"
                         margin="normal"
+                        inputProps={{ maxLength: 300 }}
                         onChange={this.handleAddressChange}
                     
                     />
@@ -103,6 +114,7 @@ class EventForm extends Component {
                         label="Description"
                         placeholder="Description"
                         margin="normal"
+                        inputProps={{ maxLength: 2000 }}
                         onChange={this.handleDescriptionChange}
                     />
                 </div>
@@ -111,6 +123,7 @@ class EventForm extends Component {
                         label="Image Url"
                         placeholder="Image Url"
                         margin="normal"
+                        inputProps={{ maxLength: 300 }}
                         onChange={this.handleImageChange}
                     />
                 </div>
@@ -122,14 +135,7 @@ class EventForm extends Component {
                         onChange={this.handleCapacityChange}
                     />
                 </div>
-                <div>
-                    <TextField
-                        label="Venue"
-                        placeholder="Venue"
-                        margin="normal"
-                        onChange={this.handleVenueChange}    
-                    />
-                </div>
+
                 <div>
                     <Button onClick={this.handleClick}>Submit</Button>
                 </div>

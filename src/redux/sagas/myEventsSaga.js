@@ -27,28 +27,25 @@ function* addToMyEvents(action) {
 function* deleteFromMyEvents(action) {
     console.log('in deleteFromMyEvents, action', action);
     try {
-        const config = {
-            headers: { 'Content-Type': 'application/json' },
-            withCredentials: true,
-        };
-
-        // the config includes credentials which
-        // allow the server session to recognize the user
-        // If a user is logged in, this will return their information
-        // from the server session (req.user)
-        yield axios.delete(`api/myEvents/${action.payload.event_id}/${action.payload.user_id}`, config);
-
-        // now that the session has given us a user object
-        // with an id and username set the client-side user object to let
-        // the client-side code know the user is logged in
+        yield axios.delete(`api/myEvents/${action.payload.event_id}/${action.payload.user_id}`);
         yield put({ type: 'FETCH_MY_EVENTS', refresh: action.refresh.user_id });
-        yield put({ type: 'FETCH_THIS_EVENT', refresh: action.refresh.event_id });
-        yield put({ type: 'FETCH_ATTENDING_THIS_EVENT', refresh: action.refresh.event_id });    
-
     } catch (error) {
         console.log('Delete from my events request failed', error);
     }
 }//end deleteFromMyEvents
+
+// worker Saga: will be fired on "DELETE_FROM_THIS_EVENT" actions
+function* deleteFromThisEvent(action) {
+    console.log('in deleteFromThisEvent, action', action);
+    try {
+        yield axios.delete(`api/myEvents/${action.payload.event_id}/${action.payload.user_id}`);
+        yield put({ type: 'FETCH_MY_EVENTS', refresh: action.refresh.user_id });
+        yield put({ type: 'FETCH_THIS_EVENT', refresh: action.refresh.event_id });
+        yield put({ type: 'FETCH_ATTENDING_THIS_EVENT', refresh: action.refresh.event_id });
+    } catch (error) {
+        console.log('Delete from my events request failed', error);
+    }
+}//end deleteFromThisEvent
 
 // worker Saga: will be fired on "FETCH_MY_EVENTS" actions
 function* fetchMyEvents(action) {
@@ -83,12 +80,24 @@ function* editEvent(action){
     }
 }
 
-function* myEventsSaga() {
-    yield takeLatest('FETCH_MY_EVENTS', fetchMyEvents)
-    yield takeLatest('DELETE_FROM_MY_EVENTS', deleteFromMyEvents)
-    yield takeLatest('ADD_TO_MY_EVENTS', addToMyEvents)
-    yield takeLatest('EDIT_EVENT' , editEvent)
 
+function* updateRating(action){
+    try {
+        console.log('action.paylod in saga', action.payload);
+        yield call(axios.put, `/api/myEvents/feedback`, action.payload)
+    }
+    catch (error){
+        console.log('error in adding rating saga' , error);
+    }
+}
+
+function* myEventsSaga() {
+    yield takeLatest('FETCH_MY_EVENTS', fetchMyEvents) //from MyEventList
+    yield takeLatest('DELETE_FROM_MY_EVENTS', deleteFromMyEvents) //from MyEventCard
+    yield takeLatest('DELETE_FROM_THIS_EVENT', deleteFromThisEvent) //from EventPage
+    yield takeLatest('ADD_TO_MY_EVENTS', addToMyEvents) //from EventPage
+    yield takeLatest('EDIT_EVENT' , editEvent) //from CaptainProfilePage
+    yield takeLatest('UPDATE_FEEDBACK', updateRating) // from EventPage
 }
 
 export default myEventsSaga;

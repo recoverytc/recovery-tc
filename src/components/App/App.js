@@ -35,6 +35,7 @@ import CaptainProfilePage from '../CaptainPage/CaptainProfilePage/CaptainProfile
 import CaptainEditProfilePage from '../CaptainPage/CaptainEditProfilePage/CaptainEditProfilePage';
 
 import EventPage from '../EventPage/EventPage';
+import SearchList from '../SearchList/SearchList';
 
 
 
@@ -163,6 +164,11 @@ class App extends Component {
               exact
               path="/captain/profile/edit/:id"
               component={CaptainEditProfilePage}
+            /> 
+            <ProtectedRoute
+              exact
+              path="/search/results/:id"
+              component={SearchList}
             /> 
 
             {/* If none of the other routes matched, we will show a 404. */}

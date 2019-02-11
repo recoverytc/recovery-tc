@@ -38,19 +38,21 @@ class EventCard extends React.Component {
       <div className="root">
         {/* <Grid container spacing={24} direction="column">
           <Grid item xs={8}> */}
-          <Paper className="paper">
-            <div>
+        <Paper className="paper">
+        <Link to={`/events/${event.id}`}>
+          <div className="event-data">
               <h2>{event.title}</h2>
                 <p>{moment(event.date).format("MMM Do YYYY")}</p>
                 <p>{moment(event.time, "HH:mm").format("hh:mm A")}</p>
             </div>
-            <div>
-                <Link to={`/events/${event.id}`}>
-                  <img src={event.image} alt="picture" className="image-url" />
-                </Link>
-            </div>
-            </Paper>
-          {/* </Grid>
+          <div>
+            {/* <Link to={`/events/${event.id}`}> */}
+              <img src={event.image} alt="picture" className="image-url" />
+            {/* </Link> */}
+          </div>
+          </Link>
+        </Paper>
+        {/* </Grid>
         </Grid> */}
       </div>
     )

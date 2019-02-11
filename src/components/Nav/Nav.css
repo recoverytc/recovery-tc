@@ -7,6 +7,7 @@
   /* background-color: #005e60; */
   height: 68px;
   box-shadow: 1px 0px 7px rgba(0,0,0,0.5);
+  z-index: 300;
 }
 
 
@@ -28,7 +29,7 @@
 }
 
 .navbar_navigation-items a {
-  color: #d3fbe7;
+  color: white;
   text-decoration: none;
 }
 

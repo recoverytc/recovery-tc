@@ -178,8 +178,8 @@ class CaptainProfilePage extends Component {
     
               <div className="event-contents">
                 <div className="event-date-time">
-                  <p>{event.date}</p>
-                  <p>{event.time}</p>
+                  <p>{moment(event.date).format("MMM Do YYYY")}</p>
+                  <p>{moment(event.time, "HH:mm").format("hh:mm A")}</p>
                 </div> {/* .event-contents */}
     
                 <p className="event-title">{event.title}</p>
@@ -226,7 +226,7 @@ class CaptainProfilePage extends Component {
                   <TextField
                     type="time"
                     margin="normal"
-                    value={this.state.time}
+                    value={this.state.time} //no moment.js here!!!
                     onChange={this.handleTimeChange}
                   />
                 </div>

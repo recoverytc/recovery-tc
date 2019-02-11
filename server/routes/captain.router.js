@@ -2,7 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-// GET captain profile and events that was created
+// GET captain profile 
 router.get('/profile/:id', (req, res) => {
     console.log(req.params.id);
     

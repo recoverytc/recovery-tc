@@ -11,6 +11,8 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import './AdminEventsPage.css';
 
+import moment from 'moment';
+
 
 
 
@@ -30,7 +32,7 @@ class AdminEventsPage extends Component {
       return (
         <TableRow key={i} style={this.getStripedStyle(i)}>
           <TableCell>{row.title}</TableCell>
-          <TableCell>{row.date}</TableCell>
+          <TableCell>{moment(row.date).format("MMM Do YYYY")}</TableCell>
           <TableCell>{row.attendee}
             <Button
               onClick={() => this.props.history.push(`/admin/events/attendees/${row.id}`)}

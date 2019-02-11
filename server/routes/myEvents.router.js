@@ -1,7 +1,7 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
-const { rejectUnauthenticated } = require('../modules/authentication-middleware');
+const { rejectUnauthenticated , rejectNonCaptain , rejectNonAdmin } = require('../modules/authentication-middleware');
 
 //add to a user's calendar and add 1 to attendee count on the event
 router.post('/addevent', rejectUnauthenticated, (req, res) => {
@@ -48,7 +48,9 @@ router.get('/myevents', rejectUnauthenticated, (req, res) => {
         "description", "address", "image", "capacity", "attendee" 
         FROM "event" 
         JOIN "event_user" ON "event_user"."event_id" = "event"."id" 
-        WHERE "event_user"."user_id" = $1;`);
+        WHERE "event_user"."user_id" = $1 
+        AND "date" >= (now() - INTERVAL '7 day')
+        ORDER BY "date" ASC;`);
     pool.query(queryText, [req.query.id]).then((result) => {
         console.log('result.rows', result.rows);
         res.send(result.rows);

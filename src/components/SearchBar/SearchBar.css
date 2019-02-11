@@ -1,6 +1,7 @@
 .search-container {
-    color: white;
+    color: #d3fbe7;
     text-align: center;
+    /* margin-bottom: 2%; */
 }
 
 
@@ -8,7 +9,7 @@
     text-align: center;
     display: flex;
     align-items: center;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
 }
 
@@ -19,13 +20,15 @@
     background-color: #d3fbe7;
     font-size: 1.25rem;
     border: none;
-    border-bottom: 2px solid #005e60;
+    box-shadow: 0px 10px 36px -4px rgba(0,0,0,0.79);
+    /* border-bottom: 2px solid #005e60; */
     color: #00252b;
-    padding-left: 5px;
+    /* padding-left: 5px; */
 }
 
 .search::placeholder {
-    color: #00252b;
+    /* color: #00252b; */
+    font-size: 1rem;
     padding-left: .3rem;
     /* text-align: center; */
 }
@@ -39,11 +42,18 @@
 .submit {
     /* display: block!important; */
     /* margin: 0 auto!important; */
-    background-color: #d3fbe7!important;
+    background-color: #003f44!important;
     height: 5vh!important;
-    width: 5%!important;
+    width: 8vh!important;
+    padding: 0 5%!important;
     text-transform: none!important;
     font-size: 1rem!important;
+    width: 10%;
+    color: white!important;
+    box-shadow: 1px 0px 7px rgba(0,0,0,.8)!important;
+
+    /* margin-top: .5rem!important; */
+    /* margin: auto 0!important; */
 }
 
 @media(max-width: 800px) {
@@ -52,7 +62,7 @@
         border-radius: 5px;
         background-color: #d3fbe7;
         border: none;
-        border-bottom: 2px solid #005e60;
+        /* border-bottom: 2px solid #005e60; */
         color: #00252b;
     }
 }

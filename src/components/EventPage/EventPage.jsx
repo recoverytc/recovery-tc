@@ -29,7 +29,7 @@ class EventPage extends Component {
             ...this.state,
             [propertyName]: event.target.value
         })
-        console.log(this.state.comment)
+        // console.log(this.state.comment)
     }
 
     handleSubmit = () => {
@@ -120,24 +120,20 @@ class EventPage extends Component {
             buttonDisplay =
                 <Button onClick={() => this.HandleEvents('Attend')}>
                     Attend
-            </Button>
+                </Button>
         // Attending a future event
         } else if (attending === true && eventDate >= now ) {
             buttonDisplay =
                 <Button onClick={() => this.HandleEvents('Cancel')}>
                     Cancel
-            </Button>
-            // Attended a past event, but haven't left feedback    
+                </Button>
+        // Attended a past event, but haven't left feedback    
         } else if (attending === true && eventDate >= nowMinus7 && feedback === false) {
             buttonDisplay =
                 <Button onClick={() => this.HandleEvents('Feedback')}>
                     Feedback
-            </Button>
-            // Attended a past event, but haven't left feedback
-        } else if (attending === true && eventDate < now && feedback === false) {
-            buttonDisplay = ''
-
-            // Event is in the past, and feedback is done
+                </Button>
+        // event is more than a week past, or feedback has been done
         } else {
             buttonDisplay = 'Feedback is closed for this event.'
         }

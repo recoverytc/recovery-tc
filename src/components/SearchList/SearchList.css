@@ -6,6 +6,19 @@
 }
 
 .query-display {
-    color: white;
+    color: #d3fbe7;
     font-size: 1rem;
+}
+
+
+.back-button {
+    color: white!important;
+    background-color: #003f44!important;
+    border: none;
+    height: 5vmax;
+    width: 8vmax;
+    margin: 5%!important;
+    box-shadow: 1px 0px 7px rgba(0,0,0,.8)!important;
+    text-transform: none!important;
+    border-radius: 3px;
 }

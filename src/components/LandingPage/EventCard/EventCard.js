@@ -47,7 +47,7 @@ class EventCard extends React.Component {
           </div>
           <div className="image-container">
               <img src={event.image} alt="picture" className="image-url" />
-              <p className="description">{event.description.substring(0, 50)}...</p>
+              <p className="description">{event.description.substring(0, 200)}...</p>
           </div>
           </Link>
         </div>

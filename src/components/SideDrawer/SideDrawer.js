@@ -11,7 +11,7 @@ const sideDrawer = props => {
     }
     return (
         <nav className={drawerClasses}>
-        <div className="navbar__logo"><Link to="/home"><img className="drawer-logo" src="/image.png" /></Link></div>
+        <div className="navbar__logo"><Link onClick={props.click} to="/home"><img className="drawer-logo" src="/image.png" /></Link></div>
             <ul>
             <li><Link onClick={props.click} to="/login">{props.user.id ? 'All Events' : 'Login / Register'}</Link></li>
           {props.user.id && (

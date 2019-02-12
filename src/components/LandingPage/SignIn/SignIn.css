@@ -1,0 +1,100 @@
+.signin-container {
+    display: flex;
+    width: 100%;
+    height: 300px;
+}
+
+.signin-background {
+    height: 100%;
+    width: 100%;
+    background-image: url(./skylinesBW.jpg);
+    background-size: cover;
+    box-shadow: 1px 0px 7px rgba(0,0,0,.8);
+}
+.signin-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+.signin-greeting {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    font-size: .9rem;
+}
+
+.signin-greeting-close {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: bold;
+    color: #d3fbe7;
+    font-size: 1.2rem;
+}
+
+.signin-submit {
+    background-color: #003f44!important;
+    height: 8vh!important;
+    width: 16vmax!important;
+    padding: 0 5%!important;
+    text-transform: none!important;
+    font-size: 1rem!important;
+    width: 10%;
+    color: white!important;
+    box-shadow: 1px 0px 7px rgba(0,0,0,.8)!important;
+    margin: 5%!important;
+
+}
+
+.signin-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+@media(min-width: 800px) {
+    .signin-background {
+        height: 675px;
+    }
+    .signin-container {
+        margin-bottom: 25vmax;
+        padding-top: 5%;
+        margin-top: 20vmin;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    .signin-buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    .greeting-div {
+        margin-top: 15vmin;
+        font-size: 1.5rem;
+    }
+    .signin-submit {
+        font-size: 1.25rem!important;
+        width: 18vmax!important;
+    }
+    .signin-greeting {
+        font-size: 1.5rem;
+    }
+    .signin-title {
+        font-size: 2rem;
+    }
+}

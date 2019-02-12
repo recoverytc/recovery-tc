@@ -26,7 +26,7 @@ class SearchBar extends Component {
     render(){
        return(
            <div className="search-container">
-           <h3>Search Events</h3>
+           <h1>Browse Events</h1>
                <form className="search-bar">
                {/* <label for="search">Search Events:</label> */}
                    <input className="search" name="search" onChange={this.handleChange} type="text" placeholder="Search Events"/>

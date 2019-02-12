@@ -8,4 +8,16 @@
 .event-container {
     display: flex;
     align-items: center;
+    margin: 0 auto;
+    background-color: #2e2e2e;
+    width: 70%;
+    border-radius: 20px;
+    box-shadow: 2px 24px 85px 20px rgba(0,0,0,0.75);
+    margin-top: 10%;
+}
+
+@media(max-width: 800px) {
+    .event-container {
+        width: 100%;
+    }
 }

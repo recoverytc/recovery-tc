@@ -6,8 +6,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Paper from '@material-ui/core/Paper';
-import moment from 'moment'
+import moment from 'moment';
 
 // Styles
 import './CaptainProfilePage.css';
@@ -133,44 +132,47 @@ class CaptainProfilePage extends Component {
       return (
         <div key={i} className="captain-wrapper">
 
-            <div className="picture-container">
-              <img src={profile.image} alt="me" className="captain-picture" />
-            </div> {/* .picture-container */}
+          <div className="picture-container">
+            <img src={profile.image} alt="me" className="captain-picture" />
+          </div> {/* .picture-container */}
 
-            <div className="icon-buttons">
-              <img src="/editIcon.svg" alt="edit profile" className="edit-profile-icon" onClick={() => this.props.history.push(`/captain/profile/edit/${profile.id}`)} />
-              {/* <button className="edit-button" onClick={() => this.props.history.push(`/captain/profile/edit/${profile.id}`)}>Edit profile</button> */}
-              <img src="/addEventIcon.svg" alt="edit event" className="edit-event-icon" onClick={() => this.props.history.push('/captain/addevent')} />
-              {/* <button className="create-button" onClick={() => this.props.history.push('/captain/addevent')}>Create event</button> */}
-            </div> {/* .icon-buttons */}
+          <div className="icon-buttons">
+            <img src="/editIcon.svg" alt="edit profile" className="edit-profile-icon" onClick={() => this.props.history.push(`/captain/profile/edit/${profile.id}`)} />
+            {/* <button className="edit-button" onClick={() => this.props.history.push(`/captain/profile/edit/${profile.id}`)}>Edit profile</button> */}
+         
+            <img src="/addEventIcon.svg" alt="edit event" className="add-event-icon" onClick={() => this.props.history.push('/captain/addevent')} />
+            {/* <button className="create-button" onClick={() => this.props.history.push('/captain/addevent')}>Create event</button> */}
+          </div> {/* .icon-buttons */}
 
-          
+
           <div className="bio">
             <p className="demo-p-tag">INFO</p>
-            <hr />
+            <div className="style-blank-div"></div>
           </div>
 
-            <div className="demo-info">
-              <div className="static-data">
-                <p className="demo-p-tag">Username:</p>
-                <p className="demo-p-tag">Name: </p>
-                <p className="demo-p-tag">Email:</p>
-                <p className="demo-p-tag">Phone:</p>
-              </div>
-              <div className="captain-data">
-                <p className="demo-p-tag">{profile.username}</p>
-                <p className="demo-p-tag">{profile.first_name} {profile.last_name}</p>
-                <p className="demo-p-tag">{profile.email}</p>
-                <p className="demo-p-tag">{profile.phone}</p>
-              </div>
-            </div> {/* .demo-info */}
+          <div className="demo-info">
+            <div className="static-data">
+              <p className="demo-p-tag">Username:</p>
+              <p className="demo-p-tag">Name: </p>
+              <p className="demo-p-tag">Email:</p>
+              <p className="demo-p-tag">Phone:</p>
+            </div>
+            <div className="captain-data">
+              <p className="demo-p-tag">{profile.username}</p>
+              <p className="demo-p-tag">{profile.first_name} {profile.last_name}</p>
+              <p className="demo-p-tag">{profile.email}</p>
+              <p className="demo-p-tag">{profile.phone}</p>
+            </div>
+          </div> {/* .demo-info */}
 
-            <div className="bio">
-              <p className="demo-p-tag">BIO</p>
-              <hr />
-              <p className="demo-p-tag">{profile.bio}</p>
-            </div> 
+          <div className="bio">
+            <p className="demo-p-tag">BIO</p>
+            <div className="style-blank-div"></div>
+            <p className="demo-p-tag">{profile.bio}</p>
+          </div>
+          {/* .bio */}
         </div>
+        // .captain-wrapper
       )
     })
 
@@ -180,33 +182,37 @@ class CaptainProfilePage extends Component {
         {profileContent}
 
         {/* Beginning of the EVents page */}
-        <div className="event-root">
+      <div className="event-root">
+        <h1 className="h1-event">My Current Events</h1>
 
-          <h1 className="h1-event">My Current Events</h1>
-          <div className="style-blank-div"></div>
+        <div className="style-blank-div"></div>
 
+
+        <div className="event-data-root">
           {this.props.eventList.map((event, i) => {
             if (event.captain_id === this.props.user.id) {
               return (
-                <div key={i} className="root">
+                <div key={i} className="root2">
 
-                    <div className="event-data">
-                      <p>{moment(event.date).format("MMM Do YYYY")}</p>
-                      <p>{moment(event.time, "HH:mm").format("hh:mm A")}</p>
-                      <p className="event-title">{event.title}</p>
-                    </div>
-
-                    <div className="image-container">
-                      <img src={event.image} alt="event" className="image-url" />
-                    </div>
-
-                    {/* <button onClick={() => this.handleEdit(event.id)} className="edit-event-btn">edit event</button> */}
-                    <img src="/editEventIcon.svg" alt="edit Event" className="edit-event-btn" onClick={() => this.handleEdit(event.id)} />
+                  <div className="event-data">
+                    <p>{moment(event.date).format("MMM Do YYYY")}</p>
+                    <p>{moment(event.time, "HH:mm").format("hh:mm A")}</p>
+                    <p className="event-title">{event.title}</p>
                   </div>
+
+                  <div className="image-container">
+                    <img src={event.image} alt="event" className="image-url" />
+                  </div>
+
+                  {/* <button onClick={() => this.handleEdit(event.id)} className="edit-event-btn">edit event</button> */}
+                  <img src="/editEventIcon.svg" alt="edit Event" className="edit-event-btn" onClick={() => this.handleEdit(event.id)} />
+                </div>
+                // .root2
               )
             }
           })}
-        </div>
+          </div>{/* .event-data-root */}
+        </div> {/* .event-root */}
 
 
         {/* Pop up Dialog to edit events */}
@@ -300,7 +306,8 @@ class CaptainProfilePage extends Component {
             </DialogActions>
           </Dialog>
         </div>
-      </div> 
+      </div>
+      // .captain-container
     )
   }
 }

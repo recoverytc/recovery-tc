@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import {TextField, Button} from '@material-ui/core';
+import './LoginPage.css'
 
 class LoginPage extends Component {
   state = {
@@ -41,48 +43,47 @@ class LoginPage extends Component {
             {this.props.errors.loginMessage}
           </h2>
         )}
-        <form onSubmit={this.login} className="form-styles">
-          <h1>Login</h1>
+        <form onSubmit={this.login} className="form-container">
+          <h1 className="form-title">Login</h1>
           <div>
-            <label htmlFor="username">
-              Username:
-              <input
+              <TextField
+                variant="outlined"
+                label="Username"
                 type="text"
                 name="username"
+                className="input"
                 value={this.state.username}
                 onChange={this.handleInputChangeFor('username')}
               />
-            </label>
           </div>
           <div>
-            <label htmlFor="password">
-              Password:
-              <input
+              <TextField
+                variant="outlined"
+                label="Password"
                 type="password"
                 name="password"
+                className="input"
                 value={this.state.password}
                 onChange={this.handleInputChangeFor('password')}
               />
-            </label>
           </div>
-          <div>
-            <input
-              className="log-in"
+            <Button
+              className="login"
               type="submit"
               name="submit"
               value="Log In"
-            />
-          </div>
+            >
+            Log In
+            </Button>
+            <Button
+              type="button"
+              className="register"
+              onClick={() => {this.props.history.push("/register")}}
+            >
+              Register
+            </Button>
         </form>
-        <center>
-          <button
-            type="button"
-            className="link-button"
-            onClick={() => {this.props.history.push("/register")}}
-          >
-            Register
-          </button>
-        </center>
+
       </div>
     );
   }

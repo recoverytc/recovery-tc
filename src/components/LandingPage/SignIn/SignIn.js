@@ -38,7 +38,7 @@ class SignIn extends Component {
       <div className="signin-container"> 
         <div className="signin-background">
             <div className="greeting-div">
-                <p className="signin-title">Welcome to RecoveryTC</p>
+                <p className="signin-title">Welcome to Recovery Saint Paul!</p>
                 <p className="signin-greeting">Recovery Saint Paul is a community of people living in recovery from substance use disorders 
                 - all backgrounds, pathways, and flavors of recovery, making the most of life in the Twin Cities.</p>
                 <p className="signin-greeting-close">Check out our events below.</p>

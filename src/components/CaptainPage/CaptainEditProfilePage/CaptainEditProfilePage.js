@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { withStyles, TextField, Button } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
 import './CaptainEditProfilePage.css';
 
 import '../CaptainProfilePage/CaptainProfilePage';
-
-const styles = theme => ({
-
-});
 
 
 
@@ -120,13 +115,10 @@ class CaptainEditProfilePage extends Component {
   }
 }
 
-CaptainEditProfilePage.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 const mapStateToProps = state => ({
   user: state.user,
 })
 
 
-export default connect(mapStateToProps)(withStyles(styles)(CaptainEditProfilePage));
+export default connect(mapStateToProps)(CaptainEditProfilePage);

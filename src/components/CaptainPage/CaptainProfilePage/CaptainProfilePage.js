@@ -300,8 +300,7 @@ class CaptainProfilePage extends Component {
             </DialogActions>
           </Dialog>
         </div>
-
-      </div> // .captain-container
+      </div> 
     )
   }
 }

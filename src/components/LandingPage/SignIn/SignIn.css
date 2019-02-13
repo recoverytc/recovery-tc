@@ -30,6 +30,7 @@
     font-weight: bold;
     color: white;
     font-size: .9rem;
+    font-family: 'Raleway:900';
 }
 
 .signin-greeting-close {
@@ -40,10 +41,11 @@
     text-align: center;
     font-weight: bold;
     color: #d3fbe7;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    font-family: 'Raleway:900';
 }
 
-.signin-submit {
+.signin-login {
     background-color: #003f44!important;
     height: 8vh!important;
     width: 16vmax!important;
@@ -52,8 +54,22 @@
     font-size: 1rem!important;
     width: 10%;
     color: white!important;
-    box-shadow: 1px 0px 7px rgba(0,0,0,.8)!important;
-    margin: 5%!important;
+    box-shadow: 2px 4px 85px 4px rgba(0,0,0,0.75);
+    margin: 3%!important;
+
+}
+
+.signin-register {
+    background-color: #167ba9!important;
+    height: 8vh!important;
+    width: 16vmax!important;
+    padding: 0 5%!important;
+    text-transform: none!important;
+    font-size: 1rem!important;
+    width: 10%;
+    color: white!important;
+    box-shadow: 2px 4px 85px 4px rgba(0,0,0,0.75);
+    margin: 3%!important;
 
 }
 

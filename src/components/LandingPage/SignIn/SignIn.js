@@ -41,7 +41,7 @@ class SignIn extends Component {
                 <p className="signin-title">Welcome to Recovery Saint Paul!</p>
                 <p className="signin-greeting">Recovery Saint Paul is a community of people living in recovery from substance use disorders 
                 - all backgrounds, pathways, and flavors of recovery, making the most of life in the Twin Cities.</p>
-                <p className="signin-greeting-close">Check out our events below.</p>
+                <p className="signin-greeting-close">Check out our events below</p>
             </div>
             {this.props.errors.loginMessage && (
             <h2
@@ -54,14 +54,14 @@ class SignIn extends Component {
             <div className="signin-buttons">
             <Button
                 type="button"
-                className="signin-submit"
+                className="signin-register"
                 onClick={() => {this.props.history.push("/register")}}
             >
                 Sign Up
             </Button>
             <Button
                 type="button"
-                className="signin-submit"
+                className="signin-login"
                 onClick={() => {this.props.history.push("/login")}}
             >
                 Log In

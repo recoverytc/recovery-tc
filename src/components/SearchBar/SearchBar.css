@@ -9,7 +9,7 @@
     text-align: center;
     display: flex;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
 }
 
@@ -19,13 +19,15 @@
     border-radius: 5px;
     background-color: #d3fbe7;
     font-size: 1.25rem;
-    border: none;
+    /* border: none; */
     color: #00252b;
+    border: 1px solid #00252b!important;
 }
 
 .search::placeholder {
     font-size: 1rem;
     padding-left: .3rem;
+    font-family: 'raleway';
 }
 
 .search:focus {
@@ -34,14 +36,16 @@
 
 .submit {
     background-color: #003f44!important;
-    height: 5vh!important;
+    height: 6.5vh!important;
     width: 8vh!important;
     padding: 0 5%!important;
     text-transform: none!important;
     font-size: 1rem!important;
-    width: 10%;
+    width: 10vmax!important;
     color: white!important;
     box-shadow: 1px 0px 7px rgba(0,0,0,.8)!important;
+    margin-bottom: 1%!important;
+    margin-right: 1%!important;
 }
 
 @media(max-width: 800px) {

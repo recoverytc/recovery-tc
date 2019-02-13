@@ -11,7 +11,7 @@ const Nav = (props) => (
       <div className="navbar__toggle-button">
           <DrawerToggleButton click={props.drawerClickHandler}/>
       </div>
-      <div className="navbar__logo"><Link to="/home"><img className="logo" src="/image.png" /></Link></div>
+      <div className="navbar__logo"><Link to="/home"><img className="logo" src="/image.png" /></Link><h3 className="navbar__statement">DO STUFF.</h3></div>
       <div className="spacer" />
       <div className="navbar_navigation-items">
         <ul>

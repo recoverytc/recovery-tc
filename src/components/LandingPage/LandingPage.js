@@ -12,8 +12,9 @@ const LandingPage = (props) => (
   {props.user.id === undefined && (
     <SignIn/>
   )}
+  <SearchBar />
       <div className="event-container">
-        <SearchBar />
+        {/* <SearchBar /> */}
         <EventList />
       </div>
   </div>

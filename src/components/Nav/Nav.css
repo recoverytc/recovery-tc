@@ -15,10 +15,22 @@
   color: #d3fbe7;
   text-decoration: none;
   font-size: 1.5rem;
+  /* margin-bottom: -40px; */
 }
 
 .navbar__logo {
   margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar__statement {
+  color: #d3fbe7;
+  margin: auto;
+  font-size: .75rem;
+  margin-left: 5px;
+  margin-top: -20%;
+  font-weight: 900;
 }
 
 .navbar__navigation {
@@ -73,4 +85,6 @@
   width: 100px;
   margin-top: -25%;
   margin-left: -15%;
+  /* margin-bottom: -40px; */
+
 }

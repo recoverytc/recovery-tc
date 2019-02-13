@@ -87,9 +87,9 @@ hr {
 
 /* MOBILE SMALL SCREEN VIEW */
 @media screen and (min-width: 375px){
-  .demo-p-tag{
+  /* .demo-p-tag{
     font-size: 110%;
-  }
+  } */
   .captain-container {
     display: flex;
     flex-direction: column;

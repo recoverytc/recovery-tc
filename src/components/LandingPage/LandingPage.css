@@ -21,3 +21,12 @@
         width: 100%;
     }
 }
+
+
+@media(min-width: 801px) {
+    .event-container {
+        width: 100%;
+        flex-direction: row!important;
+        flex-wrap: wrap;
+    }
+}

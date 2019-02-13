@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
+import './RegisterPage.css';
 
 class RegisterPage extends Component {
   state = {
@@ -73,10 +74,11 @@ class RegisterPage extends Component {
             {this.props.errors.registrationMessage}
           </h2>
         )}
-        <form onSubmit={this.registerUser} className="form-styles">
-          <h1>Register User</h1>
+        <form onSubmit={this.registerUser} className="form-container">
+          <h1 className="form-title">Register User</h1>
           <div>
             <TextField
+              variant="outlined"
               label="First Name"
               placeholder="First Name"
               margin="normal"
@@ -86,6 +88,7 @@ class RegisterPage extends Component {
           </div>
           <div>
             <TextField
+              variant="outlined"
               label="Last Name"
               placeholder="Last Name"
               margin="normal"
@@ -95,6 +98,7 @@ class RegisterPage extends Component {
           </div>
           <div>
             <TextField
+              variant="outlined"
               label="Username"
               placeholder="Username"
               margin="normal"
@@ -104,6 +108,7 @@ class RegisterPage extends Component {
           </div>
           <div>
             <TextField
+              variant="outlined"
               label="Password"
               placeholder="Password"
               margin="normal"
@@ -113,6 +118,7 @@ class RegisterPage extends Component {
           </div>
           <div>
             <TextField
+              variant="outlined"
               label="Confirm Password"
               placeholder="Confirm Password"
               margin="normal"
@@ -122,6 +128,7 @@ class RegisterPage extends Component {
           </div>
           <div>
             <TextField
+              variant="outlined"
               label="Email Address"
               placeholder="Email Address"
               margin="normal"
@@ -131,6 +138,7 @@ class RegisterPage extends Component {
           </div>
           <div>
             <TextField
+              variant="outlined"
               label="Phone Number"
               placeholder="Phone Number(For Admin use only)"
               margin="normal"
@@ -140,21 +148,23 @@ class RegisterPage extends Component {
           </div>
           <center>
           <Button
-            onClick={() => { this.props.history.push("/") }}
-            color="primary"
-            variant="contained"
-          >
-            Already have an account?
-          </Button>
-          <Button
             onClick={this.registerUser}
             color="secondary"
             variant="contained"
             type="submit"
             name="submit"
             value="Register"
+            className="create-account"
           >
             Create Account
+          </Button>
+          <Button
+            onClick={() => { this.props.history.push("/") }}
+            color="primary"
+            variant="contained"
+            className="have-account"
+          >
+            Already have an account?
           </Button>
         </center>
         </form>

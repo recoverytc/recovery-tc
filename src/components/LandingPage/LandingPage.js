@@ -1,17 +1,28 @@
-import React from 'react';
+import React, { component } from 'react';
 import EventList from './EventList/EventList';
 import './LandingPage.css';
+import SearchBar from '../SearchBar/SearchBar';
+import SignIn from './SignIn/SignIn';
+import {connect} from 'react-redux';
 
 
 
-const LandingPage = () => (
-  <div>
-      <h1 className="landing-title">Check out these Events!</h1>
+const LandingPage = (props) => (
+  <div className="landing-container">
+  {props.user.id === undefined && (
+    <SignIn/>
+  )}
+  <SearchBar />
       <div className="event-container">
-      <EventList />
-  </div>
+        {/* <SearchBar /> */}
+        <EventList />
+      </div>
   </div>
 );
 
+const mapStateToProps = state => ({
+  user: state.user,
+});
 
-export default LandingPage;
+
+export default connect(mapStateToProps)(LandingPage);

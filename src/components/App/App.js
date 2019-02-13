@@ -35,7 +35,14 @@ import CaptainProfilePage from '../CaptainPage/CaptainProfilePage/CaptainProfile
 import CaptainEditProfilePage from '../CaptainPage/CaptainEditProfilePage/CaptainEditProfilePage';
 
 import EventPage from '../EventPage/EventPage';
+import EventFeedbackPage from '../EventPage/EventFeedbackPage/EventFeedbackPage';
+import SearchList from '../SearchList/SearchList';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons'
 
+
+library.add(faArrowUp);
 
 
 
@@ -121,6 +128,12 @@ class App extends Component {
               component={EventPage}
             />
 
+            <ProtectedRoute
+              exact
+              path="/events/feedback/:id"
+              component={EventFeedbackPage}
+            />
+
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
             <ProtectedRoute
@@ -163,6 +176,17 @@ class App extends Component {
               exact
               path="/captain/profile/edit/:id"
               component={CaptainEditProfilePage}
+            /> 
+            <ProtectedRoute
+              exact
+              path="/search/results/:id"
+              component={SearchList}
+            /> 
+
+            <ProtectedRoute
+              exact
+              path="/search/results/"
+              component={SearchList}
             /> 
 
             {/* If none of the other routes matched, we will show a 404. */}

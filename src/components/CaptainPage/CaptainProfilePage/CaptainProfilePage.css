@@ -1,74 +1,138 @@
-.edit-button {
-  background-color: pink;
-  margin-right: 0.5em;
+body {
+  width: 100%;
+  height: 100vh;
 }
-.create-button {
-  background-color: yellow
+.demo-info-tag {
+  margin-bottom: 0;
+  padding-left: 1em;
 }
-
-.edit-button, .create-button {
-  padding: 0.5em 1em;
-  border-radius: 50px;
-}
-
-.captain-picture {
-  width: 100%;  
-}
-
 .demo-p-tag {
-  margin: 0;
   text-align: left;
 }
-.event-picture {
-  width: 80%;
+
+.edit-profile-icon, .add-event-icon {
+  width: 50px;
+  margin-right: 1em;
+  cursor: pointer;
 }
-/* .h1-event {
-  margin: 0;
+
+/* .edit-profile-icon:hover, .edit-event-icon:hover {
+  background-color:#01444e;
+  padding: 0.2em;
 } */
 
+.style-blank-div {
+  height: 20px;
+  background-color: #e1e2ea;
+}
+
+hr {
+  border: #c7c7c9 solid 0.5px;
+}
+.event-root {
+  padding: 0 1em;
+  text-align: center;
+  background-color: #fff;
+}
+.event-data-root {
+  color: #fff;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.root2 {
+  position: relative;
+  text-align: center;
+  max-width: 80%;
+  height: 280px;
+  margin: 2% auto;
+  background-color: #3c3c3c;
+  border-radius: 15px;
+  box-shadow: 0px 10px 36px -4px rgba(0,0,0,0.79);
+}
+
+.edit-event-btn {
+  position: absolute;
+  top: 80%;
+  left: 45%;
+  right: 50%;
+  width: 40px;
+  background-color: transparent;
+  cursor: pointer;
+}
+.demo-info {
+  display: flex;
+  flex-direction: row;
+}
+.static-data {
+  justify-content: flex-start;
+}
+.captain-data{
+  justify-content: flex-end;
+  padding-left: 1em;
+}
+
+.captain-wrapper {
+  background-color: #fff;
+  color: rgb(95, 103, 131);
+}
+.captain-container {
+  /* border: green solid 2px; */
+  font-family: 'Raleway', sans-serif;
+}
+
+
+
+
+
+/* MOBILE SMALL SCREEN VIEW */
 @media screen and (min-width: 375px){
+  /* .demo-p-tag{
+    font-size: 110%;
+  } */
   .captain-container {
-    width: 100%;
-    /* display: grid;
-    grid-template-columns: repeat(12, 1fr); */
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  .picture-container {
     padding: 1em;
   }
-  .demo-info {
-    text-align: center;
+  .captain-picture {
+    width: 100%;  
   }
+  
   .form-spacing {
     margin: 1em;
   }
-  .edit-event-btn {
-    padding: 1em;
-    background-color: white;
-  }
-
-}
-
-
-@media screen and (min-width: 900px) {
-  .captain-container {
-    height: 100%;
+  .icon-buttons {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
   }
-  .picture-container {
-    /* border: red solid 2px; */
+
+}
+
+
+
+
+
+
+
+
+/* LRGE SRCEEN */
+@media screen and (min-width: 900px) {
+  .captain-container {
+    display: flex;
+    flex-direction: row;
   }
-  /* .captain-picture {
-    width: 80%;
-  } */
+
   .captain-wrapper {
+    width: auto;
+    border-right: #c7c7c9 solid 1px;
     /* border: blueviolet solid 2px; */
+  }
+
+  .picture-container {
+    padding: 1em;
   }
   .icon-buttons, .bio, .demo-info, .event-header { 
     padding: 0 1em;
@@ -82,36 +146,10 @@
   }
   .bio {
     /* border: pink solid 2px; */
+    padding-top: 1em;
   }
-  .events-page {
-    /* align-self: stretch; */
-    /* border: purple solid 3px; */
-    margin-right: 2em;
+  .event-root {
+    width: 100%;
   }
-  .event-contents {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
-  .event-title {
-    position: relative;
-    left: 30%;
-    /* border: blue solid 2px; */
-    font-size: 200%;
-  }
-  /* .edit-event-btn {
-    position: relative;
-    right: 10%;
-    padding: 1em;
-    background-color: white;
-  } */
-  .event-date-time {
-    margin-left: 2em;
-    padding-left: 1em;
-    border: 2px solid #fff;
-  }
-  .captain-wrapper {
-    margin-left: 2em;
-  }
+
 }

@@ -10,7 +10,7 @@ import thisEventSaga from './thisEventSaga';
 import eventFormSaga from './eventFormSaga';
 import attendingThisSaga from './attendingThisSaga';
 import captainProfileSaga from './captainProfileSaga';
-
+import searchEventSaga from './searchEventSaga'
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -32,5 +32,6 @@ export default function* rootSaga() {
     eventFormSaga(),
     attendingThisSaga(),
     captainProfileSaga(),
+    searchEventSaga(),
   ]);
 }

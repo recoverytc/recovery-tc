@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {put as dispatch , call , takeEvery} from 'redux-saga/effects'
+import {put , call , takeEvery} from 'redux-saga/effects'
 
 
 function* addEvent(action){
@@ -11,12 +11,21 @@ function* addEvent(action){
     }
 }
 
+function* cancelEvent(action) {
+    try {
+        yield call(axios.delete, `api/captain/cancelevent/${action.payload}`)
+        yield put({ type: 'FETCH_EVENT_LIST'});
 
+    } catch (error) {
+        console.log('error in cancel event saga', error);
 
+    }
+}
 
 
 function* eventFormSaga() {
-    yield takeEvery('ADD_EVENT', addEvent);
+    yield takeEvery('ADD_EVENT', addEvent); //from EventForm
+    yield takeEvery('CANCEL_EVENT', cancelEvent); //from CaptainProfilePage
   }
   
   export default eventFormSaga;

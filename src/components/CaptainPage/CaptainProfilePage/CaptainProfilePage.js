@@ -251,12 +251,14 @@ class CaptainProfilePage extends Component {
                     <img src={event.image} alt="event" className="image-url" />
                   </div>
                   </Link>
-                  <div className="edit-event-box">
-                  <img src="/editEventIcon.svg" alt="edit Event" className="edit-event-btn" onClick={() => this.handleEdit(event.id)} />
+                <div className="edit-event-box">
+                  <img src="/editEventIcon.svg" alt="edit Event" className="event-btn" onClick={() => this.handleEdit(event.id)} />
                   <p>Edit Event</p>
                 </div>
-                  <img src="/deleteIcon.svg" alt="cancel Event" className="cancel-event-btn" onClick={() => this.handleCancelEvent(event.id)} />
-
+                <div className="delete-event-box">
+                  <img src="/delete.svg" alt="cancel Event" className="event-btn" onClick={() => this.handleCancelEvent(event.id)} />
+                  <p>Delete</p>
+                </div>
                 </div>
                 // .root2
               )

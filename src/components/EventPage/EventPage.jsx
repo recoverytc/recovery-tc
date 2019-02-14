@@ -118,19 +118,19 @@ class EventPage extends Component {
         // Not attending, button to 'Attend' displays
         } else if (attending === false && eventDate >= now) {
             buttonDisplay =
-                <Button onClick={() => this.HandleEvents('Attend')}>
+                <Button className="event-attend" onClick={() => this.HandleEvents('Attend')}>
                     Attend
                 </Button>
         // Attending a future event
         } else if (attending === true && eventDate >= now ) {
             buttonDisplay =
-                <Button onClick={() => this.HandleEvents('Cancel')}>
+                <Button className="event-cancel" onClick={() => this.HandleEvents('Cancel')}>
                     Cancel
                 </Button>
         // Attended a past event, but haven't left feedback    
         } else if (attending === true && eventDate >= nowMinus7 && feedback === false) {
             buttonDisplay =
-                <Button onClick={() => this.HandleEvents('Feedback')}>
+                <Button className="event-feedback" onClick={() => this.HandleEvents('Feedback')}>
                     Feedback
                 </Button>
         // event is more than a week past, or feedback has been done

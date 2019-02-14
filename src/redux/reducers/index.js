@@ -10,6 +10,7 @@ import captainProfile from './captainProfileReducer';
 import thisEvent from './thisEventReducer';
 import attendingThis from './attendingThisReducer';
 import adminEventList from './adminEventListReducer';
+import imageFile from './imageUploadReducer';
 
 import searchList from './searchListReducer'
 
@@ -31,7 +32,8 @@ const rootReducer = combineReducers({
   thisEvent,
   attendingThis,
   adminEventList,
-  searchList
+  searchList,
+  imageFile
 
 });
 

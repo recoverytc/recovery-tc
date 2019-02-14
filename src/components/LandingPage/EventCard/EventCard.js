@@ -1,9 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -37,9 +33,5 @@ class EventCard extends React.Component {
 }
 
 
-EventCard.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
-
-export default connect()(withStyles()(EventCard));
+export default connect()(EventCard);

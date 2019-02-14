@@ -92,6 +92,12 @@ class App extends Component {
             {this.props.user.id &&(
               <Redirect exact from="/login" to="/home"/>
             )}
+
+              {/* redirect captain to create bio if no bio on file */}
+            {this.props.user.captain === true && this.props.user.bio === null && (
+              <Redirect exact from="/home" to={`/captain/profile/edit/${this.props.user.id}`} />
+            )}
+
             <Route
               path="/login"
               component={LoginPage}

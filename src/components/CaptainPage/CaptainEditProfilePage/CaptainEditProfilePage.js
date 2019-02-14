@@ -43,10 +43,11 @@ class CaptainEditProfilePage extends Component {
 
 
   render() {
+
     return (
       <div>
         <form className="form-container">
-        <h1 className="form-title">Profile Create</h1>
+        <h1 className="form-title">Edit Profile</h1>
           <TextField
             id="outlined-with-placeholder"
             label="First Name"

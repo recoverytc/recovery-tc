@@ -7,6 +7,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 // Styles
 import './CaptainProfilePage.css';
@@ -137,11 +138,14 @@ class CaptainProfilePage extends Component {
           </div> {/* .picture-container */}
 
           <div className="icon-buttons">
-            <img src="/editIcon.svg" alt="edit profile" className="edit-profile-icon" onClick={() => this.props.history.push(`/captain/profile/edit/${profile.id}`)} />
-            {/* <button className="edit-button" onClick={() => this.props.history.push(`/captain/profile/edit/${profile.id}`)}>Edit profile</button> */}
-         
-            <img src="/addEventIcon.svg" alt="edit event" className="add-event-icon" onClick={() => this.props.history.push('/captain/addevent')} />
-            {/* <button className="create-button" onClick={() => this.props.history.push('/captain/addevent')}>Create event</button> */}
+          <div className="icon-box">
+            <img src="/editIcon.svg" alt="edit profile" className="icons" onClick={() => this.props.history.push(`/captain/profile/edit/${profile.id}`)} />
+            <p>Edit Profile</p>
+          </div>
+          <div className="icon-box">
+            <img src="/addEventIcon.svg" alt="edit event" className="icons" onClick={() => this.props.history.push('/captain/addevent')} />
+            <p>Create Event</p>
+          </div>
           </div> {/* .icon-buttons */}
 
 
@@ -192,8 +196,8 @@ class CaptainProfilePage extends Component {
           {this.props.eventList.map((event, i) => {
             if (event.captain_id === this.props.user.id) {
               return (
-                <div key={i} className="root2">
-
+                <div key={i} className="root">
+                 <Link to={`/events/${event.id}`}>
                   <div className="event-data">
                     <p>{moment(event.date).format("MMM Do YYYY")}</p>
                     <p>{moment(event.time, "HH:mm").format("hh:mm A")}</p>
@@ -204,8 +208,11 @@ class CaptainProfilePage extends Component {
                     <img src={event.image} alt="event" className="image-url" />
                   </div>
 
-                  {/* <button onClick={() => this.handleEdit(event.id)} className="edit-event-btn">edit event</button> */}
+                <div className="edit-event-box">
                   <img src="/editEventIcon.svg" alt="edit Event" className="edit-event-btn" onClick={() => this.handleEdit(event.id)} />
+                  <p>Edit Event</p>
+                </div>
+                  </Link>
                 </div>
                 // .root2
               )

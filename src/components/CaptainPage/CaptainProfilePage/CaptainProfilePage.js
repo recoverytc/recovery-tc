@@ -152,11 +152,11 @@ class CaptainProfilePage extends Component {
   }
 
   handleCancelEvent = (id) => {
-    console.log('editting', id);
-    this.props.dispatch({ type: 'CANCEL_EVENT', refresh: id })
+
+    this.props.dispatch({ type: 'CANCEL_EVENT', payload: id })
 
     // console.log(this.state)
-    setTimeout(this.handleOpen, 1000)
+
   }
 
   handleEdit = (id) => {
@@ -248,7 +248,7 @@ class CaptainProfilePage extends Component {
 
                   {/* <button onClick={() => this.handleEdit(event.id)} className="edit-event-btn">edit event</button> */}
                   <img src="/editEventIcon.svg" alt="edit Event" className="edit-event-btn" onClick={() => this.handleEdit(event.id)} />
-                  <img src="/DELETE" alt="edit Event" className="edit-event-btn" onClick={() => this.handleCancelEvent(event.id)} />
+                  <img src="/deleteIcon.svg" alt="cancel Event" className="cancel-event-btn" onClick={() => this.handleCancelEvent(event.id)} />
 
                 </div>
                 // .root2

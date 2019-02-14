@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {put as dispatch , call , takeEvery} from 'redux-saga/effects'
+import {put , call , takeEvery} from 'redux-saga/effects'
 
 
 function* addEvent(action){
@@ -13,7 +13,9 @@ function* addEvent(action){
 
 function* cancelEvent(action) {
     try {
-        yield call(axios.post, `api/captain/cancelevent/${action.payload.event_id}`, action.payload)
+        yield call(axios.delete, `api/captain/cancelevent/${action.payload}`)
+        yield put({ type: 'FETCH_EVENT_LIST'});
+
     } catch (error) {
         console.log('error in cancel event saga', error);
 

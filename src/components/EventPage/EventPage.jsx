@@ -14,8 +14,8 @@ class EventPage extends Component {
         feedback: true,
         rating: 0,
         comment: '',
-        id: this.props.reduxStore.thisEvent.id
     }
+    
 
 
     handleClose = () => {
@@ -33,7 +33,13 @@ class EventPage extends Component {
     }
 
     handleSubmit = () => {
-        this.props.dispatch({ type: 'UPDATE_FEEDBACK', payload: this.state })
+        this.props.dispatch({ type: 'UPDATE_FEEDBACK', 
+        payload: {
+            feedback: this.state.feedback,
+            rating: this.state.rating,
+            comment: this.state.comment,
+            id: this.props.reduxStore.thisEvent.id }
+        })
         this.handleClose();
     }
 
@@ -97,6 +103,7 @@ class EventPage extends Component {
     };
 
     render() {
+        console.log('state', this.props.reduxStore.thisEvent);
         console.log("eventdate", moment(this.props.reduxStore.thisEvent.date).format('YYYYDDD'));
         console.log("now", moment().format('YYYYDDD'));
         console.log("nowMinus7", moment().subtract(7, 'days').format('YYYYDDD'));

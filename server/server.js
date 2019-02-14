@@ -5,7 +5,6 @@ require('dotenv').config();
 const app = express();
 const bodyParser = require('body-parser');
 const sessionMiddleware = require('./modules/session-middleware');
-
 const passport = require('./strategies/user.strategy');
 
 // Route includes
@@ -16,25 +15,12 @@ const adminRouter = require('./routes/admin.router');
 const thisEventRouter = require('./routes/thisEvent.router')
 const captainRouter = require('./routes/captain.router')
 
-// Twilio stuff
-const accountSid = process.env.TWILIO_ACCOUNT_SID;
-const authToken = process.env.TWILIO_AUTH_TOKEN;
-const client = require('twilio')(accountSid, authToken),
-  cronJob = require('cron').CronJob;
-
-const textJob = new cronJob('38 10 * * *', function () {
-  // console.log('cron running');
-  client.messages.create({
-    to: process.env.MY_PHONE_NUMBER,
-    from: process.env.TWILIO_PHONE_NUMBER,
-    body: 'Hello! Hope you’re having a good day Morgan!'
-  },
-    function (err, data) { 
-      console.log('error', err, 'data', data);
-    });
-}, null, true);
-
-
+//Twilio stuff
+const {reminderJob, feedbackJob} = require('./modules/twilio-module');
+// const feedbackJob = require('./modules/twilio-module');
+// cronJob = require('cron').CronJob;
+reminderJob.start();
+feedbackJob.start();
 
 // Body parser middleware
 app.use(bodyParser.json());

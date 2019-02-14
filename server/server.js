@@ -5,7 +5,6 @@ require('dotenv').config();
 const app = express();
 const bodyParser = require('body-parser');
 const sessionMiddleware = require('./modules/session-middleware');
-
 const passport = require('./strategies/user.strategy');
 
 // Route includes
@@ -16,6 +15,12 @@ const adminRouter = require('./routes/admin.router');
 const thisEventRouter = require('./routes/thisEvent.router')
 const captainRouter = require('./routes/captain.router')
 
+//Twilio stuff
+const {reminderJob, feedbackJob} = require('./modules/twilio-module');
+// const feedbackJob = require('./modules/twilio-module');
+// cronJob = require('cron').CronJob;
+reminderJob.start();
+feedbackJob.start();
 
 // Body parser middleware
 app.use(bodyParser.json());

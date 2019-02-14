@@ -13,6 +13,7 @@
     "bcrypt": "^3.0.2",
     "body-parser": "^1.18.2",
     "cookie-session": "^2.0.0-beta.3",
+    "cron": "^1.6.0",
     "dotenv": "^4.0.0",
     "express": "^4.16.3",
     "material-ui": "^0.20.2",
@@ -30,7 +31,9 @@
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-saga": "^0.16.0",
-    "sweetalert": "^2.1.2"
+    "sweetalert": "^2.1.2",
+    "twilio": "^3.28.0"
+
   },
   "scripts": {
     "start": "node server/server.js",

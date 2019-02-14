@@ -151,6 +151,14 @@ class CaptainProfilePage extends Component {
     })
   }
 
+  handleCancelEvent = (id) => {
+    console.log('editting', id);
+    this.props.dispatch({ type: 'CANCEL_EVENT', refresh: id })
+
+    // console.log(this.state)
+    setTimeout(this.handleOpen, 1000)
+  }
+
   handleEdit = (id) => {
     console.log('editting', id);
     this.props.dispatch({ type: 'FETCH_THIS_EVENT', refresh: id })
@@ -158,6 +166,8 @@ class CaptainProfilePage extends Component {
     // console.log(this.state)
     setTimeout(this.handleOpen, 200)
   }
+
+
   render() {
 
     let profileContent = this.props.captainProfile.map((profile, i) => {
@@ -238,6 +248,8 @@ class CaptainProfilePage extends Component {
 
                   {/* <button onClick={() => this.handleEdit(event.id)} className="edit-event-btn">edit event</button> */}
                   <img src="/editEventIcon.svg" alt="edit Event" className="edit-event-btn" onClick={() => this.handleEdit(event.id)} />
+                  <img src="/DELETE" alt="edit Event" className="edit-event-btn" onClick={() => this.handleCancelEvent(event.id)} />
+
                 </div>
                 // .root2
               )

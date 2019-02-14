@@ -1,10 +1,13 @@
 .myevents-container {
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
     align-items: center;
-    text-align: center;
+    flex-direction: column;
     margin: 0 auto;
+    background-color: #2e2e2e;
+    width: 90%;
+    border-radius: 20px;
+    box-shadow: 2px 24px 85px 20px rgba(0,0,0,0.75);
+    margin-top: 10%;
 }
 
 .myevents-title {

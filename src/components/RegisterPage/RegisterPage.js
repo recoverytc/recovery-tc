@@ -42,6 +42,7 @@ class RegisterPage extends Component {
                     phone: this.state.phone,
                   },
                 });
+                this.props.history.push('/home')
               } else {
                 this.props.dispatch({type: 'REGISTRATION_PASSWORD_ERROR'});
               }
@@ -111,6 +112,7 @@ class RegisterPage extends Component {
               variant="outlined"
               label="Password"
               placeholder="Password"
+              type="password"
               margin="normal"
               value={this.state.password}
               onChange={this.handleInputChangeFor('password')}
@@ -122,6 +124,7 @@ class RegisterPage extends Component {
               label="Confirm Password"
               placeholder="Confirm Password"
               margin="normal"
+              type="password"
               value={this.state.confirmPassword}
               onChange={this.handleInputChangeFor('confirmPassword')}
             />

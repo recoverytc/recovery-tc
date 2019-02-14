@@ -5,6 +5,14 @@
     margin: 15%!important;
     position: absolute;
 }
+
+.myevents-feedback {
+    background-color:#167ba9!important;
+    color: rgb(255, 255, 255)!important;
+    margin: 15%!important;
+    position: absolute;
+}
+
 .root {
     flex-grow: 1;
     position: relative;

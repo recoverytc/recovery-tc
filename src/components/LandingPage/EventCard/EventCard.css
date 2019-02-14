@@ -109,7 +109,7 @@ a {
 
 @media(min-width: 801px) {
     .event-data {
-        font-size: 1.3vmin;
+        font-size: 1.5vmin;
         width: 400px;
     }
     .root {
@@ -129,7 +129,33 @@ a {
         right: 1%;
     }
     .event-data-landing {
-        font-size: .5vmax;
+        font-size: .8vmax;
+    }
+}
+
+@media(min-width: 1500px) {
+    .event-data {
+        font-size: 1.5vmin;
+        width: 400px;
+    }
+    .root {
+        height: 500px;
+        width: 400px;
+    }
+    .image-container {
+        width: 400px;
+        height: 400px;
+    }
+    .image-url {
+        width: 500px;
+        height: 400px;
+    }
+    .attendees {
+        bottom: 18%;
+        right: 1%;
+    }
+    .event-data-landing {
+        font-size: .6vmax;
     }
 }
 

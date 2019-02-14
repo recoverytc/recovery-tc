@@ -17,6 +17,38 @@
     color: #005e60;
 }
 
+input[type="file"] {
+    outline: none;
+}
+
+::-webkit-file-upload-button {
+    background: #003f44;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    padding: 1em;
+  }
+
+  ::-webkit-file-upload-button:hover {
+    background: #003f44 radial-gradient(circle, transparent 1%, #018688 1%) center/15000%;
+  }
+
+  ::-webkit-file-upload-button:active {
+    background-color: #6eb9f7;
+    background-size: 100%;
+    transition: background 0s;
+  }
+
+  
+
+.custom-file-upload {
+    /* border: 1px solid #ccc; */
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
 /* .form-submit {
     background-color: #003f44!important;
     height: 5vh!important;

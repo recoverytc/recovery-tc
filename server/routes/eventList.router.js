@@ -21,7 +21,7 @@ const router = express.Router();
 
 // get all events today and later
 router.get('/', (req, res) => {
-  console.log(`in GET eventList route`);
+  // console.log(`in GET eventList route`);
   let queryString = `SELECT * FROM "event" 
   WHERE "date" >= (now() - INTERVAL '1 day') ORDER BY "date" ASC;`;
   pool.query(queryString)

@@ -29,7 +29,8 @@ router.get('/profile/:id',rejectNonCaptain , (req, res) => {
     })
 })
 
-
+// ADD NEW EVENT
+//from eventFormSaga
 router.post('/addevent' , (req, res)=>{
     let queryString = `WITH addEvent AS(
         INSERT INTO "event" ("title" , "date", "time", "address", "description", 
@@ -57,6 +58,23 @@ router.post('/addevent' , (req, res)=>{
         res.sendStatus(500)
     })
 })
+
+//CANCEL EVENT
+//from eventFormSaga
+router.delete('/cancelevent/:id', rejectUnauthenticated, (req, res) => {
+    console.log('req.params', req.params);
+    let queryText = (`WITH "eventCancel" AS (
+        DELETE FROM "event_user" WHERE "event_id" = $1
+        RETURNING "event_id" as "id")
+        DELETE FROM "event" WHERE "id" = $1;`);
+    pool.query(queryText, [req.params.id]).then((result) => {
+        console.log('result.rows', result.rows);
+        res.send(result.rows);
+    }).catch((error) => {
+        console.log(error);
+        res.sendStatus(500);
+    });
+});
 
 router.put('/profile/edit/:id',rejectNonCaptain , (req,res) =>{
 

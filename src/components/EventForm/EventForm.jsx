@@ -4,6 +4,7 @@ import {Button} from '@material-ui/core';
 import {connect} from 'react-redux';
 import './EventForm.css';
 import moment from 'moment';
+import axios from 'axios';
 
 
 class EventForm extends Component {
@@ -15,7 +16,8 @@ class EventForm extends Component {
         description : '',
         image : '',
         capacity : null,
-        venue: ''
+        venue: '',
+        file: null,
     }
 
     handleTitleChange = (event) =>{
@@ -58,14 +60,37 @@ class EventForm extends Component {
             venue : event.target.value
         })
     }
+
+    
     handleClick = () =>{
         console.log(this.state);
-        this.props.dispatch({type: 'ADD_EVENT', payload: this.state})
-        setTimeout(() =>{
-            this.props.history.push('/home') 
-        }, 1000)
-
+        const formData = new FormData();
+        formData.append('file', this.state.file[0]);
+        formData.append('title', this.state.title);
+        formData.append('date', this.state.date);
+        formData.append('time', this.state.time);
+        formData.append('address', this.state.address);
+        formData.append('description', this.state.description);
+        formData.append('image', this.state.image);
+        formData.append('capacity', this.state.capacity);
+        formData.append('venue', this.state.venue);
+        axios.post(`api/imageUpload`, formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          }).then(response => {
+                this.props.history.push(`/captain/profile/${this.props.user.id}`);
+          }).catch(error => {
+            // handle your error
+            console.log(error);
+          });
     }
+
+    handleFileUpload = (event) => {
+        this.setState({file: event.target.files});
+        console.log(this.state.files);
+      }
+
     render() {
         return (
             <form className="form-container">
@@ -115,14 +140,18 @@ class EventForm extends Component {
                         inputProps={{ maxLength: 2000 }}
                         onChange={this.handleDescriptionChange}
                     />
-                    <TextField
+                    {/* <TextField
                         variant="outlined"
                         label="Image Url"
                         placeholder="Image Url"
                         margin="normal"
                         inputProps={{ maxLength: 300 }}
                         onChange={this.handleImageChange}
-                    />
+                    /> */}
+                    {/* <label className="custom-file-upload"> */}
+                        <input label="upload file" type='file' onChange={this.handleFileUpload} />
+                        {/* Choose File */}
+                    {/* </label> */}
                     <TextField
                         variant="outlined"
                         label="Capacity"

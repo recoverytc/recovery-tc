@@ -11,6 +11,7 @@ import eventFormSaga from './eventFormSaga';
 import attendingThisSaga from './attendingThisSaga';
 import captainProfileSaga from './captainProfileSaga';
 import searchEventSaga from './searchEventSaga'
+import imageUpload from './imageUploadSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -33,5 +34,6 @@ export default function* rootSaga() {
     attendingThisSaga(),
     captainProfileSaga(),
     searchEventSaga(),
+    imageUpload(),
   ]);
 }

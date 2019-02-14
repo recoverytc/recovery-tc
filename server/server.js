@@ -12,8 +12,9 @@ const userRouter = require('./routes/user.router');
 const myEventsRouter = require('./routes/myEvents.router')
 const eventListRouter = require('./routes/eventList.router');
 const adminRouter = require('./routes/admin.router');
-const thisEventRouter = require('./routes/thisEvent.router')
-const captainRouter = require('./routes/captain.router')
+const thisEventRouter = require('./routes/thisEvent.router');
+const captainRouter = require('./routes/captain.router');
+const imageUploadRouter = require('./routes/imageUpload.router');
 
 //Twilio stuff
 const {reminderJob, feedbackJob} = require('./modules/twilio-module');
@@ -37,8 +38,10 @@ app.use('/api/user', userRouter);
 app.use('/api/myEvents', myEventsRouter);
 app.use('/api/eventList', eventListRouter);
 app.use('/api/admin', adminRouter);
-app.use('/api/thisEvent', thisEventRouter)
-app.use('/api/captain' , captainRouter)
+app.use('/api/thisEvent', thisEventRouter);
+app.use('/api/captain' , captainRouter);
+app.use('/api/imageUpload', imageUploadRouter);
+
 
 // Serve static files
 app.use(express.static('build'));

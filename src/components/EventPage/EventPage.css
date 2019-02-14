@@ -3,6 +3,24 @@
     background-color: #d3fbe7;
 }
 
+.event-cancel {
+    background-color:#a71d14!important;
+    color: rgb(255, 255, 255)!important;
+    margin: 5%!important;
+}
+
+.event-feedback {
+    background-color:#167ba9!important;
+    color: rgb(255, 255, 255)!important;
+    margin: 5%!important;
+}
+
+.event-attend {
+    background-color:#00363e!important;
+    color: rgb(255, 255, 255)!important;
+    margin: 5%!important;
+}
+
 .imagebox{
     height: 200px;
     width: 200px;

@@ -155,7 +155,9 @@ class CaptainProfilePage extends Component {
 
   handleCancelEvent = (id) => {
 
-    this.props.dispatch({ type: 'CANCEL_EVENT', payload: id })
+    this.props.dispatch({ type: 'CANCEL_EVENT', 
+    payload: {id: id}, 
+    refresh: {id: id} })
 
     // console.log(this.state)
 

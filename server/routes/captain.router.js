@@ -18,7 +18,8 @@ router.get('/profile/:id',rejectNonCaptain , (req, res) => {
                             "user"."email",
                             "user"."phone", 
                             "user"."bio", 
-                            "user"."image"
+                            "user"."image",
+                            "user"."id"
                             FROM "user" 
                             WHERE "id" = $1;`;
                             
@@ -117,10 +118,10 @@ router.delete('/delete/:id', rejectUnauthenticated, (req, res) => {
 
 router.put('/profile/edit/:id',rejectNonCaptain , (req,res) =>{
 
-    let queryString = `UPDATE "user" SET "first_name"=$1, "last_name"=$2, "email"=$3, "phone"=$4, "image"=$5,
-                        "bio"=$6 WHERE "id"=$7;`;
+    let queryString = `UPDATE "user" SET "first_name"=$1, "last_name"=$2, "email"=$3, "phone"=$4,
+                        "bio"=$5 WHERE "id"=$6;`;
 
-    const queryValues = [req.body.first_name, req.body.last_name, req.body.email, req.body.phone, req.body.image, req.body.bio, req.params.id]
+    const queryValues = [req.body.first_name, req.body.last_name, req.body.email, req.body.phone, req.body.bio, req.params.id]
     pool.query(queryString, queryValues)
     .then ( () => {
         res.sendStatus(200);

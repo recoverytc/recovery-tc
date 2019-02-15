@@ -24,7 +24,7 @@ class AdminUsersPage extends Component {
     }
 
     getStripedStyle(i) {
-        return { backgroundColor: i % 2 ? '#d3fbe7' : '#f3f6fc' };
+        return { backgroundColor: i % 2 ? '#d3fbe7' : '#e5fffe' };
     }
 
     render() {
@@ -32,17 +32,23 @@ class AdminUsersPage extends Component {
             let captain;
             let activeButton;
             let captainButton;
+            let buttonClassActive = "users-button";
+            let buttonClassCaptain = "users-button";
             if (this.props.userList[i].captain) {
                 captainButton = 'Demote';
                 captain = 'Yes';
             } else {
                 captain = 'No';
                 captainButton = 'Promote';
+                buttonClassCaptain = "active-button"
             }
             if (this.props.userList[i].active) {
                 activeButton = 'Deactivate';
             } else {
                 activeButton = 'Re-activate';
+                buttonClassActive = "active-button"
+
+                
             }
             return (
                 <TableRow key={i} style={this.getStripedStyle(i)}>
@@ -54,6 +60,7 @@ class AdminUsersPage extends Component {
                     <TableCell>{row.phone}</TableCell>
                     <TableCell>{captain}
                         <Button
+                            className={buttonClassCaptain}
                             onClick={() => this.changeRole(this.props.userList[i])}
                             color="secondary"
                             variant="contained"
@@ -63,6 +70,7 @@ class AdminUsersPage extends Component {
                     </TableCell>
                     <TableCell>
                         <Button
+                            className={buttonClassActive}
                             onClick={() => this.changeActiveStatus(this.props.userList[i])}
                             color="secondary"
                             variant="contained"

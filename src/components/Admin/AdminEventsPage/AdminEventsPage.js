@@ -23,12 +23,13 @@ class AdminEventsPage extends Component {
   }
 
   getStripedStyle(i) {
-    return { backgroundColor: i % 2 ? '#d3fbe7' : '#f3f6fc' };
+    return { backgroundColor: i % 2 ? '#d3fbe7' : '#e5fffe' };
   }
 
   render() {
 
     let adminEventContent = this.props.eventList.map((row, i) => {
+      let average = row.average
       return (
         <TableRow key={i} style={this.getStripedStyle(i)}>
           <TableCell>{row.title}</TableCell>
@@ -37,13 +38,14 @@ class AdminEventsPage extends Component {
             <Button
               onClick={() => this.props.history.push(`/admin/events/attendees/${row.id}`)}
               color="secondary"
+              className="attendees-button"
               variant="contained"
             >
               View Attendees
             </Button>
           </TableCell>
           <TableCell>{row.first_name} {row.last_name}</TableCell>
-          <TableCell>{row.rating}</TableCell>
+          <TableCell>{row.avg ? parseInt(row.avg).toFixed(2) : 'No rating'}</TableCell>
         </TableRow>
       )
     })
@@ -60,7 +62,7 @@ class AdminEventsPage extends Component {
               <TableCell>Date</TableCell>
               <TableCell>Attendees</TableCell>
               <TableCell>Captain</TableCell>
-              <TableCell>Rating</TableCell>
+              <TableCell>Average Rating</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

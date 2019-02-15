@@ -21,6 +21,7 @@ class CaptainProfilePage extends Component {
 
   state = {
     open: false,
+    open2: false,
     title: '',
     date: '',
     time: '',
@@ -52,6 +53,13 @@ class CaptainProfilePage extends Component {
       open: true
     })
   }
+  
+  handleOpen2 = () => {
+    this.setState({
+      open2: true
+    })
+  }
+
   handleTitleChange = (event) => {
     this.setState({
       title: event.target.value
@@ -97,30 +105,27 @@ class CaptainProfilePage extends Component {
 
   handleClose = () => {
     this.setState({
-      open: false
+      open: false,
+      open2: false
     })
   }
+
+    handleFileUpload = (event) => {
+    this.setState({file: event.target.files});
+    console.log(this.state.files);
+  }
+
+
   handleSubmitClose = () => {
-    // this.props.dispatch({ type: 'EDIT_EVENT', payload: this.state })
+    this.props.dispatch({ type: 'EDIT_EVENT', payload: this.state })
       const formData = new FormData();
-      if(this.state.file !== null) {
         formData.append('file', this.state.file[0]);
-      }
-      formData.append('title', this.state.title);
-      formData.append('date', this.state.date);
-      formData.append('time', this.state.time);
-      formData.append('address', this.state.address);
-      formData.append('description', this.state.description);
-      formData.append('image', this.state.image);
-      formData.append('capacity', this.state.capacity);
-      formData.append('venue', this.state.venue);
-      formData.append('id', this.state.id);
-      axios.put(`api/imageUpload/edit`, formData, {
+      axios.put(`api/imageUpload/edit/account`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
         }).then(response => {
-              this.props.history.push('/home')
+              this.props.history.push(`/captain/profile/${this.props.user.id}`);
         }).catch(error => {
           // handle your error
           console.log(error);
@@ -131,10 +136,25 @@ class CaptainProfilePage extends Component {
     swal("Event Updated!", "You have successfully updated an event!", "success");
   }
 
-  handleFileUpload = (event) => {
-    this.setState({file: event.target.files});
-    console.log(this.state.files);
+  handleSubmitCloseImage = () => {
+    const formData = new FormData();
+    formData.append('file', this.state.file[0]);
+  axios.put(`api/imageUpload/edit/account`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }).then(response => {
+          this.props.history.push(`/captain/profile/${this.props.user.id}`);
+          this.props.dispatch({ type: 'FETCH_CAPTAIN_PROFILE', payload: this.props.match.params.id })
+    }).catch(error => {
+      // handle your error
+      console.log(error);
+    });
+this.setState({
+  open2: false
+})
   }
+
 
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_CAPTAIN_PROFILE', payload: this.props.match.params.id })
@@ -181,9 +201,15 @@ class CaptainProfilePage extends Component {
 
   }
 
+  handleEditImage = () => {
+    this.handleOpen2();
+  }
 
   render() {
     console.log('eventlist', this.props.eventList)
+
+
+
 
 
     //conditionally rendered buttons, only if captain is looking at their own profile
@@ -193,6 +219,7 @@ class CaptainProfilePage extends Component {
     let addEventButton;
     let cancelEventButton;
     let eventDescription;
+
 
     
     let profileContent = this.props.captainProfile.map((profile, i) => {
@@ -207,7 +234,7 @@ class CaptainProfilePage extends Component {
             <img src="/addEventIcon.svg" alt="edit event" className="icons" onClick={() => this.props.history.push('/captain/addevent')} />
             <p>Create Event</p>
           </div>
-        editProfileImageButton = '';
+        editProfileImageButton = <button className="edit-image" onClick={() => this.handleEditImage()}>X</button>;
       } else {
 
       }
@@ -216,6 +243,7 @@ class CaptainProfilePage extends Component {
 
           <div className="picture-container">
             <img src={profile.image} alt="me" className="captain-picture" />
+              {editProfileImageButton}
           </div> {/* .picture-container */}
 
           <div className="icon-buttons">
@@ -301,7 +329,7 @@ class CaptainProfilePage extends Component {
                  <Link to={`/events/${event.id}`}>
                   <div className="event-data">
                     <p>{moment(event.date).format("MMM Do YYYY")}</p>
-                    <p>{moment(event.time, "HH:mm").format("hh:mm A")}</p>
+                    {/* <p>{moment(event.time, "HH:mm").format("hh:mm A")}</p> */}
                     <p className="event-title">{event.title}</p>
                   </div>
 
@@ -377,17 +405,6 @@ class CaptainProfilePage extends Component {
                   onChange={this.handleDescriptionChange}
                 />
               </div>
-              <div className="img-select">
-                {/* <TextField
-                  label="Image Url"
-                  placeholder="Image Url"
-                  margin="normal"
-                  value={this.state.image}
-                  onChange={this.handleImageChange}
-                /> */}
-                <p>Image</p>
-                <input label='upload file' type='file' onChange={this.handleFileUpload} />
-              </div>
               <div>
                 <TextField
                   label="Capacity"
@@ -412,6 +429,28 @@ class CaptainProfilePage extends Component {
                 Cancel
                 </Button>
               <Button className="modal-submit" onClick={this.handleSubmitClose} >
+                Submit
+                  </Button>
+            </DialogActions>
+          </Dialog>
+
+          <Dialog
+            open={this.state.open2}
+            onClose={this.handleClose}
+            aria-labelledby="form-dialog-title"
+          >
+            <DialogTitle>Edit Profile Image</DialogTitle>
+            <DialogContent>
+              <div className="img-select">
+                <p>Image</p>
+                <input label='upload file' type='file' onChange={this.handleFileUpload} />
+              </div>
+            </DialogContent>
+            <DialogActions>
+              <Button className="modal-cancel" onClick={this.handleClose} >
+                Cancel
+                </Button>
+              <Button className="modal-submit" onClick={this.handleSubmitCloseImage} >
                 Submit
                   </Button>
             </DialogActions>

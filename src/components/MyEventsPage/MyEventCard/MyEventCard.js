@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { Dialog, DialogTitle, TextField, Button } from '@material-ui/core';
 import StarRatingComponent from 'react-star-rating-component';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import './MyEventCard.css';
 import swal from 'sweetalert'
 
@@ -130,7 +131,7 @@ class MyEventCard extends React.Component {
                             <p>{moment(event.time, "HH:mm").format("hh:mm A")}</p>
                         </div>
                         <div>
-                            <p className="attendees">{event.attendee}</p>
+                            <p className="attendees">{event.attendee}<FontAwesomeIcon className="arrow-up" icon="arrow-up" /></p>
                         </div>
                         <div className="image-container">
                             <img src={event.image} alt="picture" className="image-url" />

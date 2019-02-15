@@ -124,13 +124,13 @@ class EventPage extends Component {
 
     render() {
         console.log('state', this.props.reduxStore.thisEvent);
-        console.log("eventdate", moment(this.props.reduxStore.thisEvent.date).format('YYYYDDD'));
-        console.log("now", moment().format('YYYYDDD'));
-        console.log("nowMinus7", moment().subtract(7, 'days').format('YYYYDDD'));
+        console.log("eventdate", moment(this.props.reduxStore.thisEvent.date).format('YYYYDDDD'));
+        console.log("now", moment().format('YYYYDDDD'));
+        console.log("nowMinus7", moment().subtract(7, 'days').format('YYYYDDDD'));
 
-        let eventDate = moment(this.props.reduxStore.thisEvent.date).format('YYYYDDD');
-        let now = moment().format('YYYYDDD');
-        let nowMinus7 = moment().subtract(7, 'days').format('YYYYDDD');
+        let eventDate = moment(this.props.reduxStore.thisEvent.date).format('YYYYDDDD');
+        let now = moment().format('YYYYDDDD');
+        let nowMinus7 = moment().subtract(7, 'days').format('YYYYDDDD');
         let attending = this.props.reduxStore.attendingThis.attending;
         let feedback = this.props.reduxStore.attendingThis.feedback;
         let buttonDisplay;
@@ -168,19 +168,18 @@ class EventPage extends Component {
 
         return (
             <div className="eventpage-container">
+            <div className="eventpage-title">
                 <h1>{this.props.reduxStore.thisEvent.title}</h1>
-                <img src={this.props.reduxStore.thisEvent.image} alt="picture" className="image-url" />
-                <h5>{this.props.reduxStore.thisEvent.venue}</h5>
-                <p>{this.props.reduxStore.thisEvent.address}</p>
-                <p>{moment(this.props.reduxStore.thisEvent.date).format("MMM Do YYYY")}</p>
-                <p>{moment(this.props.reduxStore.thisEvent.time, "HH:mm").format("hh:mm A")}</p>
-                <p>{this.props.reduxStore.thisEvent.description}</p>
-                <p>{this.props.reduxStore.thisEvent.attendee} going </p>
-                <p>of a possible {this.props.reduxStore.thisEvent.capacity}</p>
-                <p>Hosted by: <Link to={`/captain/profile/${this.props.reduxStore.thisEvent.captain_id}`}>{this.props.reduxStore.thisEvent.username}</Link></p>
-
+            </div>
+                <img src={this.props.reduxStore.thisEvent.image} alt="picture" className="eventpage-image-url" />
+            <div className="eventpage-details">
+                <p><strong>When: </strong>{moment(this.props.reduxStore.thisEvent.date).format("MMM Do YYYY")} at {moment(this.props.reduxStore.thisEvent.time, "HH:mm").format("hh:mm A")}</p>
+                <p><strong>Where: </strong>{this.props.reduxStore.thisEvent.venue}, {this.props.reduxStore.thisEvent.address}</p>
+            </div>
+                <p className="eventpage-description">{this.props.reduxStore.thisEvent.description}</p>
+                <p className="host">Hosted by: <Link to={`/captain/profile/${this.props.reduxStore.thisEvent.captain_id}`}>{this.props.reduxStore.thisEvent.username}</Link></p>
+                <p className="attendee-count"><strong>{this.props.reduxStore.thisEvent.attendee} going</strong> of a <strong>possible {this.props.reduxStore.thisEvent.capacity}</strong></p>
                 {buttonDisplay}
-
                 <div className="main">
                     <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="simple-dialog-title" >
                         <DialogTitle className="style-size" id="simple-dialog-title">Feedback</DialogTitle>

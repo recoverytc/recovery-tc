@@ -118,18 +118,6 @@ class CaptainProfilePage extends Component {
 
   handleSubmitClose = () => {
     this.props.dispatch({ type: 'EDIT_EVENT', payload: this.state })
-      const formData = new FormData();
-        formData.append('file', this.state.file[0]);
-      axios.put(`api/imageUpload/edit/account`, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        }).then(response => {
-              this.props.history.push(`/captain/profile/${this.props.user.id}`);
-        }).catch(error => {
-          // handle your error
-          console.log(error);
-        });
     this.setState({
       open: false
     })
@@ -153,6 +141,8 @@ class CaptainProfilePage extends Component {
 this.setState({
   open2: false
 })
+swal("Image Updated!", "You have successfully updated your profile image!", "success");
+
   }
 
 
@@ -196,7 +186,7 @@ this.setState({
     // this.props.dispatch({ type: 'FETCH_THIS_EVENT', refresh: id })
 
     // console.log(this.state)
-    setTimeout(this.handleOpen, 1000)
+
     this.handleOpen(event)
 
   }
@@ -309,7 +299,7 @@ this.setState({
 
                 editEventButton =
                   <div className="edit-event-box">
-                    <img src="/editEventIcon.svg" alt="edit Event" className="event-btn" onClick={() => this.handleEdit(event.id)} />
+                    <img src="/editEventIcon.svg" alt="edit Event" className="event-btn" onClick={() => this.handleEdit(event)} />
                     <p>Edit Event</p>
                   </div>
                 cancelEventButton =

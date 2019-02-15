@@ -153,6 +153,10 @@ class CaptainProfilePage extends Component {
     })
   }
 
+  componentDoesUpdate() {
+    this.props.dispatch({ type: 'FETCH_CAPTAIN_PROFILE', payload: this.props.match.params.id })
+  }
+
   handleCancelEvent = (id) => {
 
     this.props.dispatch({ type: 'CANCEL_EVENT', 
@@ -175,8 +179,32 @@ class CaptainProfilePage extends Component {
   render() {
     console.log('eventlist', this.props.eventList)
 
+
+    //conditionally rendered buttons, only if captain is looking at their own profile
+    let editProfileButton;
+    let editProfileImageButton;
+    let editEventButton;
+    let addEventButton;
+    let cancelEventButton;
+    let eventDescription;
+
     
     let profileContent = this.props.captainProfile.map((profile, i) => {
+      if (Number(this.props.user.id) === Number(this.props.match.params.id)) {
+        editProfileButton = 
+          <div className="icon-box">
+            <img src="/editIcon.svg" alt="edit profile" className="icons" onClick={() => this.props.history.push(`/captain/profile/edit/${profile.id}`)} />
+            <p>Edit Profile</p>
+          </div>
+        addEventButton =
+          <div className="icon-box">
+            <img src="/addEventIcon.svg" alt="edit event" className="icons" onClick={() => this.props.history.push('/captain/addevent')} />
+            <p>Create Event</p>
+          </div>
+        editProfileImageButton = '';
+      } else {
+
+      }
       return (
         <div key={i} className="captain-wrapper">
 
@@ -185,14 +213,8 @@ class CaptainProfilePage extends Component {
           </div> {/* .picture-container */}
 
           <div className="icon-buttons">
-          <div className="icon-box">
-            <img src="/editIcon.svg" alt="edit profile" className="icons" onClick={() => this.props.history.push(`/captain/profile/edit/${profile.id}`)} />
-            <p>Edit Profile</p>
-          </div>
-          <div className="icon-box">
-            <img src="/addEventIcon.svg" alt="edit event" className="icons" onClick={() => this.props.history.push('/captain/addevent')} />
-            <p>Create Event</p>
-          </div>
+              {editProfileButton}
+              {addEventButton}
           </div> {/* .icon-buttons */}
 
 
@@ -246,6 +268,24 @@ class CaptainProfilePage extends Component {
         
           {this.props.eventList.map((event, i) => {
             if (Number(event.captain_id) === Number(this.props.match.params.id)) {
+              if (Number(this.props.user.id) === Number(this.props.match.params.id)) {
+
+                editEventButton =
+                  <div className="edit-event-box">
+                    <img src="/editEventIcon.svg" alt="edit Event" className="event-btn" onClick={() => this.handleEdit(event.id)} />
+                    <p>Edit Event</p>
+                  </div>
+                cancelEventButton =
+                  <div className="delete-event-box">
+                    <img src="/delete.svg" alt="cancel Event" className="event-btn" onClick={() => this.handleCancelEvent(event.id)} />
+                    <p>Delete</p>
+                  </div>
+              } else {
+                eventDescription = 
+                  <p className="description">{event.description.substring(0, 200)}...</p>
+
+              }
+
               
               return (                
                 <div key={i} className="root">
@@ -260,17 +300,16 @@ class CaptainProfilePage extends Component {
                     <img src={event.image} alt="event" className="image-url" />
                   </div>
                   </Link>
-                <div className="edit-event-box">
-                  <img src="/editEventIcon.svg" alt="edit Event" className="event-btn" onClick={() => this.handleEdit(event.id)} />
-                  <p>Edit Event</p>
-                </div>
-                <div className="delete-event-box">
-                  <img src="/delete.svg" alt="cancel Event" className="event-btn" onClick={() => this.handleCancelEvent(event.id)} />
-                  <p>Delete</p>
-                </div>
+                  {editEventButton}
+                  {cancelEventButton}
+                  {eventDescription}
+
+
                 </div>
                 // .root2
               )
+            } else {
+
             }
           })}
           </div>{/* .event-data-root */}

@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './EventPage.css';
 import moment from 'moment';
-import { Dialog, DialogTitle, TextField, Button } from '@material-ui/core';
+import { Dialog, DialogTitle, TextField, Button, } from '@material-ui/core';
 import StarRatingComponent from 'react-star-rating-component';
+import { Link } from 'react-router-dom';
 
 
 
@@ -157,6 +158,7 @@ class EventPage extends Component {
                 <p>{this.props.reduxStore.thisEvent.description}</p>
                 <p>{this.props.reduxStore.thisEvent.attendee} going </p>
                 <p>of a possible {this.props.reduxStore.thisEvent.capacity}</p>
+                <p>Hosted by: <Link to={`/captain/profile/${this.props.reduxStore.thisEvent.captain_id}`}>{this.props.reduxStore.thisEvent.username}</Link></p>
 
                 {buttonDisplay}
 

@@ -8,7 +8,7 @@ const client = require('twilio')(accountSid, authToken);
 
 // GET captain profile 
 router.get('/profile/:id',rejectNonCaptain , (req, res) => {
-    console.log(req.params.id);
+    // console.log(req.params.id);
     
     let id = req.params.id;
     let queryString = `SELECT 

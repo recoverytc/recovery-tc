@@ -173,7 +173,9 @@ class CaptainProfilePage extends Component {
 
 
   render() {
+    console.log('eventlist', this.props.eventList)
 
+    
     let profileContent = this.props.captainProfile.map((profile, i) => {
       return (
         <div key={i} className="captain-wrapper">
@@ -227,10 +229,13 @@ class CaptainProfilePage extends Component {
 
 
     return (
+      console.log('this.props.match.params.id', this.props.match.params.id),
+      
+
       <div className="captain-container">
         {profileContent}
 
-        {/* Beginning of the EVents page */}
+        {/* Beginning of the Events page */}
       <div className="event-root">
         <h1 className="h1-event">My Current Events</h1>
 
@@ -238,9 +243,11 @@ class CaptainProfilePage extends Component {
 
 
         <div className="event-data-root">
+        
           {this.props.eventList.map((event, i) => {
-            if (event.captain_id === this.props.user.id) {
-              return (
+            if (Number(event.captain_id) === Number(this.props.match.params.id)) {
+              
+              return (                
                 <div key={i} className="root">
                  <Link to={`/events/${event.id}`}>
                   <div className="event-data">

@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './EventPage.css';
 import moment from 'moment';
-import { Dialog, DialogTitle, TextField, Button } from '@material-ui/core';
+import { Dialog, DialogTitle, TextField, Button, DialogContent } from '@material-ui/core';
 import StarRatingComponent from 'react-star-rating-component';
 
 
+const styles = {
+        minHeight: '80vh',
+        maxHeight: '80vh',
+};
 
 class EventPage extends Component {
 
@@ -160,12 +164,11 @@ class EventPage extends Component {
 
                 {buttonDisplay}
 
-                <div>
+                <div className="main">
                     <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="simple-dialog-title" >
                         <DialogTitle id="simple-dialog-title">Feedback</DialogTitle>
 
-                        <form>
-
+                        <DialogContent >
                             {/* Star rating */}
                             <StarRatingComponent 
                                 name="rating"
@@ -176,15 +179,15 @@ class EventPage extends Component {
                             <TextField
                                 label="comments"
                                 multiline
-                                rows="5"
-                                fullWidth
+                                // rows="5"
+                                // fullWidth
                                 margin="normal"
                                 variant="outlined"
                                 value={this.state.comment}
                                 name="comment"
                                 onChange={this.handleChange('comment')}
                             />
-                        </form>
+                        </DialogContent>
                         <Button
                             variant="contained"
                             color="primary"

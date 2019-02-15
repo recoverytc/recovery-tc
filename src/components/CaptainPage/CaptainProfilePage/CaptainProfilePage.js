@@ -7,7 +7,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
+
 
 
 // Styles
@@ -151,6 +153,16 @@ class CaptainProfilePage extends Component {
     })
   }
 
+  handleCancelEvent = (id) => {
+
+    this.props.dispatch({ type: 'CANCEL_EVENT', 
+    payload: {id: id}, 
+    refresh: {id: id} })
+
+    // console.log(this.state)
+
+  }
+
   handleEdit = (id) => {
     console.log('editting', id);
     this.props.dispatch({ type: 'FETCH_THIS_EVENT', refresh: id })
@@ -158,8 +170,12 @@ class CaptainProfilePage extends Component {
     // console.log(this.state)
     setTimeout(this.handleOpen, 200)
   }
-  render() {
 
+
+  render() {
+    console.log('eventlist', this.props.eventList)
+
+    
     let profileContent = this.props.captainProfile.map((profile, i) => {
       return (
         <div key={i} className="captain-wrapper">
@@ -169,11 +185,14 @@ class CaptainProfilePage extends Component {
           </div> {/* .picture-container */}
 
           <div className="icon-buttons">
-            <img src="/editIcon.svg" alt="edit profile" className="edit-profile-icon" onClick={() => this.props.history.push(`/captain/profile/edit/${profile.id}`)} />
-            {/* <button className="edit-button" onClick={() => this.props.history.push(`/captain/profile/edit/${profile.id}`)}>Edit profile</button> */}
-         
-            <img src="/addEventIcon.svg" alt="edit event" className="add-event-icon" onClick={() => this.props.history.push('/captain/addevent')} />
-            {/* <button className="create-button" onClick={() => this.props.history.push('/captain/addevent')}>Create event</button> */}
+          <div className="icon-box">
+            <img src="/editIcon.svg" alt="edit profile" className="icons" onClick={() => this.props.history.push(`/captain/profile/edit/${profile.id}`)} />
+            <p>Edit Profile</p>
+          </div>
+          <div className="icon-box">
+            <img src="/addEventIcon.svg" alt="edit event" className="icons" onClick={() => this.props.history.push('/captain/addevent')} />
+            <p>Create Event</p>
+          </div>
           </div> {/* .icon-buttons */}
 
 
@@ -210,10 +229,13 @@ class CaptainProfilePage extends Component {
 
 
     return (
+      console.log('this.props.match.params.id', this.props.match.params.id),
+      
+
       <div className="captain-container">
         {profileContent}
 
-        {/* Beginning of the EVents page */}
+        {/* Beginning of the Events page */}
       <div className="event-root">
         <h1 className="h1-event">My Current Events</h1>
 
@@ -221,11 +243,13 @@ class CaptainProfilePage extends Component {
 
 
         <div className="event-data-root">
+        
           {this.props.eventList.map((event, i) => {
-            if (event.captain_id === this.props.user.id) {
-              return (
-                <div key={i} className="root2">
-
+            if (Number(event.captain_id) === Number(this.props.match.params.id)) {
+              
+              return (                
+                <div key={i} className="root">
+                 <Link to={`/events/${event.id}`}>
                   <div className="event-data">
                     <p>{moment(event.date).format("MMM Do YYYY")}</p>
                     <p>{moment(event.time, "HH:mm").format("hh:mm A")}</p>
@@ -235,9 +259,15 @@ class CaptainProfilePage extends Component {
                   <div className="image-container">
                     <img src={event.image} alt="event" className="image-url" />
                   </div>
-
-                  {/* <button onClick={() => this.handleEdit(event.id)} className="edit-event-btn">edit event</button> */}
-                  <img src="/editEventIcon.svg" alt="edit Event" className="edit-event-btn" onClick={() => this.handleEdit(event.id)} />
+                  </Link>
+                <div className="edit-event-box">
+                  <img src="/editEventIcon.svg" alt="edit Event" className="event-btn" onClick={() => this.handleEdit(event.id)} />
+                  <p>Edit Event</p>
+                </div>
+                <div className="delete-event-box">
+                  <img src="/delete.svg" alt="cancel Event" className="event-btn" onClick={() => this.handleCancelEvent(event.id)} />
+                  <p>Delete</p>
+                </div>
                 </div>
                 // .root2
               )

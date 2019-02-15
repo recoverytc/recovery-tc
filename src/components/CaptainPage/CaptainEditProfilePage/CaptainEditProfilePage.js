@@ -59,6 +59,7 @@ class CaptainEditProfilePage extends Component {
 
 
   render() {
+
     return (
       <div>
         <form className="form-container">

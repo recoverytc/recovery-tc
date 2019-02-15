@@ -37,7 +37,6 @@ router.get('/', (req, res) => {
 
 router.get('/searchevent/:id' , (req , res)=>{
   const queryString = `SELECT * FROM "event" WHERE "title" ILIKE $1; `
-console.log(req.params.id);
 
   pool.query(queryString , [`%${req.params.id}%`])
   .then(results =>{

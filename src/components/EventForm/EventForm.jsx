@@ -4,7 +4,7 @@ import { Button } from '@material-ui/core';
 import { connect } from 'react-redux';
 import './EventForm.css';
 import axios from 'axios';
-
+import swal from 'sweetalert'
 
 class EventForm extends Component {
     state = {
@@ -82,7 +82,8 @@ class EventForm extends Component {
         }).catch(error => {
             // handle your error
             console.log(error);
-        });
+          });
+          swal("Event Posted!", "You have successfully created an event!", "success");
     }
 
     handleFileUpload = (event) => {
@@ -150,23 +151,23 @@ class EventForm extends Component {
                         inputProps={{ maxLength: 300 }}
                         onChange={this.handleImageChange}
                     /> */}
-                {/* <label className="custom-file-upload"> */}
-                <input label="upload file" type='file' onChange={this.handleFileUpload} />
-                {/* Choose File */}
-                {/* </label> */}
-                <TextField
-                    variant="outlined"
-                    label="Capacity"
-                    placeholder="Capacity"
-                    margin="normal"
-                    onChange={this.handleCapacityChange}
-                />
-                <Button
-                    className="add-event-submit"
-                    onClick={this.handleClick}
-                    variant="contained"
-                    color="primary">
-                    Submit
+                    {/* <label className="custom-file-upload"> */}
+                        <input label="upload file" type='file' onChange={this.handleFileUpload} />
+                        {/* Choose File */}
+                    {/* </label> */}
+                    <TextField
+                        variant="outlined"
+                        label="Capacity"
+                        placeholder="Capacity"
+                        margin="normal"
+                        onChange={this.handleCapacityChange}
+                    />
+                    <Button 
+                        className="add-event-submit" 
+                        onClick={this.handleClick}
+                        variant="contained"
+                        color="primary">
+                        Submit
                     </Button>
             </form>
         )

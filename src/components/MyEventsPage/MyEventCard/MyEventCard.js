@@ -10,7 +10,7 @@ import { Dialog, DialogTitle, TextField, Button } from '@material-ui/core';
 import StarRatingComponent from 'react-star-rating-component';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import './MyEventCard.css';
-
+import swal from 'sweetalert'
 
 
 const styles = theme => ({
@@ -47,7 +47,9 @@ class MyEventCard extends React.Component {
 
     handleSubmit = () => {
         this.props.dispatch({ type: 'UPDATE_FEEDBACK', payload: this.state })
+        
         this.handleClose();
+        swal("Feedback Submitted!", "You have successfully created an Feedback!", "success");
     }
 
     onStarClick(nextValue, prevValue, name) {
@@ -56,17 +58,34 @@ class MyEventCard extends React.Component {
 
     HandleEvents = (type) => {
         if (type === 'Cancel') { //remove this user from this event
-            this.props.dispatch({
-                type: 'DELETE_FROM_MY_EVENTS',
-                payload: {
-                    event_id: this.props.event.id,
-                    user_id: this.props.reduxStore.user.id,
-                },
-                refresh: {
-                    user_id: this.props.reduxStore.user.id,
-                    event_id: this.props.reduxStore.thisEvent.id,
+            swal({
+                title: "Are you sure?",
+                text: "Are you sure you want to lose you spot at this event?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+              })
+              .then((willDelete) => {
+                if (willDelete) {
+                  swal("Event has been cancelled", {
+                    icon: "success",
+                  });
+                  this.props.dispatch({
+                    type: 'DELETE_FROM_MY_EVENTS',
+                    payload: {
+                        event_id: this.props.event.id,
+                        user_id: this.props.reduxStore.user.id,
+                    },
+                    refresh: {
+                        user_id: this.props.reduxStore.user.id,
+                        event_id: this.props.reduxStore.thisEvent.id,
+                    }
+                })
+                } else {
+                  swal("Event has NOT been cancelled" )
                 }
-            })
+              });
+           
         } else if (type === 'Feedback') {
             this.setState({
                 open: true

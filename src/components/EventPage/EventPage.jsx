@@ -83,18 +83,18 @@ class EventPage extends Component {
                     event_id: this.props.reduxStore.thisEvent.id,
                 }
             })
-            swal("Attending !", "You are successfully attending an event!", "success");
+            swal("Attending !", "You are now listed as attending this event!", "success");
         } else if (type === 'Cancel') { //remove this user from this event
             swal({
                 title: "Are you sure?",
-                text: "Are you sure you want to lose you spot at this event?",
+                text: "You may lose your spot at this event.",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
               })
               .then((willDelete) => {
                 if (willDelete) {
-                  swal("Event has been cancelled", {
+                  swal("You are no longer attending.", {
                     icon: "success",
                   });
                   this.props.dispatch({
@@ -109,7 +109,7 @@ class EventPage extends Component {
                     }
                 })
                 } else {
-                  swal("Event has NOT been cancelled" )
+                  swal("You have NOT given up your spot." )
                 }
               });
             

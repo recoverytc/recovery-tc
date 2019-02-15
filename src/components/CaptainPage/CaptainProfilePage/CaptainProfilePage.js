@@ -387,13 +387,19 @@ swal("Image Updated!", "You have successfully updated your profile image!", "suc
                 />
               </div>
               <div>
-                <TextField
-                  label="Description"
-                  placeholder="Description"
-                  margin="normal"
-                  value={this.state.description}
-                  onChange={this.handleDescriptionChange}
-                />
+              <TextField
+                id="outlined-with-placeholder"
+                label="Description"
+                multiline
+                rows="3"
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                inputProps={{ maxLength: 2000 }}
+                value={this.state.description}
+
+                onChange={this.handleDescriptionChange}
+              />
               </div>
               <div>
                 <TextField

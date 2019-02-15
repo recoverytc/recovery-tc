@@ -172,7 +172,9 @@ class CaptainProfilePage extends Component {
     // this.props.dispatch({ type: 'FETCH_THIS_EVENT', refresh: id })
 
     // console.log(this.state)
+    setTimeout(this.handleOpen, 1000)
     this.handleOpen(event)
+
   }
 
 
@@ -221,10 +223,13 @@ class CaptainProfilePage extends Component {
           </div> {/* .demo-info */}
 
           <div className="bio">
+            <hr />
             <p className="demo-p-tag">BIO</p>
-            <div className="style-blank-div"></div>
+            {/* <div className="style-blank-div"></div> */}
             <p className="demo-p-tag">{profile.bio}</p>
+            <div className="style-blank-div"></div>
           </div>
+          
           {/* .bio */}
         </div>
         // .captain-wrapper
@@ -243,7 +248,7 @@ class CaptainProfilePage extends Component {
       <div className="event-root">
         <h1 className="h1-event">My Current Events</h1>
 
-        <div className="style-blank-div"></div>
+        <hr />
 
 
         <div className="event-data-root">

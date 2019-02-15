@@ -8,8 +8,6 @@ import '../CaptainProfilePage/CaptainProfilePage';
 import swal from 'sweetalert'
 
 
-
-
 class CaptainEditProfilePage extends Component {
 
   state ={
@@ -22,6 +20,7 @@ class CaptainEditProfilePage extends Component {
     user_id: this.props.user.id,
     file: 0,
   }
+
 
   handleClick = () => {
     // this.props.dispatch({type: 'UPDATE_CAPTAIN_PROFILE_INFO', payload: this.state});
@@ -60,6 +59,7 @@ class CaptainEditProfilePage extends Component {
 
 
   render() {
+
 
     return (
       <div>

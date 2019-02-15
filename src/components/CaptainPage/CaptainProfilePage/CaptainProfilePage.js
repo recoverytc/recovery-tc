@@ -9,7 +9,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-
+import swal from 'sweetalert'
 
 
 // Styles
@@ -33,19 +33,19 @@ class CaptainProfilePage extends Component {
     captain_id: '',
   }
 
-  handleOpen = () => {
+  handleOpen = (event) => {
     console.log(this.state);
     this.setState({
-      title: this.props.thisEvent.title,
-      date: this.props.thisEvent.date,
-      time: this.props.thisEvent.time,
-      address: this.props.thisEvent.address,
-      description: this.props.thisEvent.description,
-      image: this.props.thisEvent.image,
-      capacity: this.props.thisEvent.capacity,
-      venue: this.props.thisEvent.venue,
-      id: this.props.thisEvent.id,
-      captain_id: this.props.thisEvent.captain_id,
+      title: event.title,
+      date: event.date,
+      time: event.time,
+      address: event.address,
+      description: event.description,
+      image: event.image,
+      capacity: event.capacity,
+      venue: event.venue,
+      id: event.id,
+      captain_id: event.captain_id,
       file: null,
     })
     this.setState({
@@ -128,7 +128,7 @@ class CaptainProfilePage extends Component {
     this.setState({
       open: false
     })
-
+    swal("Event Updated!", "You have successfully updated an event!", "success");
   }
 
   handleFileUpload = (event) => {
@@ -139,18 +139,7 @@ class CaptainProfilePage extends Component {
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_CAPTAIN_PROFILE', payload: this.props.match.params.id })
     this.props.dispatch({ type: 'FETCH_EVENT_LIST' });
-    this.setState({
-      title: this.props.thisEvent.title,
-      date: this.props.thisEvent.date,
-      time: this.props.thisEvent.time,
-      address: this.props.thisEvent.address,
-      description: this.props.thisEvent.description,
-      image: this.props.thisEvent.image,
-      capacity: this.props.thisEvent.capacity,
-      venue: this.props.thisEvent.venue,
-      id: this.props.thisEvent.id,
-      captain_id: this.props.thisEvent.captain_id
-    })
+   
   }
 
   componentDoesUpdate() {
@@ -158,21 +147,38 @@ class CaptainProfilePage extends Component {
   }
 
   handleCancelEvent = (id) => {
-
-    this.props.dispatch({ type: 'CANCEL_EVENT', 
-    payload: {id: id}, 
-    refresh: {id: id} })
-
+    swal({
+      title: "Are you sure?",
+      text: "Once cancelled, you will not be able to recover this event!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        swal("Event has been cancelled", {
+          icon: "success",
+        });
+        this.props.dispatch({ type: 'CANCEL_EVENT', 
+        payload: {id: id}, 
+        refresh: {id: id} })
+      } else {
+        swal("Event has NOT been cancelled" )
+      }
+    });
+    
     // console.log(this.state)
 
   }
 
-  handleEdit = (id) => {
-    console.log('editting', id);
-    this.props.dispatch({ type: 'FETCH_THIS_EVENT', refresh: id })
+  handleEdit = (event) => {
+    console.log('editting', event);
+    // this.props.dispatch({ type: 'FETCH_THIS_EVENT', refresh: id })
 
     // console.log(this.state)
-    setTimeout(this.handleOpen, 200)
+    setTimeout(this.handleOpen, 1000)
+    this.handleOpen(event)
+
   }
 
 
@@ -239,10 +245,13 @@ class CaptainProfilePage extends Component {
           </div> {/* .demo-info */}
 
           <div className="bio">
+            <hr />
             <p className="demo-p-tag">BIO</p>
-            <div className="style-blank-div"></div>
+            {/* <div className="style-blank-div"></div> */}
             <p className="demo-p-tag">{profile.bio}</p>
+            <div className="style-blank-div"></div>
           </div>
+          
           {/* .bio */}
         </div>
         // .captain-wrapper
@@ -261,7 +270,7 @@ class CaptainProfilePage extends Component {
       <div className="event-root">
         <h1 className="h1-event">My Current Events</h1>
 
-        <div className="style-blank-div"></div>
+        <hr />
 
 
         <div className="event-data-root">

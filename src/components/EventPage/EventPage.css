@@ -38,3 +38,15 @@
 .image-url{
     max-width: 400px;
 }
+
+.main {
+    max-width: 600px !important;
+    max-height: 600px !important;
+
+    width: 600px;
+    height: 600px;
+ }
+
+ .style-size {
+     text-align: center;
+ }

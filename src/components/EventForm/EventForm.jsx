@@ -1,68 +1,67 @@
 import React, { Component } from 'react'
 import TextField from '@material-ui/core/TextField';
-import {Button} from '@material-ui/core';
-import {connect} from 'react-redux';
+import { Button } from '@material-ui/core';
+import { connect } from 'react-redux';
 import './EventForm.css';
-import moment from 'moment';
 import axios from 'axios';
 
 
 class EventForm extends Component {
     state = {
-        title : '',
-        date : '',
-        time : '',
-        address : '',
-        description : '',
-        image : '',
-        capacity : null,
+        title: '',
+        date: '',
+        time: '',
+        address: '',
+        description: '',
+        image: '',
+        capacity: null,
         venue: '',
         file: null,
     }
 
-    handleTitleChange = (event) =>{
+    handleTitleChange = (event) => {
         this.setState({
-            title : event.target.value
+            title: event.target.value
         })
     }
-    handleDateChange = (event) =>{
+    handleDateChange = (event) => {
         this.setState({
-            date : event.target.value
+            date: event.target.value
         })
     }
-    handleTimeChange = (event) =>{
+    handleTimeChange = (event) => {
         this.setState({
-            time : event.target.value
+            time: event.target.value
         })
     }
-    handleAddressChange = (event) =>{
+    handleAddressChange = (event) => {
         this.setState({
-            address : event.target.value
+            address: event.target.value
         })
     }
-    handleDescriptionChange = (event) =>{
+    handleDescriptionChange = (event) => {
         this.setState({
-            description : event.target.value
+            description: event.target.value
         })
     }
-    handleImageChange = (event) =>{
+    handleImageChange = (event) => {
         this.setState({
-            image : event.target.value
+            image: event.target.value
         })
     }
-    handleCapacityChange = (event) =>{
+    handleCapacityChange = (event) => {
         this.setState({
-            capacity : event.target.value
+            capacity: event.target.value
         })
     }
-    handleVenueChange = (event) =>{
+    handleVenueChange = (event) => {
         this.setState({
-            venue : event.target.value
+            venue: event.target.value
         })
     }
 
-    
-    handleClick = () =>{
+
+    handleClick = () => {
         console.log(this.state);
         const formData = new FormData();
         formData.append('file', this.state.file[0]);
@@ -76,71 +75,74 @@ class EventForm extends Component {
         formData.append('venue', this.state.venue);
         axios.post(`api/imageUpload`, formData, {
             headers: {
-              'Content-Type': 'multipart/form-data'
+                'Content-Type': 'multipart/form-data'
             }
-          }).then(response => {
-                this.props.history.push(`/captain/profile/${this.props.user.id}`);
-          }).catch(error => {
+        }).then(response => {
+            this.props.history.push(`/home`);
+        }).catch(error => {
             // handle your error
             console.log(error);
-          });
+        });
     }
 
     handleFileUpload = (event) => {
-        this.setState({file: event.target.files});
+        this.setState({ file: event.target.files });
         console.log(this.state.files);
-      }
+    }
 
     render() {
         return (
             <form className="form-container">
                 <h1 className="form-title">Add an Event</h1>
-                    <TextField
-                        variant="outlined"
-                        label="Title"
-                        placeholder="Title"
-                        margin="normal"
-                        className="input"
-                        inputProps={{ maxLength: 60 }}
-                        onChange={this.handleTitleChange}
-                    />
-                    <TextField 
+                <TextField
+                    variant="outlined"
+                    label="Title"
+                    placeholder="Title"
+                    margin="normal"
+                    className="input"
+                    inputProps={{ maxLength: 60 }}
+                    onChange={this.handleTitleChange}
+                />
+                <TextField
                     variant="outlined"
                     type="date"
                     margin="normal"
                     onChange={this.handleDateChange}
-                    />
-                    <TextField 
+                />
+                <TextField
                     variant="outlined"
                     type="time"
                     margin="normal"
                     onChange={this.handleTimeChange}
-                    />
-                    <TextField
-                        variant="outlined"
-                        label="Venue"
-                        placeholder="Venue"
-                        margin="normal"
-                        inputProps={{ maxLength: 200 }}
-                        onChange={this.handleVenueChange}
-                    />
-                    <TextField
-                        label="Address"
-                        variant="outlined"
-                        placeholder="Address"
-                        margin="normal"
-                        inputProps={{ maxLength: 300 }}
-                        onChange={this.handleAddressChange}
-                    />
-                    <TextField
-                        variant="outlined"
-                        label="Description"
-                        placeholder="Description"
-                        margin="normal"
-                        inputProps={{ maxLength: 2000 }}
-                        onChange={this.handleDescriptionChange}
-                    />
-                    {/* <TextField
+                />
+                <TextField
+                    variant="outlined"
+                    label="Venue"
+                    placeholder="Venue"
+                    margin="normal"
+                    inputProps={{ maxLength: 200 }}
+                    onChange={this.handleVenueChange}
+                />
+                <TextField
+                    label="Address"
+                    variant="outlined"
+                    placeholder="Address"
+                    margin="normal"
+                    inputProps={{ maxLength: 300 }}
+                    onChange={this.handleAddressChange}
+                />
+                <TextField
+                    id="outlined-with-placeholder"
+                    label="Description"
+                    multiline
+                    rows="5"
+                    fullWidth
+                    margin="normal"
+                    variant="outlined"
+                    inputProps={{ maxLength: 2000 }}
+                    onChange={this.handleDescriptionChange}
+                />
+                {/* <TextField
                         variant="outlined"
                         label="Image Url"
                         placeholder="Image Url"
@@ -148,30 +150,23 @@ class EventForm extends Component {
                         inputProps={{ maxLength: 300 }}
                         onChange={this.handleImageChange}
                     /> */}
-                    {/* <label className="custom-file-upload"> */}
-                        <input label="upload file" type='file' onChange={this.handleFileUpload} />
-                        {/* Choose File */}
-                    {/* </label> */}
-                    <TextField
-                        variant="outlined"
-                        label="Capacity"
-                        placeholder="Capacity"
-                        margin="normal"
-                        onChange={this.handleCapacityChange}
-                    />
-                    <TextField
-                        variant="outlined"
-                        label="Venue"
-                        placeholder="Venue"
-                        margin="normal"
-                        onChange={this.handleVenueChange}    
-                    />
-                    <Button 
-                        className="add-event-submit" 
-                        onClick={this.handleClick}
-                        variant="contained"
-                        color="primary">
-                        Submit
+                {/* <label className="custom-file-upload"> */}
+                <input label="upload file" type='file' onChange={this.handleFileUpload} />
+                {/* Choose File */}
+                {/* </label> */}
+                <TextField
+                    variant="outlined"
+                    label="Capacity"
+                    placeholder="Capacity"
+                    margin="normal"
+                    onChange={this.handleCapacityChange}
+                />
+                <Button
+                    className="add-event-submit"
+                    onClick={this.handleClick}
+                    variant="contained"
+                    color="primary">
+                    Submit
                     </Button>
             </form>
         )

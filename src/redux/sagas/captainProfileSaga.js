@@ -14,6 +14,7 @@ function* fetchCaptainProfile(action) {
 function* updateCaptainProfileInfo(action) {
   try {
     yield axios.put(`api/captain/profile/edit/${action.payload.user_id}`, action.payload);
+    yield put({type: 'FETCH_USER'});
     yield put({ type: 'FETCH_CAPTAIN_PROFILE' });
   } catch (error) {
     console.log( 'get captain profile request failed', error);

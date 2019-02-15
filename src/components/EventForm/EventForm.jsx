@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import './EventForm.css';
 import moment from 'moment';
 import axios from 'axios';
-
+import swal from 'sweetalert'
 
 class EventForm extends Component {
     state = {
@@ -84,6 +84,7 @@ class EventForm extends Component {
             // handle your error
             console.log(error);
           });
+          swal("Event Posted!", "You have successfully created an event!", "success");
     }
 
     handleFileUpload = (event) => {
@@ -158,13 +159,6 @@ class EventForm extends Component {
                         placeholder="Capacity"
                         margin="normal"
                         onChange={this.handleCapacityChange}
-                    />
-                    <TextField
-                        variant="outlined"
-                        label="Venue"
-                        placeholder="Venue"
-                        margin="normal"
-                        onChange={this.handleVenueChange}    
                     />
                     <Button 
                         className="add-event-submit" 

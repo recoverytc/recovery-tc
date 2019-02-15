@@ -9,7 +9,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-
+import swal from 'sweetalert'
 
 
 // Styles
@@ -33,19 +33,19 @@ class CaptainProfilePage extends Component {
     captain_id: '',
   }
 
-  handleOpen = () => {
+  handleOpen = (event) => {
     console.log(this.state);
     this.setState({
-      title: this.props.thisEvent.title,
-      date: this.props.thisEvent.date,
-      time: this.props.thisEvent.time,
-      address: this.props.thisEvent.address,
-      description: this.props.thisEvent.description,
-      image: this.props.thisEvent.image,
-      capacity: this.props.thisEvent.capacity,
-      venue: this.props.thisEvent.venue,
-      id: this.props.thisEvent.id,
-      captain_id: this.props.thisEvent.captain_id,
+      title: event.title,
+      date: event.date,
+      time: event.time,
+      address: event.address,
+      description: event.description,
+      image: event.image,
+      capacity: event.capacity,
+      venue: event.venue,
+      id: event.id,
+      captain_id: event.captain_id,
       file: null,
     })
     this.setState({
@@ -128,7 +128,7 @@ class CaptainProfilePage extends Component {
     this.setState({
       open: false
     })
-
+    swal("Event Updated!", "You have successfully updated an event!", "success");
   }
 
   handleFileUpload = (event) => {
@@ -139,39 +139,49 @@ class CaptainProfilePage extends Component {
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_CAPTAIN_PROFILE', payload: this.props.match.params.id })
     this.props.dispatch({ type: 'FETCH_EVENT_LIST' });
-    this.setState({
-      title: this.props.thisEvent.title,
-      date: this.props.thisEvent.date,
-      time: this.props.thisEvent.time,
-      address: this.props.thisEvent.address,
-      description: this.props.thisEvent.description,
-      image: this.props.thisEvent.image,
-      capacity: this.props.thisEvent.capacity,
-      venue: this.props.thisEvent.venue,
-      id: this.props.thisEvent.id,
-      captain_id: this.props.thisEvent.captain_id
-    })
+   
   }
 
   handleCancelEvent = (id) => {
-
-    this.props.dispatch({ type: 'CANCEL_EVENT', payload: id })
-
+    swal({
+      title: "Are you sure?",
+      text: "Once cancelled, you will not be able to recover this event!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        swal("Event has been cancelled", {
+          icon: "success",
+        });
+        this.props.dispatch({ type: 'CANCEL_EVENT', 
+        payload: {id: id}, 
+        refresh: {id: id} })
+      } else {
+        swal("Event has NOT been cancelled" )
+      }
+    });
+    
     // console.log(this.state)
 
   }
 
-  handleEdit = (id) => {
-    console.log('editting', id);
-    this.props.dispatch({ type: 'FETCH_THIS_EVENT', refresh: id })
+  handleEdit = (event) => {
+    console.log('editting', event);
+    // this.props.dispatch({ type: 'FETCH_THIS_EVENT', refresh: id })
 
     // console.log(this.state)
     setTimeout(this.handleOpen, 1000)
+    this.handleOpen(event)
+
   }
 
 
   render() {
+    console.log('eventlist', this.props.eventList)
 
+    
     let profileContent = this.props.captainProfile.map((profile, i) => {
       return (
         <div key={i} className="captain-wrapper">
@@ -228,10 +238,13 @@ class CaptainProfilePage extends Component {
 
 
     return (
+      console.log('this.props.match.params.id', this.props.match.params.id),
+      
+
       <div className="captain-container">
         {profileContent}
 
-        {/* Beginning of the EVents page */}
+        {/* Beginning of the Events page */}
       <div className="event-root">
         <h1 className="h1-event">My Current Events</h1>
 
@@ -239,9 +252,11 @@ class CaptainProfilePage extends Component {
 
 
         <div className="event-data-root">
+        
           {this.props.eventList.map((event, i) => {
-            if (event.captain_id === this.props.user.id) {
-              return (
+            if (Number(event.captain_id) === Number(this.props.match.params.id)) {
+              
+              return (                
                 <div key={i} className="root">
                  <Link to={`/events/${event.id}`}>
                   <div className="event-data">
@@ -255,7 +270,7 @@ class CaptainProfilePage extends Component {
                   </div>
                   </Link>
                 <div className="edit-event-box">
-                  <img src="/editEventIcon.svg" alt="edit Event" className="event-btn" onClick={() => this.handleEdit(event.id)} />
+                  <img src="/editEventIcon.svg" alt="edit Event" className="event-btn" onClick={() => this.handleEdit(event)} />
                   <p>Edit Event</p>
                 </div>
                 <div className="delete-event-box">

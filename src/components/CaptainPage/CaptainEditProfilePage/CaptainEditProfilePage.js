@@ -5,7 +5,7 @@ import axios from 'axios';
 import './CaptainEditProfilePage.css';
 
 import '../CaptainProfilePage/CaptainProfilePage';
-
+import swal from 'sweetalert'
 
 
 class CaptainEditProfilePage extends Component {
@@ -42,6 +42,7 @@ class CaptainEditProfilePage extends Component {
           // handle your error
           console.log(error);
         });
+        swal("Profile Updated!", "You have successfully updated your profile!", "success");
   }
 
   handleFileUpload = (event) => {

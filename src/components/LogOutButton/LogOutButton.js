@@ -6,12 +6,14 @@ import './LogOutButton.css';
 
 class LogOutButton extends Component {
   handleClick = () => {
-    this.props.dispatch({ type: 'LOGOUT' });
+    this.props.dispatch({ type: 'LOGOUT' })
+      // this.props.history.push('/login');
+  
   }
 
   render() {
     return (
-      <Link to="/">
+      <Link to="/home">
         <Button
           // This button shows up in multiple locations and is styled differently
           // because it's styled differently depending on where it is used, the className

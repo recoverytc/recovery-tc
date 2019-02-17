@@ -108,15 +108,10 @@ class MyEventCard extends React.Component {
             buttonDisplay =
                 <Button className="myevents-delete" onClick={() => this.HandleEvents('Cancel')}>
                     Cancel
-                </Button>
-        } else if (eventDate >= nowMinus7) {
-            buttonDisplay =
-                <Button className="myevents-feedback" onClick={() => this.HandleEvents('Feedback')}>
-                    Feedback
-                </Button>
+                </Button>          
         } else {
             buttonDisplay =
-                'monkeys'
+                ''
 
         }
 

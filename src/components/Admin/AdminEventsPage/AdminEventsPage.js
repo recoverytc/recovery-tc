@@ -45,7 +45,7 @@ class AdminEventsPage extends Component {
             </Button>
           </TableCell>
           <TableCell>{row.first_name} {row.last_name}</TableCell>
-          <TableCell>{row.avg ? parseInt(row.avg).toFixed(2) : 'No rating'}</TableCell>
+          <TableCell>{row.avg ? parseFloat(row.avg).toFixed(2) : 'No rating'}</TableCell>
         </TableRow>
       )
     })

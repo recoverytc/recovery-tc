@@ -11,7 +11,7 @@ class LogOutButton extends Component {
 
   render() {
     return (
-      <Link to="/home">
+      <Link to="/">
         <Button
           // This button shows up in multiple locations and is styled differently
           // because it's styled differently depending on where it is used, the className

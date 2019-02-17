@@ -17,14 +17,14 @@ class EventCard extends React.Component {
           <div className="event-data-landing">
               <h2>{event.title}</h2>
                 <p>{moment(event.date).format("MMM Do YYYY")}</p>
-                <p>{moment(event.time, "HH:mm").format("hh:mm A")}</p>
+                {/* <p>{moment(event.time, "HH:mm").format("hh:mm A")}</p> */}
           </div>
           <div>
             <p className="attendees">{event.attendee}<FontAwesomeIcon className="arrow-up" icon="arrow-up" /></p>
           </div>
           <div className="image-container">
               <img src={event.image} alt="picture" className="image-url" />
-              <p className="description">{event.description.substring(0, 200)}...</p>
+              <p className="description">{event.description.substring(0, 150)}...</p>
           </div>
           </Link>
         </div>

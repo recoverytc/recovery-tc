@@ -22,7 +22,7 @@ class LoginPage extends Component {
         },
       });
     } else {
-      this.props.dispatch({ type: 'LOGIN_INPUT_ERROR' });
+      this.props.dispatch({ type: 'LOGIN_ACCOUNT_ERROR' });
     }
   } // end login
 
@@ -94,6 +94,7 @@ class LoginPage extends Component {
 // const mapStateToProps = ({errors}) => ({ errors });
 const mapStateToProps = state => ({
   errors: state.errors,
+  user: state.user,
 });
 
 export default connect(mapStateToProps)(LoginPage);

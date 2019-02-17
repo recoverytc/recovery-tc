@@ -15,7 +15,7 @@ class AdminEventAttendeesPage extends Component {
     }
 
     getStripedStyle(i) {
-        return { backgroundColor: i % 2 ? '#d3fbe7' : '#f3f6fc' };
+        return { backgroundColor: i % 2 ? '#d3fbe7' : '#e5fffe' };
     }
         
 

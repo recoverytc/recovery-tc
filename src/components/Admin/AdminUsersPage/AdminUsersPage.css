@@ -13,7 +13,16 @@
     background-color: #d3fbe7!important;
 }
 
+.active-button {
+    background-color: #167ba9!important;
+    margin: 5px!important;
+}
+
+.users-button {
+    margin: 5px!important;
+}
+
+
 .table {
     background-color: #d3fbe7;
-
 }

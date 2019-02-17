@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './EventPage.css';
 import moment from 'moment';
-import { Dialog, DialogTitle, TextField, Button, } from '@material-ui/core';
+import { Dialog, DialogTitle, TextField, Button, DialogContent } from '@material-ui/core';
 import StarRatingComponent from 'react-star-rating-component';
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert'
@@ -83,18 +83,18 @@ class EventPage extends Component {
                     event_id: this.props.reduxStore.thisEvent.id,
                 }
             })
-            swal("Attending !", "You are successfully attending an event!", "success");
+            swal("Attending !", "You are now listed as attending this event!", "success");
         } else if (type === 'Cancel') { //remove this user from this event
             swal({
                 title: "Are you sure?",
-                text: "Are you sure you want to lose you spot at this event?",
+                text: "You may lose your spot at this event.",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
               })
               .then((willDelete) => {
                 if (willDelete) {
-                  swal("Event has been cancelled", {
+                  swal("You are no longer attending.", {
                     icon: "success",
                   });
                   this.props.dispatch({
@@ -109,7 +109,7 @@ class EventPage extends Component {
                     }
                 })
                 } else {
-                  swal("Event has NOT been cancelled" )
+                  swal("You have NOT given up your spot." )
                 }
               });
             
@@ -124,13 +124,13 @@ class EventPage extends Component {
 
     render() {
         console.log('state', this.props.reduxStore.thisEvent);
-        console.log("eventdate", moment(this.props.reduxStore.thisEvent.date).format('YYYYDDD'));
-        console.log("now", moment().format('YYYYDDD'));
-        console.log("nowMinus7", moment().subtract(7, 'days').format('YYYYDDD'));
+        console.log("eventdate", moment(this.props.reduxStore.thisEvent.date).format('YYYYDDDD'));
+        console.log("now", moment().format('YYYYDDDD'));
+        console.log("nowMinus7", moment().subtract(7, 'days').format('YYYYDDDD'));
 
-        let eventDate = moment(this.props.reduxStore.thisEvent.date).format('YYYYDDD');
-        let now = moment().format('YYYYDDD');
-        let nowMinus7 = moment().subtract(7, 'days').format('YYYYDDD');
+        let eventDate = moment(this.props.reduxStore.thisEvent.date).format('YYYYDDDD');
+        let now = moment().format('YYYYDDDD');
+        let nowMinus7 = moment().subtract(7, 'days').format('YYYYDDDD');
         let attending = this.props.reduxStore.attendingThis.attending;
         let feedback = this.props.reduxStore.attendingThis.feedback;
         let buttonDisplay;
@@ -168,31 +168,30 @@ class EventPage extends Component {
 
         return (
             <div className="eventpage-container">
+            <div className="eventpage-title">
                 <h1>{this.props.reduxStore.thisEvent.title}</h1>
-                <img src={this.props.reduxStore.thisEvent.image} alt="picture" className="image-url" />
-                <h5>{this.props.reduxStore.thisEvent.venue}</h5>
-                <p>{this.props.reduxStore.thisEvent.address}</p>
-                <p>{moment(this.props.reduxStore.thisEvent.date).format("MMM Do YYYY")}</p>
-                <p>{moment(this.props.reduxStore.thisEvent.time, "HH:mm").format("hh:mm A")}</p>
-                <p>{this.props.reduxStore.thisEvent.description}</p>
-                <p>{this.props.reduxStore.thisEvent.attendee} going </p>
-                <p>of a possible {this.props.reduxStore.thisEvent.capacity}</p>
-                <p>Hosted by: <Link to={`/captain/profile/${this.props.reduxStore.thisEvent.captain_id}`}>{this.props.reduxStore.thisEvent.username}</Link></p>
-
+            </div>
+                <img src={this.props.reduxStore.thisEvent.image} alt="picture" className="eventpage-image-url" />
+            <div className="eventpage-details">
+                <p><strong>When: </strong>{moment(this.props.reduxStore.thisEvent.date).format("MMM Do YYYY")} at {moment(this.props.reduxStore.thisEvent.time, "HH:mm").format("hh:mm A")}</p>
+                <p><strong>Where: </strong>{this.props.reduxStore.thisEvent.venue}, {this.props.reduxStore.thisEvent.address}</p>
+            </div>
+                <p className="eventpage-description">{this.props.reduxStore.thisEvent.description}</p>
+                <p className="host">Hosted by: <Link to={`/captain/profile/${this.props.reduxStore.thisEvent.captain_id}`}>{this.props.reduxStore.thisEvent.username}</Link></p>
+                <p className="attendee-count"><strong>{this.props.reduxStore.thisEvent.attendee} going</strong> of a <strong>possible {this.props.reduxStore.thisEvent.capacity}</strong></p>
                 {buttonDisplay}
-
-                <div>
+                <div className="main">
                     <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="simple-dialog-title" >
-                        <DialogTitle id="simple-dialog-title">Feedback</DialogTitle>
-
-                        <form>
-
+                        <DialogTitle className="style-size" id="simple-dialog-title">Feedback</DialogTitle>
+                        
+                        <DialogContent >
                             {/* Star rating */}
-                            <StarRatingComponent 
+                            Rate: <StarRatingComponent 
                                 name="rating"
                                 starCount={5}
                                 value={this.state.rating}
                                 onStarClick={this.onStarClick.bind(this)} />
+                            
                             {/* comments */}
                             <TextField
                                 label="comments"
@@ -205,11 +204,12 @@ class EventPage extends Component {
                                 name="comment"
                                 onChange={this.handleChange('comment')}
                             />
-                        </form>
                         <Button
                             variant="contained"
                             color="primary"
                             onClick={this.handleSubmit}>submit</Button>
+                        </DialogContent>
+
                     </Dialog>
                 </div>
 

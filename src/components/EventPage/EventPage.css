@@ -3,6 +3,10 @@
     background-color: #d3fbe7;
 }
 
+.eventpage-title {
+    text-align: center;
+}
+
 .event-cancel {
     background-color:#a71d14!important;
     color: rgb(255, 255, 255)!important;
@@ -35,6 +39,36 @@
    display: block;
 }
 
-.image-url{
+.eventpage-image-url{
     max-width: 400px;
 }
+
+.eventpage-details {
+    font-size: 1.3rem;
+    margin: 10px;
+}
+
+.eventpage-description {
+    margin: 10px;
+}
+
+.attendee-count {
+    margin: 10px;
+    margin-top: 80px;
+}
+
+.host {
+    margin: 10px;
+}
+
+.main {
+    max-width: 600px !important;
+    max-height: 600px !important;
+
+    width: 600px;
+    /* height: 600px; */
+ }
+
+ .style-size {
+     text-align: center;
+ }

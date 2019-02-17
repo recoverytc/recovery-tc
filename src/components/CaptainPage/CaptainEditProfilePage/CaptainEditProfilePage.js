@@ -23,6 +23,7 @@ class CaptainEditProfilePage extends Component {
 
   handleClick = () => {
     this.props.dispatch({type: 'UPDATE_CAPTAIN_PROFILE_INFO', payload: this.state});
+    swal("Profile Updated!", "You have successfully updated your profile!", "success");
   }
 
   handleChange = (propertyName) => (event) => {

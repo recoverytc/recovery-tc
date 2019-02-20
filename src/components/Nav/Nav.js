@@ -23,7 +23,7 @@ const Nav = (props) => (
           )}
           {props.user.admin && (
             <>
-              <li><Link to="/admin/users">Manage Users</Link></li>
+              <li><Link to="/admin/users">Manage Accounts</Link></li>
               <li><Link to="/admin/events">Manage Events</Link></li>
             </>
           )}

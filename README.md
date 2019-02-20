@@ -98,39 +98,39 @@ You will need to replace 'recoverytestaccount' with your own Amazon Web Services
 * Navigate to `localhost:3000`
 
 ## Features
-Event creation, deletion, and editing
-Attendee count
-NumVerify integrated phone number verification
-Twilio integrated SMS reminders and cancellation notices
-Captain profile pages
-AWS integrated image uploading and storage
+- Event creation, deletion, and editing
+- Attendee count
+- NumVerify integrated phone number verification
+- Twilio integrated SMS reminders and cancellation notices
+- Captain profile pages
+- AWS integrated image uploading and storage
 
 ## Future Features
-Google Maps integration
-In app messaging 
-QR code integration for event sign in
-Registration with Facebook
-Event comments
-Recurring events
+- Google Maps integration
+- In app messaging 
+- QR code integration for event sign in
+- Registration with Facebook
+- Event comments
+- Recurring events
 
 ## Created With
-React.js
-React Redux
-Redux Sagas
-Node.js
-Express 
-Passport
-Material-UI
-Font Awesome
-PostgreSQL
-AWS S3
-Twilio
-NumVerify
+- React.js
+- React Redux
+- Redux Sagas
+- Node.js
+- Express 
+- Passport
+- Material-UI
+- Font Awesome
+- PostgreSQL
+- AWS S3
+- Twilio
+- NumVerify
 
 ## Created By
-Isaiah Buckhalton https://github.com/Buckhalton
-Morgan Costigan https://github.com/morgancostigan
-Said Omar https://github.com/saidomar23
-Amie Thao https://github.com/amitao
+- Isaiah Buckhalton https://github.com/Buckhalton
+- Morgan Costigan https://github.com/morgancostigan
+- Said Omar https://github.com/saidomar23
+- Amie Thao https://github.com/amitao
 
 

@@ -3,7 +3,23 @@ This application uses React, Redux, Express, Passport, and PostgreSQL (a full li
 
 Recovery St. Paul is an event planning mobile first webapp for members of our local sober community with an emphasis on safety and communication.  It's a place where people in recovery can go to find out about sober events to encourage and support them in their personal journeys of recovery. The events are hosted by veteran members of the community known as Captains who are known personally by the Admin team.  Any member who attends an event is given the opportunity to leave non-published feedback after an event for the Admin team to see and quickly address any issues that may arise.
 
-<img src="documentation/images/LandingPageScreenshot.png" width="500"/>
+## Created With
+- React.js
+- React Redux
+- Redux Sagas
+- Node.js
+- Express 
+- Passport
+- Material-UI
+- Font Awesome
+- PostgreSQL
+- moment.js
+- axios
+- NPM
+- Sweet Alert
+- AWS S3
+- Twilio
+- NumVerify
 
 ## Prerequisites
 
@@ -12,6 +28,8 @@ Before you get started, make sure you have the following software installed on y
 - [Node.js](https://nodejs.org/en/)
 - [PostrgeSQL](https://www.postgresql.org/)
 - [Nodemon](https://nodemon.io/)
+
+<img src="documentation/images/LandingPageScreenshot.png" width="500"/>
 
 ## Create database and tables
 
@@ -114,20 +132,7 @@ You will need to replace 'recoverytestaccount' with your own Amazon Web Services
 - Registration with Facebook
 - Event comments
 - Recurring events
-
-## Created With
-- React.js
-- React Redux
-- Redux Sagas
-- Node.js
-- Express 
-- Passport
-- Material-UI
-- Font Awesome
-- PostgreSQL
-- AWS S3
-- Twilio
-- NumVerify
+- Password reset capability
 
 ## Created By
 - Isaiah Buckhalton https://github.com/Buckhalton

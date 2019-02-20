@@ -1,6 +1,5 @@
 .form-container {
     display: flex!important;
-    /* align-content: center!important; */
     flex-direction: column;
     text-align: center;
     background-color: #d3fbe7;

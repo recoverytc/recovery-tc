@@ -1,22 +1,25 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
-const { rejectUnauthenticated , rejectNonCaptain , rejectNonAdmin } = require('../modules/authentication-middleware');
+const { rejectUnauthenticated, rejectNonCaptain, rejectNonAdmin } = require('../modules/authentication-middleware');
 
-router.get('/getUsers', rejectNonAdmin , (req, res) => {
-    let queryText = `SELECT "first_name", "last_name", "username", "email", "phone", "captain", "active", "id" FROM "user" ORDER BY "id" ASC;`;
-    pool.query(queryText)
-    .then( response => {
-        res.send(response.rows);
+
+// Gets all user account info for the Admin pages
+router.get('/getUsers', rejectNonAdmin, (req, res) => {
+  let queryText = `SELECT "first_name", "last_name", "username", "email", "phone", "captain", "active", "id" FROM "user" ORDER BY "id" ASC;`;
+  pool.query(queryText)
+    .then(response => {
+      res.send(response.rows);
 
     })
     .catch(err => {
-      console.log('Error getting Users List:', err);
       res.sendStatus(500);
     })
 });
 
-router.put('/changeCaptainStatus', rejectNonAdmin , (req, res) => {
+
+// Changes a users status from captain to User and vice-versa
+router.put('/changeCaptainStatus', rejectNonAdmin, (req, res) => {
   let id = req.body.id;
   if (req.body.captain) {
     pool.query('UPDATE "user" SET "captain" = $1 WHERE "id" = $2;', [false, id])
@@ -24,23 +27,22 @@ router.put('/changeCaptainStatus', rejectNonAdmin , (req, res) => {
         res.sendStatus(201);
       })
       .catch(err => {
-        console.log('Error Demoting user', err);
         res.sendStatus(500);
       })
   } else {
     pool.query('UPDATE "user" SET "captain" = $1 WHERE "id" = $2;', [true, id])
       .then(response => {
-        console.log(response.rows);
         res.sendStatus(201);
       })
       .catch(err => {
         res.sendStatus(500);
-        console.log('Error promoting user', err);
       })
   }
 })
 
-router.put('/changeActiveStatus',rejectNonAdmin , (req, res) => {
+
+// Activates and Deactivates accounts
+router.put('/changeActiveStatus', rejectNonAdmin, (req, res) => {
   let id = req.body.id;
   if (req.body.active) {
     pool.query('UPDATE "user" SET "active" = $1 WHERE "id" = $2;', [false, id])
@@ -48,26 +50,23 @@ router.put('/changeActiveStatus',rejectNonAdmin , (req, res) => {
         res.sendStatus(201);
       })
       .catch(err => {
-        console.log('Error Deactivating user', err);
         res.sendStatus(500);
       })
   } else {
     pool.query('UPDATE "user" SET "active" = $1 WHERE "id" = $2;', [true, id])
       .then(response => {
-        console.log(response.rows);
         res.sendStatus(201);
       })
       .catch(err => {
         res.sendStatus(500);
-        console.log('Error activating user', err);
       })
   }
 })
 
-
-router.get('/attendees/:id', rejectNonAdmin , (req, res) => {
-    let id = req.params.id;
-    let queryText = `SELECT "event_user"."id",
+// Gets all Users who attended a specific event
+router.get('/attendees/:id', rejectNonAdmin, (req, res) => {
+  let id = req.params.id;
+  let queryText = `SELECT "event_user"."id",
                             "event_user"."event_id", 
                             "event"."title", 
                             "event_user"."user_id",
@@ -77,25 +76,18 @@ router.get('/attendees/:id', rejectNonAdmin , (req, res) => {
                             FROM "event_user"
                             JOIN "user" ON "event_user"."user_id" = "user"."id"
                             JOIN "event" ON "event_user"."event_id" = "event"."id" WHERE "event"."id" = $1 ORDER BY "id" ASC;`;
-    pool.query(queryText, [id])
+  pool.query(queryText, [id])
     .then(response => {
-        res.send(response.rows);
+      res.send(response.rows);
     })
     .catch(err => {
-        console.log('Error in attendees GET:', err);
-        res.sendStatus(500);
+      res.sendStatus(500);
     })
 })
 
-
-router.post('/', (req, res) => {
-
-});
-
-
 //  GET ALL EVENTS for admin
 // Join tables
-router.get('/eventList',rejectNonAdmin , (req, res) => {
+router.get('/eventList', rejectNonAdmin, (req, res) => {
   let queryText = `SELECT "event".*, "user"."first_name", 
     "user"."last_name", avg("event_user"."rating") 
     FROM "event" 
@@ -108,7 +100,6 @@ router.get('/eventList',rejectNonAdmin , (req, res) => {
       res.send(response.rows);
     })
     .catch(err => {
-      console.log('Error getting admin events list:', err);
       res.sendStatus(500);
     })
 })

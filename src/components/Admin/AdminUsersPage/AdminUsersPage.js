@@ -8,14 +8,15 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import './AdminUsersPage.css';
-import swal from 'sweetalert'
-let activeStatus;
-let captainStatus;
+import swal from 'sweetalert';
+
+// This view allows Admins to view a compelte list of all registered accounts.
 class AdminUsersPage extends Component {
     componentDidMount() {
+        //Fetches all users
         this.props.dispatch({ type: 'FETCH_ALL_USERS' });
     }
-
+    // This method allows Admins to promote/demote accounts to and from the Captain Status.
     changeRole = (user, captainButton) => {
         swal({
             title: "Are you sure?",
@@ -23,20 +24,21 @@ class AdminUsersPage extends Component {
             icon: "warning",
             buttons: true,
             dangerMode: true,
-          })
-          .then((willDelete) => {
-            if (willDelete) {
-              swal(`Account has been ${captainButton + 'd'}`, {
-                icon: "success",
-              });
-              this.props.dispatch({ type: 'CHANGE_CAPTAIN_STATUS', payload: user });
-            } else {
-              swal(`${captainButton} has been cancelled` )
-            }
-          });
-        
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal(`Account has been ${captainButton + 'd'}`, {
+                        icon: "success",
+                    });
+                    this.props.dispatch({ type: 'CHANGE_CAPTAIN_STATUS', payload: user });
+                } else {
+                    swal(`${captainButton} has been cancelled`)
+                }
+            });
+
     }
 
+    // This method allows Admins to activate/deactivate accounts.
     changeActiveStatus = (user, activeButton) => {
         swal({
             title: "Are you sure?",
@@ -44,25 +46,27 @@ class AdminUsersPage extends Component {
             icon: "warning",
             buttons: true,
             dangerMode: true,
-          })
-          .then((willDelete) => {
-            if (willDelete) {
-              swal(`Account has been ${activeButton + 'd'}`, {
-                icon: "success",
-              });
-              this.props.dispatch({ type: 'CHANGE_ACTIVE_STATUS', payload: user });
-            } else {
-              swal(`${activeButton} has been cancelled` )
-            }
-          });
-        
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal(`Account has been ${activeButton + 'd'}`, {
+                        icon: "success",
+                    });
+                    this.props.dispatch({ type: 'CHANGE_ACTIVE_STATUS', payload: user });
+                } else {
+                    swal(`${activeButton} has been cancelled`)
+                }
+            });
+
     }
 
+    //This method gives the table striped rows
     getStripedStyle(i) {
         return { backgroundColor: i % 2 ? '#d3fbe7' : '#e5fffe' };
     }
 
     render() {
+        // This maps the list of all accounts/users into a table, and also determines which buttons should be displayed.
         let tableContentOne = this.props.userList.map((row, i) => {
             let captain;
             let activeButton;
@@ -87,7 +91,7 @@ class AdminUsersPage extends Component {
                 buttonClassActive = "active-button"
                 // activeStatus = "activated";
 
-                
+
             }
             return (
                 <TableRow key={i} style={this.getStripedStyle(i)}>
@@ -115,7 +119,7 @@ class AdminUsersPage extends Component {
                             onClick={() => this.changeActiveStatus(this.props.userList[i], activeButton)}
 
                             className={buttonClassActive}
-                          
+
                             color="secondary"
                             variant="contained"
                         >

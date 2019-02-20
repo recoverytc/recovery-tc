@@ -45,6 +45,8 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+
+// Numverify API, this route checks if the users phone number is legitimate.
 router.get('/num/:id', (req, res) => {
   let id = req.params.id;
   axios.get(`http://apilayer.net/api/validate?access_key=${process.env.NUMVERIFY_API_KEY}&number=${id}&country_code=US&format=1`)

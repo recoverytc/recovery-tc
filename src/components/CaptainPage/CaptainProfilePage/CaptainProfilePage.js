@@ -10,12 +10,8 @@ import moment from 'moment';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert'
-
-
 // Styles
 import './CaptainProfilePage.css';
-
-
 
 class CaptainProfilePage extends Component {
 
@@ -176,19 +172,10 @@ swal("Image Updated!", "You have successfully updated your profile image!", "suc
         swal("Event has NOT been cancelled" )
       }
     });
-    
-    // console.log(this.state)
-
   }
 
   handleEdit = (event) => {
-    console.log('editting', event);
-    // this.props.dispatch({ type: 'FETCH_THIS_EVENT', refresh: id })
-
-    // console.log(this.state)
-
     this.handleOpen(event)
-
   }
 
   handleEditImage = () => {
@@ -196,12 +183,6 @@ swal("Image Updated!", "You have successfully updated your profile image!", "suc
   }
 
   render() {
-    console.log('eventlist', this.props.eventList)
-
-
-
-
-
     //conditionally rendered buttons, only if captain is looking at their own profile
     let editProfileButton;
     let editProfileImageButton;
@@ -209,9 +190,6 @@ swal("Image Updated!", "You have successfully updated your profile image!", "suc
     let addEventButton;
     let cancelEventButton;
     let eventDescription;
-
-
-    
     let profileContent = this.props.captainProfile.map((profile, i) => {
       if (Number(this.props.user.id) === Number(this.props.match.params.id)) {
         editProfileButton = 
@@ -234,12 +212,12 @@ swal("Image Updated!", "You have successfully updated your profile image!", "suc
           <div className="picture-container">
             <img src={profile.image} alt="me" className="captain-picture" />
               {editProfileImageButton}
-          </div> {/* .picture-container */}
+          </div>
 
           <div className="icon-buttons">
               {editProfileButton}
               {addEventButton}
-          </div> {/* .icon-buttons */}
+          </div>
 
 
           <div className="bio">
@@ -260,17 +238,14 @@ swal("Image Updated!", "You have successfully updated your profile image!", "suc
               <p className="demo-p-tag">{profile.email}</p>
               <p className="demo-p-tag">{profile.phone}</p>
             </div>
-          </div> {/* .demo-info */}
+          </div>
 
           <div className="bio">
             <hr />
             <p className="demo-p-tag">BIO</p>
-            {/* <div className="style-blank-div"></div> */}
             <p className="demo-p-tag">{profile.bio}</p>
             <div className="style-blank-div"></div>
           </div>
-          
-          {/* .bio */}
         </div>
         // .captain-wrapper
       )
@@ -278,25 +253,15 @@ swal("Image Updated!", "You have successfully updated your profile image!", "suc
 
 
     return (
-      console.log('this.props.match.params.id', this.props.match.params.id),
-      
-
       <div className="captain-container">
         {profileContent}
-
-        {/* Beginning of the Events page */}
       <div className="event-root">
         <h1 className="h1-event">My Current Events</h1>
-
         <hr />
-
-
         <div className="event-data-root">
-        
           {this.props.eventList.map((event, i) => {
             if (Number(event.captain_id) === Number(this.props.match.params.id)) {
               if (Number(this.props.user.id) === Number(this.props.match.params.id)) {
-
                 editEventButton =
                   <div className="edit-event-box">
                     <img src="/editEventIcon.svg" alt="edit Event" className="event-btn" onClick={() => this.handleEdit(event)} />
@@ -310,19 +275,14 @@ swal("Image Updated!", "You have successfully updated your profile image!", "suc
               } else {
                 eventDescription = 
                   <p className="description">{event.description.substring(0, 200)}...</p>
-
               }
-
-              
               return (                
                 <div key={i} className="root">
                  <Link to={`/events/${event.id}`}>
                   <div className="event-data">
                     <p>{moment(event.date).format("MMM Do YYYY")}</p>
-                    {/* <p>{moment(event.time, "HH:mm").format("hh:mm A")}</p> */}
                     <p className="event-title">{event.title}</p>
                   </div>
-
                   <div className="image-container">
                     <img src={event.image} alt="event" className="image-url" />
                   </div>
@@ -330,8 +290,6 @@ swal("Image Updated!", "You have successfully updated your profile image!", "suc
                   {editEventButton}
                   {cancelEventButton}
                   {eventDescription}
-
-
                 </div>
                 // .root2
               )
@@ -339,10 +297,8 @@ swal("Image Updated!", "You have successfully updated your profile image!", "suc
 
             }
           })}
-          </div>{/* .event-data-root */}
-        </div> {/* .event-root */}
-
-
+          </div>
+        </div>
         {/* Pop up Dialog to edit events */}
           <Dialog
             open={this.state.open}

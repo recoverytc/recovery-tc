@@ -60,22 +60,8 @@ class EventForm extends Component {
         })
     }
 
-    autofillForm = () => {
-        this.setState({
-        title: 'Camp Cope Gig',
-        date: '2019-05-23',
-        time: '19:30',
-        address: '1601 University Ave, St. Paul, MN 55104',
-        description: 'THIS GIG IS AT A BAR, we understand if you\'re hesitant, please feel free to contact me beforehand, or find me at the show.',
-        capacity: '50',
-        venue: 'The Turf Club',
-        })
-        console.log('EWRNVEWRNVWLEVN');
-    }
-
 
     handleClick = () => {
-        console.log(this.state);
         const formData = new FormData();
         formData.append('file', this.state.file[0]);
         formData.append('title', this.state.title);
@@ -94,9 +80,8 @@ class EventForm extends Component {
             this.props.history.push(`/home`);
         }).catch(error => {
             // handle your error
-            console.log(error);
-          });
-          swal("Event Posted!", "You have successfully created an event!", "success");
+        });
+        swal("Event Posted!", "You have successfully created an event!", "success");
     }
 
     handleFileUpload = (event) => {
@@ -162,32 +147,21 @@ class EventForm extends Component {
                     inputProps={{ maxLength: 2000 }}
                     onChange={this.handleDescriptionChange}
                 />
-                {/* <TextField
-                        variant="outlined"
-                        label="Image Url"
-                        placeholder="Image Url"
-                        margin="normal"
-                        inputProps={{ maxLength: 300 }}
-                        onChange={this.handleImageChange}
-                    /> */}
-                    {/* <label className="custom-file-upload"> */}
-                        <input label="upload file" type='file' onChange={this.handleFileUpload} />
-                        {/* Choose File */}
-                    {/* </label> */}
-                    <TextField
-                        variant="outlined"
-                        // label="Capacity"
-                        placeholder="Capacity"
-                        margin="normal"
-                        value={this.state.capacity}
-                        onChange={this.handleCapacityChange}
-                    />
-                    <Button 
-                        className="add-event-submit" 
-                        onClick={this.handleClick}
-                        variant="contained"
-                        color="primary">
-                        Submit
+                <input label="upload file" type='file' onChange={this.handleFileUpload} />
+                <TextField
+                    variant="outlined"
+                    label="Capacity"
+                    placeholder="Capacity"
+                    margin="normal"
+                    value={this.state.capacity}
+                    onChange={this.handleCapacityChange}
+                />
+                <Button
+                    className="add-event-submit"
+                    onClick={this.handleClick}
+                    variant="contained"
+                    color="primary">
+                    Submit
                     </Button>
             </form>
         )

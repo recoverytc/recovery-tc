@@ -1,0 +1,17 @@
+.about-container {
+    height: 80%;
+    width: 80%;
+    background-color: #d3fbe7;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 1.5vmax;
+}
+
+.about-paragraph {
+    color: #00363e;
+}
+
+.about-title {
+    font-weight: bold;
+    color: #00363e;
+}

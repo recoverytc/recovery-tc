@@ -128,6 +128,7 @@ You will need to replace 'recoverytestaccount' with your own Amazon Web Services
 - Registration with Facebook
 - Event comments
 - Recurring events
+- Password reset capability
 
 ## Created By
 - Isaiah Buckhalton https://github.com/Buckhalton

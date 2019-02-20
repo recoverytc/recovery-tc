@@ -1,13 +1,7 @@
-# Prime Project
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
+# Recovery St. Paul
+This application uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
 
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
-
-## Download (Don't Clone) This Repository
-
-* Don't Fork or Clone. Instead, click the `Clone or Download` button and select `Download Zip`.
-* Unzip the project and start with the code in that folder.
-* Create a new GitHub project and push this code to the new repository.
+Recovery St. Paul is an event planning mobile first webapp for members of our local sober community with an emphasis on safety and communication.  It's a place where people in recovery can go to find out about sober events to encourage and support them in their personal journeys of recovery. The events are hosted by veteran members of the community known as Captains who are known personally by the Admin team.  Any member who attends an event is given the opportunity to leave non-published feedback after an event for the Admin team to see and quickly address any issues that may arise.
 
 ## Prerequisites
 
@@ -17,83 +11,126 @@ Before you get started, make sure you have the following software installed on y
 - [PostrgeSQL](https://www.postgresql.org/)
 - [Nodemon](https://nodemon.io/)
 
-## Create database and table
+## Create database and tables
 
-Create a new database called `prime_app` and create a `person` table:
+Create a new database called `recovery` and create these tables:
 
 ```SQL
-CREATE TABLE "person" (
+CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
+    "password" VARCHAR (1000) NOT NULL,
+    "first_name" VARCHAR (200) NOT NULL,
+    "last_name" VARCHAR (200) NOT NULL,
+    "email" VARCHAR (200) UNIQUE NOT NULL,
+    "phone" VARCHAR (20) UNIQUE NOT NULL,
+    "bio" VARCHAR (2000),
+    "image" VARCHAR (2000),
+    "admin" BOOLEAN DEFAULT false,
+    "captain" BOOLEAN DEFAULT false,
+    "active" BOOLEAN DEFAULT true,
+    "password_reset" VARCHAR (250),
+    "password_reset_expiration" BOOLEAN DEFAULT false,
+    "password_verification" BOOLEAN DEFAULT false
+);
+
+CREATE TABLE "event" (
+	"id" SERIAL PRIMARY KEY,
+	"title" VARCHAR (200),
+	"date" DATE,
+	"time" TIME,
+	"venue" varchar (200),
+	"address" VARCHAR (300),
+	"description" VARCHAR (2000),
+	"feature" BOOLEAN DEFAULT false, 
+	"carousel" BOOLEAN DEFAULT false,
+	"image" VARCHAR (300),
+	"captain_id" INT REFERENCES "user",
+	"capacity" INT, 
+	"attendee" INT DEFAULT 1
+);
+
+CREATE TABLE "event_user" (
+	"id" SERIAL PRIMARY KEY,
+	"event_id" INT REFERENCES "event",
+	"user_id" INT REFERENCES "user",
+	"feedback" BOOLEAN DEFAULT false,
+	"comment" VARCHAR (2000),
+	"rating" INT DEFAULT NULL
+	"attending" boolean default true
 );
 ```
 
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
+If you would like to name your database something else, you will need to change `recovery` to the name of your new database name in `server/modules/pool.js`
 
 ## Development Setup Instructions
 
 * Run `npm install`
 * Create a `.env` file at the root of the project and paste this line into the file:
     ```
-    SERVER_SESSION_SECRET=superDuperSecret
+SERVER_SESSION_SECRET=superDuperSecret
+NUMVERIFY_API_KEY=010101010101010101010101
+
+TWILIO_ACCOUNT_SID=010101010101010101010101
+TWILIO_AUTH_TOKEN=010101010101010101010101
+TWILIO_PHONE_NUMBER=+16125555555
+
+S3_BUCKET=recoverytestaccount
+AWS_ACCESS_KEY_ID=010101010101010101010101
+AWS_SECRET_ACCESS_KEY=010101010101010101010101
     ```
-    While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
+    
+SERVER_SESSION_SECRET
+While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
+
+NUMVERIFY API KEY
+You will need to replace '010101010101010101010101' with your own NumVerify key.  You can get a "trial account" at https://numverify.com/.  This is currently good for 250 API calls monthly, with paid subscriptions available starting at $9.99 monthly for 5000 API calls.
+
+TWILIO
+You will need to replace '010101010101010101010101' with your own Twilio SID and Auth Token as well as replacing '16125555555' with a Twilio phone number that can be purchased at https://www.twilio.com/.  A Twilio phone number that can be used for SMS is $1.00 monthly, with one SMS/second capability at $0.0075 per SMS.  They have faster plans available as well.
+
+S3 BUCKET and AWS
+You will need to replace 'recoverytestaccount' with your own Amazon Web Services bucket name.  This can be created at https://aws.amazon.com/.  You will navigate to the S3 console and create a bucket, making sure to set "block new public ACLs and uploading public objects" to FALSE.  You will also need to replace both instances of '010101010101010101010101' to your own AWS ACCESS KEY ID and SECRET ACCESS KEY that will be created on the same site.  This is all free up to 5GB, they do have paid plans with more information at https://aws.amazon.com/s3/pricing/.
+
 * Start postgres if not running already by using `brew services start postgresql`
 * Run `npm run server`
 * Run `npm run client`
 * Navigate to `localhost:3000`
 
-## Debugging
+## Features
+Event creation, deletion, and editing
+Attendee count
+NumVerify integrated phone number verification
+Twilio integrated SMS reminders and cancellation notices
+Captain profile pages
+AWS integrated image uploading and storage
 
-To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run client`. Start the debugging server by selecting the Debug button.
+## Future Features
+Google Maps integration
+In app messaging 
+QR code integration for event sign in
+Registration with Facebook
+Event comments
+Recurring events
 
-![VSCode Toolbar](documentation/images/vscode-toolbar.png)
+## Created With
+React.js
+React Redux
+Redux Sagas
+Node.js
+Express 
+Passport
+Material-UI
+Font Awesome
+PostgreSQL
+AWS S3
+Twilio
+NumVerify
 
-Then make sure `Launch Program` is selected from the dropdown, then click the green play arrow.
+## Created By
+Isaiah Buckhalton https://github.com/Buckhalton
+Morgan Costigan https://github.com/morgancostigan
+Said Omar https://github.com/saidomar23
+Amie Thao https://github.com/amitao
 
-![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
 
-
-## Production Build
-
-Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
-
-* Start postgres if not running already by using `brew services start postgresql`
-* Run `npm start`
-* Navigate to `localhost:5000`
-
-## Lay of the Land
-
-* `src/` contains the React application
-* `public/` contains static assets for the client-side
-* `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
-* `server/` contains the Express App
-
-This code is also heavily commented. We recommend reading through the comments, getting a lay of the land, and becoming comfortable with how the code works before you start making too many changes. If you're wondering where to start, consider reading through component file comments in the following order:
-
-* src/components
-  * App/App
-  * Footer/Footer
-  * Nav/Nav
-  * AboutPage/AboutPage
-  * InfoPage/InfoPage
-  * UserPage/UserPage
-  * LoginPage/LoginPage
-  * RegisterPage/RegisterPage
-  * LogOutButton/LogOutButton
-  * ProtectedRoute/ProtectedRoute
-
-## Deployment
-
-1. Create a new Heroku project
-1. Link the Heroku project to the project GitHub Repo
-1. Create an Heroku Postgres database
-1. Connect to the Heroku Postgres database from Postico
-1. Create the necessary tables
-1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
-1. In the deploy section, select manual deploy
-
-## Update Documentation
-
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2

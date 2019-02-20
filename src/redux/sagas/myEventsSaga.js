@@ -54,7 +54,8 @@ function* fetchMyEvents(action) {
 function* editEvent(action){
     try{
         yield call (axios.put , '/api/captain/edit/event' , action.payload)
-        yield put({type: 'FETCH_CAPTAIN_PROFILE', payload: action.payload.captain_id})
+        yield put({ type: 'FETCH_EVENT_LIST'});
+
     }catch(error){
         console.log('error in edit saga' , error);
         

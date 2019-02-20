@@ -3,7 +3,7 @@ This application uses React, Redux, Express, Passport, and PostgreSQL (a full li
 
 Recovery St. Paul is an event planning mobile first webapp for members of our local sober community with an emphasis on safety and communication.  It's a place where people in recovery can go to find out about sober events to encourage and support them in their personal journeys of recovery. The events are hosted by veteran members of the community known as Captains who are known personally by the Admin team.  Any member who attends an event is given the opportunity to leave non-published feedback after an event for the Admin team to see and quickly address any issues that may arise.
 
-<img src="documentation/images/LandingPagecreenshot.png" width="500"/>
+<img src="documentation/images/LandingPageScreenshot.png" width="500"/>
 
 ## Prerequisites
 

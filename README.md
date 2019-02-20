@@ -69,14 +69,24 @@ If you would like to name your database something else, you will need to change 
 * Create a `.env` file at the root of the project and paste this line into the file:
     ```
 SERVER_SESSION_SECRET=superDuperSecret
+
+
 NUMVERIFY_API_KEY=010101010101010101010101
 
 TWILIO_ACCOUNT_SID=010101010101010101010101
+
+
 TWILIO_AUTH_TOKEN=010101010101010101010101
+
+
 TWILIO_PHONE_NUMBER=+16125555555
 
 S3_BUCKET=recoverytestaccount
+
+
 AWS_ACCESS_KEY_ID=010101010101010101010101
+
+
 AWS_SECRET_ACCESS_KEY=010101010101010101010101
     ```
     

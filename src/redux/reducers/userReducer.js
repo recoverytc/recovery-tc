@@ -1,8 +1,8 @@
 const userReducer = (state = {}, action) => {
   switch (action.type) {
-    case 'SET_USER':
+    case 'SET_USER': //from loginSaga, or userSaga
       return action.payload;
-    case 'UNSET_USER':
+    case 'UNSET_USER': //from loginSaga
       return {};
     default:
       return state;

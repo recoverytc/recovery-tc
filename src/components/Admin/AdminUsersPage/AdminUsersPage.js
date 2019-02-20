@@ -12,7 +12,7 @@ import swal from 'sweetalert'
 
 class AdminUsersPage extends Component {
     componentDidMount() {
-        this.props.dispatch({ type: 'FETCH_ALL_USERS' });
+        this.props.dispatch({ type: 'FETCH_ALL_USERS' }); //to userListSaga
     }
 
     changeRole = (user, captainButton) => {
@@ -28,7 +28,7 @@ class AdminUsersPage extends Component {
               swal(`Account has been ${captainButton}`, {
                 icon: "success",
               });
-              this.props.dispatch({ type: 'CHANGE_CAPTAIN_STATUS', payload: user });
+                this.props.dispatch({ type: 'CHANGE_CAPTAIN_STATUS', payload: user }); //to userListSaga
             } else {
               swal(`${captainButton} has been cancelled` )
             }
@@ -49,7 +49,7 @@ class AdminUsersPage extends Component {
               swal(`Account has been ${activeButton}`, {
                 icon: "success",
               });
-              this.props.dispatch({ type: 'CHANGE_ACTIVE_STATUS', payload: user });
+                this.props.dispatch({ type: 'CHANGE_ACTIVE_STATUS', payload: user }); //to userListSaga
             } else {
               swal(`${activeButton} has been cancelled` )
             }

@@ -34,7 +34,7 @@ class EventPage extends Component {
     }
 
     handleSubmit = () => {
-        this.props.dispatch({ type: 'UPDATE_FEEDBACK', 
+        this.props.dispatch({ type: 'UPDATE_FEEDBACK', //to myEventsSaga
         payload: {
             feedback: this.state.feedback,
             rating: this.state.rating,
@@ -57,7 +57,7 @@ class EventPage extends Component {
     getThisEvent() {
         // console.log('getThisEvent');
         this.props.dispatch({
-            type: 'FETCH_THIS_EVENT',
+            type: 'FETCH_THIS_EVENT', //to thisEventSaga
             refresh: this.props.match.params.id
         });
     }//end getThisEvent
@@ -65,7 +65,7 @@ class EventPage extends Component {
     getAttendingThis() {
         // console.log('getAttendingThis');
         this.props.dispatch({
-            type: 'FETCH_ATTENDING_THIS_EVENT',
+            type: 'FETCH_ATTENDING_THIS_EVENT', //to attendingThisSaga
             refresh: this.props.match.params.id
         });
     }//end getAttendingThis
@@ -73,7 +73,7 @@ class EventPage extends Component {
     HandleEvents = (type) => {
         if (type === 'Attend') {  //add this user to this event
             this.props.dispatch({
-                type: 'ADD_TO_MY_EVENTS',
+                type: 'ADD_TO_MY_EVENTS', //to myEventsSaga
                 payload: {
                     event_id: this.props.reduxStore.thisEvent.id,
                     user_id: this.props.reduxStore.user.id,
@@ -98,7 +98,7 @@ class EventPage extends Component {
                     icon: "success",
                   });
                   this.props.dispatch({
-                    type: 'DELETE_FROM_THIS_EVENT',
+                    type: 'DELETE_FROM_THIS_EVENT', //to myEventsSaga
                     payload: {
                         event_id: this.props.reduxStore.thisEvent.id,
                         user_id: this.props.reduxStore.user.id,

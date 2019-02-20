@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import {TextField, Button} from '@material-ui/core';
 import './LoginPage.css'
 
@@ -15,14 +14,14 @@ class LoginPage extends Component {
 
     if (this.state.username && this.state.password) {
       this.props.dispatch({
-        type: 'LOGIN',
+        type: 'LOGIN', //to loginSaga
         payload: {
           username: this.state.username,
           password: this.state.password,
         },
       });
     } else {
-      this.props.dispatch({ type: 'LOGIN_ACCOUNT_ERROR' });
+      this.props.dispatch({ type: 'LOGIN_INPUT_ERROR' }); //to errorsReducer
     }
   } // end login
 

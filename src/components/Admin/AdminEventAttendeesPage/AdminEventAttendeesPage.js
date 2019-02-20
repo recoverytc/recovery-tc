@@ -11,7 +11,7 @@ import './AdminEventAttendeesPage';
 
 class AdminEventAttendeesPage extends Component {
     componentDidMount() {
-        this.props.dispatch({type: 'FETCH_ATTENDEES_LIST', payload: this.props.match.params.id});
+        this.props.dispatch({type: 'FETCH_ATTENDEES_LIST', payload: this.props.match.params.id}); //to attendeesListSaga
     }
 
     getStripedStyle(i) {

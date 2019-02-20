@@ -32,14 +32,12 @@ class EventPage extends Component {
     }
 
     handleSubmit = () => {
-        this.props.dispatch({
-            type: 'UPDATE_FEEDBACK',
-            payload: {
-                feedback: this.state.feedback,
-                rating: this.state.rating,
-                comment: this.state.comment,
-                id: this.props.reduxStore.thisEvent.id
-            }
+        this.props.dispatch({ type: 'UPDATE_FEEDBACK', //to myEventsSaga
+        payload: {
+            feedback: this.state.feedback,
+            rating: this.state.rating,
+            comment: this.state.comment,
+            id: this.props.reduxStore.thisEvent.id }
         })
         this.handleClose();
         swal("Feedback Submitted!", "Thanks for the feedback, we appreciate it!", "success");
@@ -56,14 +54,14 @@ class EventPage extends Component {
 
     getThisEvent() {
         this.props.dispatch({
-            type: 'FETCH_THIS_EVENT',
+            type: 'FETCH_THIS_EVENT', //to thisEventSaga
             refresh: this.props.match.params.id
         });
     }//end getThisEvent
 
     getAttendingThis() {
         this.props.dispatch({
-            type: 'FETCH_ATTENDING_THIS_EVENT',
+            type: 'FETCH_ATTENDING_THIS_EVENT', //to attendingThisSaga
             refresh: this.props.match.params.id
         });
     }//end getAttendingThis
@@ -71,7 +69,7 @@ class EventPage extends Component {
     HandleEvents = (type) => {
         if (type === 'Attend') {  //add this user to this event
             this.props.dispatch({
-                type: 'ADD_TO_MY_EVENTS',
+                type: 'ADD_TO_MY_EVENTS', //to myEventsSaga
                 payload: {
                     event_id: this.props.reduxStore.thisEvent.id,
                     user_id: this.props.reduxStore.user.id,
@@ -89,25 +87,21 @@ class EventPage extends Component {
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
-            })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        swal("You are no longer attending.", {
-                            icon: "success",
-                        });
-                        this.props.dispatch({
-                            type: 'DELETE_FROM_THIS_EVENT',
-                            payload: {
-                                event_id: this.props.reduxStore.thisEvent.id,
-                                user_id: this.props.reduxStore.user.id,
-                            },
-                            refresh: {
-                                user_id: this.props.reduxStore.user.id,
-                                event_id: this.props.reduxStore.thisEvent.id,
-                            }
-                        })
-                    } else {
-                        swal("You have NOT given up your spot.")
+              })
+              .then((willDelete) => {
+                if (willDelete) {
+                  swal("You are no longer attending.", {
+                    icon: "success",
+                  });
+                  this.props.dispatch({
+                    type: 'DELETE_FROM_THIS_EVENT', //to myEventsSaga
+                    payload: {
+                        event_id: this.props.reduxStore.thisEvent.id,
+                        user_id: this.props.reduxStore.user.id,
+                    },
+                    refresh: {
+                        user_id: this.props.reduxStore.user.id,
+                        event_id: this.props.reduxStore.thisEvent.id,
                     }
                 });
 

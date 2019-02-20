@@ -16,12 +16,12 @@ let initialState = {
 
 const thisEventReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'SET_THIS_EVENT':
+        case 'SET_THIS_EVENT': //from thisEventSaga
             return action.payload;
         default:
             return state;
     }
-};
+}; //end thisEventReducer
 
 
 // loginMode will be on the redux state at:

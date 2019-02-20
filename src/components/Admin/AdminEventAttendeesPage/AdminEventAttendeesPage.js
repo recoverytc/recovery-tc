@@ -12,7 +12,7 @@ import './AdminEventAttendeesPage';
 class AdminEventAttendeesPage extends Component {
     componentDidMount() {
         //Getting the list of attendess for each event
-        this.props.dispatch({ type: 'FETCH_ATTENDEES_LIST', payload: this.props.match.params.id });
+        this.props.dispatch({type: 'FETCH_ATTENDEES_LIST', payload: this.props.match.params.id}); //to attendeesListSaga
     }
 
     //This method gives the table striped rows

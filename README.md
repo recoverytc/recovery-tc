@@ -13,6 +13,10 @@ Recovery St. Paul is an event planning mobile first webapp for members of our lo
 - Material-UI
 - Font Awesome
 - PostgreSQL
+- moment.js
+- axios
+- NPM
+- Sweet Alert
 - AWS S3
 - Twilio
 - NumVerify

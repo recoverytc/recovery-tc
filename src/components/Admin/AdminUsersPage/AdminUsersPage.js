@@ -14,7 +14,7 @@ import swal from 'sweetalert';
 class AdminUsersPage extends Component {
     componentDidMount() {
         //Fetches all users
-        this.props.dispatch({ type: 'FETCH_ALL_USERS' });
+        this.props.dispatch({ type: 'FETCH_ALL_USERS' }); //to userListSaga
     }
     // This method allows Admins to promote/demote accounts to and from the Captain Status.
     changeRole = (user, captainButton) => {
@@ -24,18 +24,17 @@ class AdminUsersPage extends Component {
             icon: "warning",
             buttons: true,
             dangerMode: true,
-        })
-            .then((willDelete) => {
-                if (willDelete) {
-                    swal(`Account has been ${captainButton + 'd'}`, {
-                        icon: "success",
-                    });
-                    this.props.dispatch({ type: 'CHANGE_CAPTAIN_STATUS', payload: user });
-                } else {
-                    swal(`${captainButton} has been cancelled`)
-                }
-            });
-
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              swal(`Account has been ${captainButton + 'd'}`, {
+                icon: "success",
+              });
+                this.props.dispatch({ type: 'CHANGE_CAPTAIN_STATUS', payload: user }); //to userListSaga
+            } else {
+              swal(`${captainButton} has been cancelled` )
+            }
+          });
     }
 
     // This method allows Admins to activate/deactivate accounts.
@@ -46,18 +45,17 @@ class AdminUsersPage extends Component {
             icon: "warning",
             buttons: true,
             dangerMode: true,
-        })
-            .then((willDelete) => {
-                if (willDelete) {
-                    swal(`Account has been ${activeButton + 'd'}`, {
-                        icon: "success",
-                    });
-                    this.props.dispatch({ type: 'CHANGE_ACTIVE_STATUS', payload: user });
-                } else {
-                    swal(`${activeButton} has been cancelled`)
-                }
-            });
-
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              swal(`Account has been ${activeButton + 'd'}`, {
+                icon: "success",
+              });
+                this.props.dispatch({ type: 'CHANGE_ACTIVE_STATUS', payload: user }); //to userListSaga
+            } else {
+              swal(`${activeButton} has been cancelled` )
+            }
+          });
     }
 
     //This method gives the table striped rows

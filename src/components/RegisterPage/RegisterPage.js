@@ -31,7 +31,7 @@ class RegisterPage extends Component {
              this.state.phone) {
               if(this.state.password === this.state.confirmPassword) {
                 this.props.dispatch({
-                  type: 'REGISTER',
+                  type: 'REGISTER', //sends to registrationSaga
                   payload: {
                     username: this.state.username,
                     password: this.state.password,
@@ -44,17 +44,17 @@ class RegisterPage extends Component {
                 });
                 this.props.history.push('/home')
               } else {
-                this.props.dispatch({type: 'REGISTRATION_PASSWORD_ERROR'});
+                this.props.dispatch({type: 'REGISTRATION_PASSWORD_ERROR'}); //to errorsReducer
               }
           } else {
-            this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
+            this.props.dispatch({ type: 'REGISTRATION_INPUT_ERROR' }); //to errorsReducer
           }
         } else {
-          this.props.dispatch({type: 'REGISTRATION_PHONE_ERROR'});
+          this.props.dispatch({ type: 'REGISTRATION_PHONE_ERROR' }); //to errorsReducer
         }
       })
     } else {
-      this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
+      this.props.dispatch({ type: 'REGISTRATION_INPUT_ERROR' }); //to errorsReducer
     }
   } // end registerUser
 

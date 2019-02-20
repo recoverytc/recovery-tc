@@ -48,7 +48,7 @@ class App extends Component {
 
   componentDidMount() {
     //Gets the current user.
-    this.props.dispatch({ type: 'FETCH_USER' })
+    this.props.dispatch({ type: 'FETCH_USER' }) //to userSaga
   }
 
   //This method determines whether the menu sidedrawer should be open or not.

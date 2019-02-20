@@ -21,7 +21,7 @@ const sideDrawer = props => {
           )}
           {props.user.admin && (
             <>
-              <li><Link onClick={props.click} to="/admin/users">Manage Users</Link></li>
+              <li><Link onClick={props.click} to="/admin/users">Manage Accounts</Link></li>
               <li><Link onClick={props.click} to="/admin/events">Manage Events</Link></li>
             </>
           )}

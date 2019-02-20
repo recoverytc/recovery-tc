@@ -9,7 +9,8 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import './AdminUsersPage.css';
 import swal from 'sweetalert'
-
+let activeStatus;
+let captainStatus;
 class AdminUsersPage extends Component {
     componentDidMount() {
         this.props.dispatch({ type: 'FETCH_ALL_USERS' });
@@ -25,7 +26,7 @@ class AdminUsersPage extends Component {
           })
           .then((willDelete) => {
             if (willDelete) {
-              swal(`Account has been ${captainButton}`, {
+              swal(`Account has been ${captainButton + 'd'}`, {
                 icon: "success",
               });
               this.props.dispatch({ type: 'CHANGE_CAPTAIN_STATUS', payload: user });
@@ -46,7 +47,7 @@ class AdminUsersPage extends Component {
           })
           .then((willDelete) => {
             if (willDelete) {
-              swal(`Account has been ${activeButton}`, {
+              swal(`Account has been ${activeButton + 'd'}`, {
                 icon: "success",
               });
               this.props.dispatch({ type: 'CHANGE_ACTIVE_STATUS', payload: user });
@@ -71,16 +72,20 @@ class AdminUsersPage extends Component {
             if (this.props.userList[i].captain) {
                 captainButton = 'Demote';
                 captain = 'Yes';
+                // captainStatus = "demoted"
             } else {
                 captain = 'No';
                 captainButton = 'Promote';
                 buttonClassCaptain = "active-button"
+                // captainStatus="Promoted"
             }
             if (this.props.userList[i].active) {
                 activeButton = 'Deactivate';
+                // activeStatus = 'de-activated';
             } else {
                 activeButton = 'Re-activate';
                 buttonClassActive = "active-button"
+                // activeStatus = "activated";
 
                 
             }

@@ -42,7 +42,7 @@ class EventPage extends Component {
             id: this.props.reduxStore.thisEvent.id }
         })
         this.handleClose();
-        swal("Event Updated!", "You have successfully updated an event!", "success");
+        swal("Feedback Submitted!", "Thanks for the feedback, we appreciate it!", "success");
     }
 
     onStarClick(nextValue, prevValue, name) {
@@ -83,7 +83,7 @@ class EventPage extends Component {
                     event_id: this.props.reduxStore.thisEvent.id,
                 }
             })
-            swal("Attending !", "You are now listed as attending this event!", "success");
+            swal("Attending!", "You are now listed as attending this event!", "success");
         } else if (type === 'Cancel') { //remove this user from this event
             swal({
                 title: "Are you sure?",

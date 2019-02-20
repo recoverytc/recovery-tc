@@ -60,6 +60,19 @@ class EventForm extends Component {
         })
     }
 
+    autofillForm = () => {
+        this.setState({
+        title: 'Camp Cope Gig',
+        date: '2019-05-23',
+        time: '19:30',
+        address: '1601 University Ave, St. Paul, MN 55104',
+        description: 'THIS GIG IS AT A BAR, we understand if you\'re hesitant, please feel free to contact me beforehand, or find me at the show.',
+        capacity: '50',
+        venue: 'The Turf Club',
+        })
+        console.log('EWRNVEWRNVWLEVN');
+    }
+
 
     handleClick = () => {
         console.log(this.state);
@@ -94,11 +107,12 @@ class EventForm extends Component {
     render() {
         return (
             <form className="form-container">
-                <h1 className="form-title">Add an Event</h1>
+                <h1 className="form-title" onClick={() => this.autofillForm()}>Add an Event</h1>
                 <TextField
                     variant="outlined"
                     label="Title"
                     placeholder="Title"
+                    value={this.state.title}
                     margin="normal"
                     className="input"
                     inputProps={{ maxLength: 60 }}
@@ -106,6 +120,7 @@ class EventForm extends Component {
                 />
                 <TextField
                     variant="outlined"
+                    value={this.state.date}
                     type="date"
                     margin="normal"
                     onChange={this.handleDateChange}
@@ -113,6 +128,7 @@ class EventForm extends Component {
                 <TextField
                     variant="outlined"
                     type="time"
+                    value={this.state.time}
                     margin="normal"
                     onChange={this.handleTimeChange}
                 />
@@ -120,6 +136,7 @@ class EventForm extends Component {
                     variant="outlined"
                     label="Venue"
                     placeholder="Venue"
+                    value={this.state.venue}
                     margin="normal"
                     inputProps={{ maxLength: 200 }}
                     onChange={this.handleVenueChange}
@@ -127,6 +144,7 @@ class EventForm extends Component {
                 <TextField
                     label="Address"
                     variant="outlined"
+                    value={this.state.address}
                     placeholder="Address"
                     margin="normal"
                     inputProps={{ maxLength: 300 }}
@@ -136,6 +154,7 @@ class EventForm extends Component {
                     id="outlined-with-placeholder"
                     label="Description"
                     multiline
+                    value={this.state.description}
                     rows="5"
                     fullWidth
                     margin="normal"
@@ -157,9 +176,10 @@ class EventForm extends Component {
                     {/* </label> */}
                     <TextField
                         variant="outlined"
-                        label="Capacity"
+                        // label="Capacity"
                         placeholder="Capacity"
                         margin="normal"
+                        value={this.state.capacity}
                         onChange={this.handleCapacityChange}
                     />
                     <Button 

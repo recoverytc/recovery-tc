@@ -60,14 +60,14 @@ class MyEventCard extends React.Component {
         if (type === 'Cancel') { //remove this user from this event
             swal({
                 title: "Are you sure?",
-                text: "Are you sure you want to lose you spot at this event?",
+                text: "You may lose your spot at this event.",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
               })
               .then((willDelete) => {
                 if (willDelete) {
-                  swal("Event has been cancelled", {
+                  swal("You are no longer attending this event.", {
                     icon: "success",
                   });
                   this.props.dispatch({
@@ -82,7 +82,7 @@ class MyEventCard extends React.Component {
                     }
                 })
                 } else {
-                  swal("Event has NOT been cancelled" )
+                  swal("You are still listed as attending." )
                 }
               });
            
@@ -120,10 +120,10 @@ class MyEventCard extends React.Component {
             <div>
                 <div className="root">
                     <Link to={`/events/${event.id}`}>
-                        <div className="event-data">
+                        <div className="my-events-data">
                             <h2>{event.title}</h2>
                             <p>{moment(event.date).format("MMM Do YYYY")}</p>
-                            <p>{moment(event.time, "HH:mm").format("hh:mm A")}</p>
+                            {/* <p>{moment(event.time, "HH:mm").format("hh:mm A")}</p> */}
                         </div>
                         <div>
                             <p className="attendees">{event.attendee}<FontAwesomeIcon className="arrow-up" icon="arrow-up" /></p>

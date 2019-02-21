@@ -33,7 +33,6 @@ const uploadFile = (buffer, name, type) => {
 
 // Define POST route
 router.post('/', (request, response) => {
-  console.log('In s3 route');
   const form = new multiparty.Form();
   form.parse(request, async (error, fields, files) => {
     if (error) throw new Error(error);
@@ -51,7 +50,6 @@ router.post('/', (request, response) => {
       const capacity = fields.capacity[0];
       const venue = fields.venue[0];
       const title = fields.title[0];
-      console.log('in s3,', fields);
       let queryValues = [title, dated, time, address, description, data.Location, request.user.id, parseInt(capacity), venue, request.user.id];
       let queryString = `WITH addEvent AS(
                 INSERT INTO "event" ("title" , "date", "time", "address", "description", 
@@ -60,64 +58,54 @@ router.post('/', (request, response) => {
                 RETURNING "event"."id")
                 INSERT INTO "event_user" ("event_id", "user_id") 
                 VALUES((SELECT "id" FROM addEvent), $10);`;
-      console.log(data);
       await pool.query(queryString, queryValues);
       response.sendStatus(200);
     } catch (error) {
-      console.log(error);
       return response.status(400).send(error);
     }
   });
 });
 
-
+// Allows Captains to edit event data
 router.put('/edit', (request, response) => {
-  console.log('In s3 route');
   const form = new multiparty.Form();
   form.parse(request, async (error, fields, files) => {
     if (error) throw new Error(error);
     try {
       let data;
-        const path = files.file[0].path;
-        const buffer = fs.readFileSync(path);
-        const type = fileType(buffer);
-        const timestamp = Date.now().toString();
-        const fileName = `imageFolder/${timestamp}-lg`;
-        data = await uploadFile(buffer, fileName, type);
-
-      console.log('in s3,', fields);
+      const path = files.file[0].path;
+      const buffer = fs.readFileSync(path);
+      const type = fileType(buffer);
+      const timestamp = Date.now().toString();
+      const fileName = `imageFolder/${timestamp}-lg`;
+      data = await uploadFile(buffer, fileName, type);
       let queryValues = [title, dated, time, address, description, imageData, parseInt(capacity), venue, eventid];
-      let queryString = `UPDATE "event" SET "title"=$1 , "date"=$2, "time"=$3, "address"=$4, "description"=$5, "image"=$6, "capacity"=$7, "venue"=$8 WHERE "id"=$9`
-      console.log(data);
+      let queryString = `UPDATE "event" SET "title"=$1 , "date"=$2, "time"=$3, "address"=$4, "description"=$5, "image"=$6, "capacity"=$7, "venue"=$8 WHERE "id"=$9`;
       await pool.query(queryString, queryValues);
       response.sendStatus(200);
     } catch (error) {
-      console.log(error);
       return response.status(400).send(error);
     }
   });
 });
 
+//Allows captains to edit their account image
 router.put('/edit/account', (request, response) => {
-  console.log('In s3 route');
   const form = new multiparty.Form();
   form.parse(request, async (error, fields, files) => {
     if (error) throw new Error(error);
     try {
-        const path = files.file[0].path;
-        const buffer = fs.readFileSync(path);
-        const type = fileType(buffer);
-        const timestamp = Date.now().toString();
-        const fileName = `imageFolder/${timestamp}-lg`;
-        const data = await uploadFile(buffer, fileName, type);
-      console.log('in s3,', fields);
+      const path = files.file[0].path;
+      const buffer = fs.readFileSync(path);
+      const type = fileType(buffer);
+      const timestamp = Date.now().toString();
+      const fileName = `imageFolder/${timestamp}-lg`;
+      const data = await uploadFile(buffer, fileName, type);
       let queryValues = [data.Location, request.user.id];
       let queryString = `UPDATE "user" SET "image"=$1 WHERE "id"=$2;`;
-      console.log('s3 data', data);
       await pool.query(queryString, queryValues);
       response.sendStatus(200);
     } catch (error) {
-      console.log(error);
       return response.status(400).send(error);
     }
   });

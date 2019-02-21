@@ -51,7 +51,7 @@
     width: 16vmax!important;
     padding: 0 5%!important;
     text-transform: none!important;
-    font-size: .75rem!important;
+    /* font-size: .75rem!important; */
     width: 10%;
     color: white!important;
     box-shadow: 2px 4px 85px 4px rgba(0,0,0,0.75);

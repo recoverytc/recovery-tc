@@ -64,7 +64,7 @@
     object-fit: fill;
 }
 
-.event-data {
+.my-events-data {
     position: absolute;
     width: 100%;
     max-width: 500px;
@@ -76,7 +76,7 @@
     justify-content: space-around;
     align-items: center;
     color: white;
-    font-size: 1.3vmax;
+    font-size: 1.8vmax;
     background-color: rgba(0,0,0,0.7);
     box-shadow: 1px 0px 7px rgba(0,0,0,.8);
     border-top-left-radius: 15px;

@@ -14,7 +14,7 @@ class MyEventList extends Component {
 
 
     render() {
-        if(this.props.myEvents === 0) {
+        if(this.props.reduxState.myEvents === 0) {
             return (
                 <p className="no-events">You don't have any events, check out the <Link to="/home">Events Page</Link>!</p>
             )

@@ -33,7 +33,6 @@ import CaptainProfilePage from '../CaptainPage/CaptainProfilePage/CaptainProfile
 import CaptainEditProfilePage from '../CaptainPage/CaptainEditProfilePage/CaptainEditProfilePage';
 
 import EventPage from '../EventPage/EventPage';
-import EventFeedbackPage from '../EventPage/EventFeedbackPage/EventFeedbackPage';
 import SearchList from '../SearchList/SearchList';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons'
@@ -124,12 +123,6 @@ class App extends Component {
                 exact
                 path="/events/:id"
                 component={EventPage}
-              />
-
-              <ProtectedRoute
-                exact
-                path="/events/feedback/:id"
-                component={EventFeedbackPage}
               />
 
               {/* This works the same as the other protected route, except that if the user is logged in,

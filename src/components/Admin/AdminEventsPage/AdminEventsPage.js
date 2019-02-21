@@ -15,21 +15,22 @@ import moment from 'moment';
 
 
 
-
+//This component allows the admin to view a list of all events.
 class AdminEventsPage extends Component {
 
   componentDidMount() {
+    //Fetching the event list, this will get all events, regardless of their date.
     this.props.dispatch({ type: 'FETCH_ADMIN_EVENT_LIST' });
   }
 
+  //This method gives the table striped rows
   getStripedStyle(i) {
     return { backgroundColor: i % 2 ? '#d3fbe7' : '#e5fffe' };
   }
 
   render() {
-
+    //Mapping the array of events into a table
     let adminEventContent = this.props.eventList.map((row, i) => {
-      let average = row.average
       return (
         <TableRow key={i} style={this.getStripedStyle(i)}>
           <TableCell>{row.title}</TableCell>

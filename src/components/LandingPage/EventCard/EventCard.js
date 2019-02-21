@@ -23,7 +23,7 @@ class EventCard extends React.Component {
             <p className="attendees">{event.attendee}<FontAwesomeIcon className="arrow-up" icon="arrow-up" /></p>
           </div>
           <div className="image-container">
-              <img src={event.image} alt="picture" className="image-url" />
+              <img src={event.image} alt="event" className="image-url" />
               <p className="description">{event.description.substring(0, 150)}...</p>
           </div>
           </Link>

@@ -19,11 +19,6 @@ body {
   margin-right: 1em;
 }
 
-/* .edit-profile-icon:hover, .edit-event-icon:hover {
-  background-color:#01444e;
-  padding: 0.2em;
-} */
-
 .style-blank-div {
   height: 20px;
   background-color: #005e60;
@@ -66,6 +61,7 @@ hr {
   position: relative;
   color: #005e60;
   /* left: %; */
+  /* color: white; */
   bottom: 3em;
   left: 2em;
   font-size: 20px;
@@ -130,15 +126,12 @@ hr {
   color: rgb(95, 103, 131);
 }
 .captain-container {
-  /* border: green solid 2px; */
   font-family: 'Raleway', sans-serif;
 }
 
 .captain-picture {
   border-radius: 10%;
   margin-top: 5%;
-  /* height: 300px;
-  width: 300px; */
   height: 80%;
   width: 80%;
 }
@@ -187,14 +180,6 @@ hr {
   font-size: 12.5px;
 }
 
-/* .modal {
-  background-color: #d3fbe7!important;
-} */
-
-
-
-
-
 /* LRGE SRCEEN */
 @media screen and (min-width: 768px) {
   .captain-container {
@@ -205,22 +190,18 @@ hr {
   .captain-wrapper {
     width: 50%;
     border-right: #c7c7c9 solid 1px;
-    /* border: blueviolet solid 2px; */
   }
 
   .picture-container {
     padding: 1em;
-    /* width: 50%; */
   }
   .icon-buttons, .bio, .demo-info, .event-header { 
     padding: 0 1em;
   }
   .icon-buttons {
-    /* border: blue solid 2px; */
     text-align: center;
   }
   .bio {
-    /* border: pink solid 2px; */
     padding-top: 1em;
   }
   .event-root {

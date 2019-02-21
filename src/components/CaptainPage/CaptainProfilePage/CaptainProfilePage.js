@@ -12,10 +12,9 @@ import axios from 'axios';
 import swal from 'sweetalert'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+
 // Styles
 import './CaptainProfilePage.css';
-
-
 
 class CaptainProfilePage extends Component {
 
@@ -53,7 +52,7 @@ class CaptainProfilePage extends Component {
       open: true
     })
   }
-  
+
   handleOpen2 = () => {
     this.setState({
       open2: true
@@ -110,8 +109,8 @@ class CaptainProfilePage extends Component {
     })
   }
 
-    handleFileUpload = (event) => {
-    this.setState({file: event.target.files});
+  handleFileUpload = (event) => {
+    this.setState({ file: event.target.files });
     console.log(this.state.files);
   }
 
@@ -127,21 +126,21 @@ class CaptainProfilePage extends Component {
   handleSubmitCloseImage = () => {
     const formData = new FormData();
     formData.append('file', this.state.file[0]);
-  axios.put(`api/imageUpload/edit/account`, formData, {
+    axios.put(`api/imageUpload/edit/account`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     }).then(response => {
-          this.props.history.push(`/captain/profile/${this.props.user.id}`);
-          this.props.dispatch({ type: 'FETCH_CAPTAIN_PROFILE', payload: this.props.match.params.id })
+      this.props.history.push(`/captain/profile/${this.props.user.id}`);
+      this.props.dispatch({ type: 'FETCH_CAPTAIN_PROFILE', payload: this.props.match.params.id })
     }).catch(error => {
       // handle your error
       console.log(error);
     });
-this.setState({
-  open2: false
-})
-swal("Image Updated!", "You have successfully updated your profile image!", "success");
+    this.setState({
+      open2: false
+    })
+    swal("Image Updated!", "You have successfully updated your profile image!", "success");
 
   }
 
@@ -149,7 +148,7 @@ swal("Image Updated!", "You have successfully updated your profile image!", "suc
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_CAPTAIN_PROFILE', payload: this.props.match.params.id })
     this.props.dispatch({ type: 'FETCH_EVENT_LIST' });
-   
+
   }
 
   componentDoesUpdate() {
@@ -164,31 +163,24 @@ swal("Image Updated!", "You have successfully updated your profile image!", "suc
       buttons: true,
       dangerMode: true,
     })
-    .then((willDelete) => {
-      if (willDelete) {
-        swal("Event has been cancelled", {
-          icon: "success",
-        });
-        this.props.dispatch({ type: 'CANCEL_EVENT', 
-        payload: {id: id}, 
-        refresh: {id: id} })
-      } else {
-        swal("Event has NOT been cancelled" )
-      }
-    });
-    
-    // console.log(this.state)
-
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("Event has been cancelled", {
+            icon: "success",
+          });
+          this.props.dispatch({
+            type: 'CANCEL_EVENT',
+            payload: { id: id },
+            refresh: { id: id }
+          })
+        } else {
+          swal("Event has NOT been cancelled")
+        }
+      });
   }
 
   handleEdit = (event) => {
-    console.log('editting', event);
-    // this.props.dispatch({ type: 'FETCH_THIS_EVENT', refresh: id })
-
-    // console.log(this.state)
-
     this.handleOpen(event)
-
   }
 
   handleEditImage = () => {
@@ -196,12 +188,6 @@ swal("Image Updated!", "You have successfully updated your profile image!", "suc
   }
 
   render() {
-    console.log('eventlist', this.props.eventList)
-
-
-
-
-
     //conditionally rendered buttons, only if captain is looking at their own profile
     let editProfileButton;
     let editProfileImageButton;
@@ -209,12 +195,9 @@ swal("Image Updated!", "You have successfully updated your profile image!", "suc
     let addEventButton;
     let cancelEventButton;
     let eventDescription;
-
-
-    
     let profileContent = this.props.captainProfile.map((profile, i) => {
       if (Number(this.props.user.id) === Number(this.props.match.params.id)) {
-        editProfileButton = 
+        editProfileButton =
           <div className="icon-box">
             <img src="/editIcon.svg" alt="edit profile" className="icons" onClick={() => this.props.history.push(`/captain/profile/edit/${profile.id}`)} />
             <p>Edit Profile</p>
@@ -224,7 +207,7 @@ swal("Image Updated!", "You have successfully updated your profile image!", "suc
             <img src="/addEventIcon.svg" alt="edit event" className="icons" onClick={() => this.props.history.push('/captain/addevent')} />
             <p>Create Event</p>
           </div>
-          editProfileImageButton = <FontAwesomeIcon icon="upload" className="edit-image" onClick={() => this.handleEditImage()} />;
+        editProfileImageButton = <FontAwesomeIcon icon="upload" className="edit-image" onClick={() => this.handleEditImage()} />;
         // editProfileImageButton = <button className="edit-image" onClick={() => this.handleEditImage()}>X</button>;
       } else {
 
@@ -234,13 +217,13 @@ swal("Image Updated!", "You have successfully updated your profile image!", "suc
 
           <div className="picture-container">
             <img src={profile.image} alt="me" className="captain-picture" />
-              {editProfileImageButton}
-          </div> {/* .picture-container */}
+            {editProfileImageButton}
+          </div>
 
           <div className="icon-buttons">
-              {editProfileButton}
-              {addEventButton}
-          </div> {/* .icon-buttons */}
+            {editProfileButton}
+            {addEventButton}
+          </div>
 
 
           <div className="bio">
@@ -261,17 +244,14 @@ swal("Image Updated!", "You have successfully updated your profile image!", "suc
               <p className="demo-p-tag">{profile.email}</p>
               <p className="demo-p-tag">{profile.phone}</p>
             </div>
-          </div> {/* .demo-info */}
+          </div>
 
           <div className="bio">
             <hr />
             <p className="demo-p-tag">BIO</p>
-            {/* <div className="style-blank-div"></div> */}
             <p className="demo-p-tag">{profile.bio}</p>
             <div className="style-blank-div"></div>
           </div>
-          
-          {/* .bio */}
         </div>
         // .captain-wrapper
       )
@@ -279,115 +259,98 @@ swal("Image Updated!", "You have successfully updated your profile image!", "suc
 
 
     return (
-      console.log('this.props.match.params.id', this.props.match.params.id),
-      
-
       <div className="captain-container">
         {profileContent}
-
-        {/* Beginning of the Events page */}
-      <div className="event-root">
-        <h1 className="h1-event">My Current Events</h1>
-
-        <hr />
-
-
-        <div className="event-data-root">
-        
-          {this.props.eventList.map((event, i) => {
-            if (Number(event.captain_id) === Number(this.props.match.params.id)) {
-              if (Number(this.props.user.id) === Number(this.props.match.params.id)) {
-
-                editEventButton =
-                  <div className="edit-event-box">
-                    <img src="/editEventIcon.svg" alt="edit Event" className="event-btn" onClick={() => this.handleEdit(event)} />
-                    <p>Edit Event</p>
-                  </div>
+        <div className="event-root">
+          <h1 className="h1-event">My Current Events</h1>
+          <hr />
+          <div className="event-data-root">
+            {this.props.eventList.map((event, i) => {
+              if (Number(event.captain_id) === Number(this.props.match.params.id)) {
+                if (Number(this.props.user.id) === Number(this.props.match.params.id)) {
+                    editEventButton =
+                    <div className="edit-event-box">
+                      <img src="/editEventIcon.svg" alt="edit Event" className="event-btn" onClick={() => this.handleEdit(event)} />
+                      <p>Edit Event</p>
+                    </div>
                 cancelEventButton =
-                  <div className="delete-event-box">
-                    <img src="/delete.svg" alt="cancel Event" className="event-btn" onClick={() => this.handleCancelEvent(event.id)} />
-                    <p>Delete</p>
+                    <div className="delete-event-box">
+                      <img src="/delete.svg" alt="cancel Event" className="event-btn" onClick={() => this.handleCancelEvent(event.id)} />
+                      <p>Delete</p>
+                    </div>
+                } else {
+                  eventDescription =
+                    <p className="description">{event.description.substring(0, 200)}...</p>
+                }
+                return (
+                  <div key={i} className="root">
+                    <Link to={`/events/${event.id}`}>
+                      <div className="event-data">
+                        <p>{moment(event.date).format("MMM Do YYYY")}</p>
+                        <p className="event-title">{event.title}</p>
+                      </div>
+                      <div className="image-container">
+                        <img src={event.image} alt="event" className="image-url" />
+                      </div>
+                    </Link>
+                    {editEventButton}
+                    {cancelEventButton}
+                    {eventDescription}
                   </div>
+                  // .root2
+                )
               } else {
-                eventDescription = 
-                  <p className="description">{event.description.substring(0, 200)}...</p>
 
               }
-
-              
-              return (                
-                <div key={i} className="root">
-                 <Link to={`/events/${event.id}`}>
-                  <div className="event-data">
-                    <p>{moment(event.date).format("MMM Do YYYY")}</p>
-                    {/* <p>{moment(event.time, "HH:mm").format("hh:mm A")}</p> */}
-                    <p className="event-title">{event.title}</p>
-                  </div>
-
-                  <div className="image-container">
-                    <img src={event.image} alt="event" className="image-url" />
-                  </div>
-                  </Link>
-                  {editEventButton}
-                  {cancelEventButton}
-                  {eventDescription}
-
-
-                </div>
-                // .root2
-              )
-            } else {
-
+            
             }
-          })}
-          </div>{/* .event-data-root */}
-        </div> {/* .event-root */}
-
-
+            )}
+          </div>
+        </div>
         {/* Pop up Dialog to edit events */}
-          <Dialog
-            open={this.state.open}
-            onClose={this.handleClose}
-            aria-labelledby="form-dialog-title"
-          >
-            <DialogTitle>Edit Event</DialogTitle>
-            <DialogContent>
-              <div>
-                <TextField
-                  label="Title"
-                  placeholder="Title"
-                  value={this.state.title}
-                  margin="normal"
-                  onChange={this.handleTitleChange}
-                />
-              </div>
-              <div>
-                <TextField
-                  type="date"
-                  value={moment(this.state.date).format('YYYY-MM-DD')}
-                  margin="normal"
-                  onChange={this.handleDateChange}
-                />
-              </div>
-              <div>
-                <TextField
-                  type="time"
-                  margin="normal"
-                  value={this.state.time} //no moment.js here!!!
-                  onChange={this.handleTimeChange}
-                />
-              </div>
-              <div>
-                <TextField
-                  label="Address"
-                  placeholder="Address"
-                  margin="normal"
-                  value={this.state.address}
-                  onChange={this.handleAddressChange}
+        <Dialog
+          open={this.state.open}
+          onClose={this.handleClose}
+          aria-labelledby="form-dialog-title"
+        >
+          <DialogTitle>Edit Event</DialogTitle>
+          <DialogContent>
+            <div>
+              <TextField
+                label="Title"
+                placeholder="Title"
+                value={this.state.title}
+                margin="normal"
+                onChange={this.handleTitleChange}
+              />
+            </div>
+            <div>
+              <TextField
+                type="date"
+                value={moment(this.state.date).format('YYYY-MM-DD')}
+                margin="normal"
+                onChange={this.handleDateChange}
+              />
+            </div>
+            <div>
+              <TextField
+                type="time"
+                margin="normal"
+                value={this.state.time} //no moment.js here!!!
+                onChange={this.handleTimeChange}
+              />
+            </div>
+            <div>
+              <TextField
+                label="Address"
+                placeholder="Address"
+                margin="normal"
+                value={this.state.address}
+                onChange={this.handleAddressChange}
 
-                />
-              </div>
-              <div>
+              />
+            </div>
+            <div>
               <TextField
                 id="outlined-with-placeholder"
                 label="Description"
@@ -401,57 +364,57 @@ swal("Image Updated!", "You have successfully updated your profile image!", "suc
 
                 onChange={this.handleDescriptionChange}
               />
-              </div>
-              <div>
-                <TextField
-                  label="Capacity"
-                  placeholder="Capacity"
-                  margin="normal"
-                  value={this.state.capacity}
-                  onChange={this.handleCapacityChange}
-                />
-              </div>
-              <div>
-                <TextField
-                  label="Venue"
-                  placeholder="Venue"
-                  margin="normal"
-                  value={this.state.venue}
-                  onChange={this.handleVenueChange}
-                />
-              </div>
-            </DialogContent>
-            <DialogActions>
-              <Button className="modal-cancel" onClick={this.handleClose} >
-                Cancel
+            </div>
+            <div>
+              <TextField
+                label="Capacity"
+                placeholder="Capacity"
+                margin="normal"
+                value={this.state.capacity}
+                onChange={this.handleCapacityChange}
+              />
+            </div>
+            <div>
+              <TextField
+                label="Venue"
+                placeholder="Venue"
+                margin="normal"
+                value={this.state.venue}
+                onChange={this.handleVenueChange}
+              />
+            </div>
+          </DialogContent>
+          <DialogActions>
+            <Button className="modal-cancel" onClick={this.handleClose} >
+              Cancel
                 </Button>
-              <Button className="modal-submit" onClick={this.handleSubmitClose} >
-                Submit
+            <Button className="modal-submit" onClick={this.handleSubmitClose} >
+              Submit
                   </Button>
-            </DialogActions>
-          </Dialog>
+          </DialogActions>
+        </Dialog>
 
-          <Dialog
-            open={this.state.open2}
-            onClose={this.handleClose}
-            aria-labelledby="form-dialog-title"
-          >
-            <DialogTitle>Edit Profile Image</DialogTitle>
-            <DialogContent>
-              <div className="img-select">
-                <p>Image</p>
-                <input label='upload file' type='file' onChange={this.handleFileUpload} />
-              </div>
-            </DialogContent>
-            <DialogActions>
-              <Button className="modal-cancel" onClick={this.handleClose} >
-                Cancel
+        <Dialog
+          open={this.state.open2}
+          onClose={this.handleClose}
+          aria-labelledby="form-dialog-title"
+        >
+          <DialogTitle>Edit Profile Image</DialogTitle>
+          <DialogContent>
+            <div className="img-select">
+              <p>Image</p>
+              <input label='upload file' type='file' onChange={this.handleFileUpload} />
+            </div>
+          </DialogContent>
+          <DialogActions>
+            <Button className="modal-cancel" onClick={this.handleClose} >
+              Cancel
                 </Button>
-              <Button className="modal-submit" onClick={this.handleSubmitCloseImage} >
-                Submit
+            <Button className="modal-submit" onClick={this.handleSubmitCloseImage} >
+              Submit
                   </Button>
-            </DialogActions>
-          </Dialog>
+          </DialogActions>
+        </Dialog>
       </div>
       // .captain-container
     )

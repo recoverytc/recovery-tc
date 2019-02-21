@@ -49,6 +49,8 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
+  "heroku-run-build-script": true,
+  
   "devDependencies": {
     "nodemon": "^1.17.2"
   },

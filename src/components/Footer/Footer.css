@@ -1,4 +1,12 @@
 footer {
+    display: flex;
+    flex-direction: column-reverse;
     margin-top: 80px;
     color: #d3fbe7;
+    text-align: center;
+}
+
+footer a {
+    color: #d3fbe7;
+    padding: 10px;
 }

@@ -11,7 +11,7 @@ const Nav = (props) => (
       <div className="navbar__toggle-button">
           <DrawerToggleButton click={props.drawerClickHandler}/>
       </div>
-      <div className="navbar__logo"><Link to="/home"><img className="logo" src="/image.png" /></Link></div>
+      <div className="navbar__logo"><Link to="/home"><img className="logo" src="/image.png" alt="recovery logo"/></Link></div>
       <div className="spacer" />
       <div className="navbar_navigation-items">
         <ul>
@@ -23,7 +23,7 @@ const Nav = (props) => (
           )}
           {props.user.admin && (
             <>
-              <li><Link to="/admin/users">Manage Users</Link></li>
+              <li><Link to="/admin/users">Manage Accounts</Link></li>
               <li><Link to="/admin/events">Manage Events</Link></li>
             </>
           )}

@@ -1,4 +1,4 @@
-import React, { component } from 'react';
+import React from 'react';
 import EventList from './EventList/EventList';
 import './LandingPage.css';
 import SearchBar from '../SearchBar/SearchBar';

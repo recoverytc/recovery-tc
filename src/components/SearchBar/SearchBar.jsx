@@ -17,7 +17,7 @@ class SearchBar extends Component {
     handleClick = (event) =>{
         event.preventDefault()
         console.log(this.state);
-        this.props.dispatch({type: 'SEARCH_EVENT' , payload: this.state.title})
+        this.props.dispatch({type: 'SEARCH_EVENT' , payload: this.state.title}) //to searchEventSaga
         console.log(this.state.title)
         this.props.history.push(`/search/results/${this.state.title}`)
     }

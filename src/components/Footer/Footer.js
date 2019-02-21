@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Footer.css'
 
 // This is one of our simplest components
@@ -9,6 +10,7 @@ import './Footer.css'
 const Footer = () => (
   <footer>
     &copy; Recovery St. Paul
+    <Link exact to="/aboutpage">About</Link>
   </footer>
 );
 

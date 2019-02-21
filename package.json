@@ -50,7 +50,6 @@
     "eject": "react-scripts eject"
   },
   "heroku-run-build-script": true,
-  
   "devDependencies": {
     "nodemon": "^1.17.2"
   },

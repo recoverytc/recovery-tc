@@ -32,12 +32,14 @@ class EventPage extends Component {
     }
 
     handleSubmit = () => {
-        this.props.dispatch({ type: 'UPDATE_FEEDBACK', //to myEventsSaga
-        payload: {
-            feedback: this.state.feedback,
-            rating: this.state.rating,
-            comment: this.state.comment,
-            id: this.props.reduxStore.thisEvent.id }
+        this.props.dispatch({
+            type: 'UPDATE_FEEDBACK', //to myEventsSaga
+            payload: {
+                feedback: this.state.feedback,
+                rating: this.state.rating,
+                comment: this.state.comment,
+                id: this.props.reduxStore.thisEvent.id
+            }
         })
         this.handleClose();
         swal("Feedback Submitted!", "Thanks for the feedback, we appreciate it!", "success");
@@ -88,33 +90,35 @@ class EventPage extends Component {
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
-              })
-              .then((willDelete) => {
-                if (willDelete) {
-                  swal("You are no longer attending.", {
-                    icon: "success",
-                  });
-                  this.props.dispatch({
-                    type: 'DELETE_FROM_THIS_EVENT', //to myEventsSaga
-                    payload: {
-                        event_id: this.props.reduxStore.thisEvent.id,
-                        user_id: this.props.reduxStore.user.id,
-                    },
-                    refresh: {
-                        user_id: this.props.reduxStore.user.id,
-                        event_id: this.props.reduxStore.thisEvent.id,
-                    }
-                });
-
-        } else if (type === 'Feedback') {
-            this.setState({
-                open: true
             })
-            //FEEDBACK HANDLER HERE
+                .then((willDelete) => {
+                    if (willDelete) {
+                        swal("You are no longer attending.", {
+                            icon: "success",
+                        });
+                        this.props.dispatch({
+                            type: 'DELETE_FROM_THIS_EVENT', //to myEventsSaga
+                            payload: {
+                                event_id: this.props.reduxStore.thisEvent.id,
+                                user_id: this.props.reduxStore.user.id,
+                            },
+                            refresh: {
+                                user_id: this.props.reduxStore.user.id,
+                                event_id: this.props.reduxStore.thisEvent.id,
+                            }
+                        });
 
+                    } else if (type === 'Feedback') {
+                        this.setState({
+                            open: true
+                        });
+                        //FEEDBACK HANDLER HERE
+                    }
+                })
         }
     }
-              )}}
+
+             
 
     render() {
         let eventDate = moment(this.props.reduxStore.thisEvent.date).format('YYYYDDDD');
@@ -125,7 +129,7 @@ class EventPage extends Component {
         let buttonDisplay;
         let attendees = this.props.reduxStore.thisEvent.attendee
         let capacity = this.props.reduxStore.thisEvent.capacity
-        
+
         // Event is full
         if (attendees >= capacity && attending === false) {
             buttonDisplay = 'THIS EVENT IS FULL'

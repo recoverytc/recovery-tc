@@ -116,6 +116,8 @@ class EventPage extends Component {
                         //FEEDBACK HANDLER HERE
                     }
                 })
+
+            }
         }
 
     render() {

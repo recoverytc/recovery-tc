@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import moment from 'moment'
-import Paper from '@material-ui/core/Paper'
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar'
 import Button from '@material-ui/core/Button'
 import EventCard from '../LandingPage/EventCard/EventCard';

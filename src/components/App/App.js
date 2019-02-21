@@ -34,10 +34,10 @@ import CaptainEditProfilePage from '../CaptainPage/CaptainEditProfilePage/Captai
 
 import EventPage from '../EventPage/EventPage';
 import SearchList from '../SearchList/SearchList';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faArrowUp } from '@fortawesome/free-solid-svg-icons'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faArrowUp, faUpload } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faArrowUp);
+library.add(faArrowUp, faUpload);
 
 //This component serves as the root of the app, it contains the routes to all of the components of the app.
 class App extends Component {
@@ -124,7 +124,6 @@ class App extends Component {
                 path="/events/:id"
                 component={EventPage}
               />
-
 
               {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}

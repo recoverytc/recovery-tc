@@ -1,9 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { Dialog, DialogTitle, TextField, Button } from '@material-ui/core';
@@ -11,11 +7,6 @@ import StarRatingComponent from 'react-star-rating-component';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import './MyEventCard.css';
 import swal from 'sweetalert'
-
-
-const styles = theme => ({
-
-});
 
 
 
@@ -97,7 +88,7 @@ class MyEventCard extends React.Component {
 
     render() {
 
-        const { classes, event } = this.props;
+        const { event } = this.props;
 
         let nowMinus7 = moment().subtract(7, 'days').format('YYYYDDD');
         let now = moment().format('YYYYDDD');
@@ -129,7 +120,7 @@ class MyEventCard extends React.Component {
                             <p className="attendees">{event.attendee}<FontAwesomeIcon className="arrow-up" icon="arrow-up" /></p>
                         </div>
                         <div className="image-container">
-                            <img src={event.image} alt="picture" className="image-url" />
+                            <img src={event.image} alt="event" className="image-url" />
                             <p className="description">{event.description.substring(0, 50)}</p>
                         </div>
                     </Link>
@@ -177,13 +168,11 @@ class MyEventCard extends React.Component {
 }
 
 
-MyEventCard.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
+
 
 const mapStateToProps = reduxStore => ({
     reduxStore,
 });
 
 
-export default connect(mapStateToProps)(withStyles(styles)(MyEventCard));
+export default connect(mapStateToProps)(MyEventCard);

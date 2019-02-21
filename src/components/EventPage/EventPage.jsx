@@ -5,7 +5,7 @@ import moment from 'moment';
 import { Dialog, DialogTitle, TextField, Button, DialogContent } from '@material-ui/core';
 import StarRatingComponent from 'react-star-rating-component';
 import { Link } from 'react-router-dom';
-import swal from 'sweetalert'
+import swal from 'sweetalert';
 
 
 class EventPage extends Component {
@@ -90,6 +90,7 @@ class EventPage extends Component {
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
+
             })
                 .then((willDelete) => {
                     if (willDelete) {
@@ -115,10 +116,9 @@ class EventPage extends Component {
                         //FEEDBACK HANDLER HERE
                     }
                 })
-        }
-    }
 
-             
+            }
+        }
 
     render() {
         let eventDate = moment(this.props.reduxStore.thisEvent.date).format('YYYYDDDD');
@@ -162,7 +162,7 @@ class EventPage extends Component {
                 <div className="eventpage-title">
                     <h1>{this.props.reduxStore.thisEvent.title}</h1>
                 </div>
-                <img src={this.props.reduxStore.thisEvent.image} alt="picture" className="eventpage-image-url" />
+                <img src={this.props.reduxStore.thisEvent.image} alt="Event" className="eventpage-image-url" />
                 <div className="eventpage-details">
                     <p><strong>When: </strong>{moment(this.props.reduxStore.thisEvent.date).format("MMM Do YYYY")} at {moment(this.props.reduxStore.thisEvent.time, "HH:mm").format("hh:mm A")}</p>
                     <p><strong>Where: </strong>{this.props.reduxStore.thisEvent.venue}, {this.props.reduxStore.thisEvent.address}</p>
@@ -210,9 +210,11 @@ class EventPage extends Component {
     }
 }
 
-const mapStateToProps = reduxStore => ({
+const mapStateToProps = reduxStore => {
+    return {
     reduxStore
-})
+    }
+}
 
 
-export default connect(mapStateToProps)(EventPage)
+export default connect(mapStateToProps)(EventPage);

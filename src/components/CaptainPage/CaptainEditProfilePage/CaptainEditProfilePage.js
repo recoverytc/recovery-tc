@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { TextField, Button } from '@material-ui/core';
-import axios from 'axios';
 import './CaptainEditProfilePage.css';
 
 import '../CaptainProfilePage/CaptainProfilePage';

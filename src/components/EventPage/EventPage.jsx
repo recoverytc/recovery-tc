@@ -42,7 +42,7 @@ class EventPage extends Component {
             id: this.props.reduxStore.thisEvent.id }
         })
         this.handleClose();
-        swal("Event Updated!", "You have successfully updated an event!", "success");
+        swal("Feedback Submitted!", "You have successfully submitted an feedback!", "success");
     }
 
     onStarClick(nextValue, prevValue, name) {

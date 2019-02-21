@@ -33,6 +33,10 @@ import CaptainProfilePage from '../CaptainPage/CaptainProfilePage/CaptainProfile
 import CaptainEditProfilePage from '../CaptainPage/CaptainEditProfilePage/CaptainEditProfilePage';
 
 import EventPage from '../EventPage/EventPage';
+<<<<<<< HEAD
+=======
+
+>>>>>>> 16a8b97a244e23c5ff1fd92847ba80eacc4d873f
 import SearchList from '../SearchList/SearchList';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons'
@@ -124,6 +128,7 @@ class App extends Component {
                 path="/events/:id"
                 component={EventPage}
               />
+
 
               {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}

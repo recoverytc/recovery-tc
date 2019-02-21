@@ -43,6 +43,7 @@ class EventPage extends Component {
         })
         this.handleClose();
         swal("Feedback Submitted!", "Thanks for the feedback, we appreciate it!", "success");
+
     }
 
     onStarClick(nextValue, prevValue, name) {
@@ -117,6 +118,7 @@ class EventPage extends Component {
         }
     }
 
+             
 
     render() {
         let eventDate = moment(this.props.reduxStore.thisEvent.date).format('YYYYDDDD');

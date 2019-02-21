@@ -10,7 +10,7 @@ import moment from 'moment';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // Styles
 import './CaptainProfilePage.css';
@@ -224,7 +224,8 @@ swal("Image Updated!", "You have successfully updated your profile image!", "suc
             <img src="/addEventIcon.svg" alt="edit event" className="icons" onClick={() => this.props.history.push('/captain/addevent')} />
             <p>Create Event</p>
           </div>
-        editProfileImageButton = <button className="edit-image" onClick={() => this.handleEditImage()}>X</button>;
+          editProfileImageButton = <FontAwesomeIcon icon="upload" className="edit-image" onClick={() => this.handleEditImage()} />;
+        // editProfileImageButton = <button className="edit-image" onClick={() => this.handleEditImage()}>X</button>;
       } else {
 
       }

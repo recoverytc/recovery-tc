@@ -64,14 +64,22 @@ hr {
 
 .edit-image {
   position: relative;
-  color: white;
+  color: #005e60;
   /* left: %; */
   bottom: 3em;
   left: 2em;
-  font-size: 15px;
-  bordeR: 1px solid white;
+  font-size: 20px;
+  border-radius: 50px;
+  /* bordeR: 1px solid white; */
   outline: none;
-  background: transparent;
+  background-color: #d3fbe7;
+  padding: 7px;
+  /* background: transparent; */
+  cursor: pointer;
+}
+
+.edit-image:hover {
+  background-color: aquamarine;
 }
 
 .root2 {

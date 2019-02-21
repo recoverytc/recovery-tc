@@ -39,10 +39,10 @@ import EventFeedbackPage from '../EventPage/EventFeedbackPage/EventFeedbackPage'
 import SearchList from '../SearchList/SearchList';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowUp } from '@fortawesome/free-solid-svg-icons'
+import { faArrowUp, faUpload } from '@fortawesome/free-solid-svg-icons'
 
 
-library.add(faArrowUp);
+library.add(faArrowUp, faUpload);
 
 
 

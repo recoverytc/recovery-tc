@@ -5,7 +5,7 @@ const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = require('twilio')(accountSid, authToken);
 cronJob = require('cron').CronJob;
 
-const reminderJob = new cronJob('24 17 * * *', (req, res) => {
+const reminderJob = new cronJob('00 12 * * *', (req, res) => {
     console.log(' rj started')
     let queryText = `SELECT "event_user".*, "user"."first_name", 
       "user"."phone", "event"."title",
@@ -39,7 +39,7 @@ const reminderJob = new cronJob('24 17 * * *', (req, res) => {
       }, null, true)
 });
 
-const feedbackJob = new cronJob('57 17 * * *', (req, res) => {
+const feedbackJob = new cronJob('00 12 * * *', (req, res) => {
     console.log(' fj started')
     let queryText = `SELECT "event_user".*, "user"."first_name", 
       "user"."phone", "event"."title",
